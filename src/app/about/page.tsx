@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import profile from "@/data/profile";
 
 export const metadata: Metadata = {
@@ -10,7 +11,16 @@ export default function AboutPage() {
   return (
     <section className="py-16">
       <div className="mx-auto max-w-3xl px-6">
-        <h1 className="text-3xl font-bold tracking-tight">About</h1>
+        <div className="flex flex-col items-start gap-6 sm:flex-row sm:items-center">
+          <Image
+            src="/headshot.jpg"
+            alt={profile.name}
+            width={120}
+            height={120}
+            className="rounded-full border-2 border-[var(--color-border)] object-cover shadow-sm"
+          />
+          <h1 className="text-3xl font-bold tracking-tight">About</h1>
+        </div>
 
         {/* Bio */}
         <div className="mt-8 space-y-4">

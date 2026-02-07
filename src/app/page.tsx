@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import profile from "@/data/profile";
 import ProjectCard from "@/components/ProjectCard";
 import Skills from "@/components/Skills";
@@ -13,12 +14,14 @@ export default function Home() {
       {/* ── Hero ──────────────────────────────── */}
       <section className="py-20 lg:py-28">
         <div className="mx-auto max-w-5xl px-6">
-          <p className="mb-3 text-sm font-medium uppercase tracking-widest text-[var(--color-accent)]">
-            {profile.location}
-          </p>
-          <h1 className="max-w-3xl text-4xl font-bold leading-tight tracking-tight lg:text-5xl">
-            {profile.name}
-          </h1>
+          <div className="flex flex-col-reverse items-start gap-8 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex-1">
+              <p className="mb-3 text-sm font-medium uppercase tracking-widest text-[var(--color-accent)]">
+                {profile.location}
+              </p>
+              <h1 className="max-w-3xl text-4xl font-bold leading-tight tracking-tight lg:text-5xl">
+                {profile.name}
+              </h1>
           <p className="mt-4 max-w-2xl text-lg leading-relaxed text-[var(--color-muted)]">
             {profile.headline}
           </p>
@@ -49,6 +52,20 @@ export default function Home() {
             >
               Get in Touch
             </Link>
+          </div>
+            </div>
+
+            {/* Headshot */}
+            <div className="shrink-0">
+              <Image
+                src="/headshot.jpg"
+                alt={profile.name}
+                width={160}
+                height={160}
+                className="rounded-full border-2 border-[var(--color-border)] object-cover shadow-sm"
+                priority
+              />
+            </div>
           </div>
         </div>
       </section>
