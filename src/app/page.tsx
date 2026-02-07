@@ -1,6 +1,6 @@
 import Link from "next/link";
-import Image from "next/image";
 import profile from "@/data/profile";
+import { assetPath } from "@/lib/basePath";
 import ProjectCard from "@/components/ProjectCard";
 import Skills from "@/components/Skills";
 
@@ -57,13 +57,13 @@ export default function Home() {
 
             {/* Headshot */}
             <div className="shrink-0">
-              <Image
-                src="/headshot.jpg"
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={assetPath("/headshot.jpg")}
                 alt={profile.name}
                 width={160}
                 height={160}
-                className="rounded-full border-2 border-[var(--color-border)] object-cover shadow-sm"
-                priority
+                className="h-40 w-40 rounded-full border-2 border-[var(--color-border)] object-cover shadow-sm"
               />
             </div>
           </div>

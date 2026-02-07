@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import profile from "@/data/profile";
+import { assetPath } from "@/lib/basePath";
 
 export const metadata: Metadata = {
   title: `About – ${profile.name}`,
@@ -12,12 +12,13 @@ export default function AboutPage() {
     <section className="py-16">
       <div className="mx-auto max-w-3xl px-6">
         <div className="flex flex-col items-start gap-6 sm:flex-row sm:items-center">
-          <Image
-            src="/headshot.jpg"
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={assetPath("/headshot.jpg")}
             alt={profile.name}
             width={120}
             height={120}
-            className="rounded-full border-2 border-[var(--color-border)] object-cover shadow-sm"
+            className="h-[120px] w-[120px] rounded-full border-2 border-[var(--color-border)] object-cover shadow-sm"
           />
           <h1 className="text-3xl font-bold tracking-tight">About</h1>
         </div>
