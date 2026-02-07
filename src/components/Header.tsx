@@ -80,7 +80,10 @@ export default function Header() {
 
       {/* Mobile menu */}
       {menuOpen && (
-        <nav className="border-t border-[var(--color-border)] px-6 pb-4 md:hidden" aria-label="Mobile navigation">
+        <nav
+          className="animate-fade-in-down border-t border-[var(--color-border)] px-6 pb-4 md:hidden"
+          aria-label="Mobile navigation"
+        >
           {navItems.map((item) => (
             <Link
               key={item.href}
