@@ -1,9 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import { useLanguage } from "./LanguageProvider";
 
 export default function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
+  const { copy } = useLanguage();
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -13,15 +15,15 @@ export default function ContactForm() {
   if (submitted) {
     return (
       <div className="rounded-lg border border-[var(--color-border)] bg-[var(--color-card)] p-8 text-center">
-        <p className="text-lg font-medium">Thank you!</p>
+        <p className="text-lg font-medium">{copy.contactForm.thankYou}</p>
         <p className="mt-2 text-sm text-[var(--color-muted)]">
-          Form backend not connected yet. Your message was not actually sent.
+          {copy.contactForm.notSent}
         </p>
         <button
           onClick={() => setSubmitted(false)}
           className="mt-4 text-sm text-[var(--color-accent)] hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent)]"
         >
-          Send another message
+          {copy.contactForm.sendAnother}
         </button>
       </div>
     );
@@ -30,7 +32,7 @@ export default function ContactForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
       <p className="rounded-md bg-[var(--color-accent-light)] px-4 py-2.5 text-sm text-[var(--color-muted)]">
-        Form backend not connected yet. Submissions are client-side only.
+        {copy.contactForm.banner}
       </p>
 
       <div>
@@ -38,7 +40,7 @@ export default function ContactForm() {
           htmlFor="name"
           className="mb-1.5 block text-sm font-medium"
         >
-          Name
+          {copy.contactForm.name}
         </label>
         <input
           id="name"
@@ -46,7 +48,7 @@ export default function ContactForm() {
           type="text"
           required
           className="w-full rounded-md border border-[var(--color-border)] bg-[var(--color-background)] px-3 py-2 text-sm outline-none transition-colors focus:border-[var(--color-accent)] focus:ring-1 focus:ring-[var(--color-accent)]"
-          placeholder="Your name"
+          placeholder={copy.contactForm.placeholderName}
         />
       </div>
 
@@ -55,7 +57,7 @@ export default function ContactForm() {
           htmlFor="email"
           className="mb-1.5 block text-sm font-medium"
         >
-          Email
+          {copy.contactForm.email}
         </label>
         <input
           id="email"
@@ -63,7 +65,7 @@ export default function ContactForm() {
           type="email"
           required
           className="w-full rounded-md border border-[var(--color-border)] bg-[var(--color-background)] px-3 py-2 text-sm outline-none transition-colors focus:border-[var(--color-accent)] focus:ring-1 focus:ring-[var(--color-accent)]"
-          placeholder="you@example.com"
+          placeholder={copy.contactForm.placeholderEmail}
         />
       </div>
 
@@ -72,7 +74,7 @@ export default function ContactForm() {
           htmlFor="message"
           className="mb-1.5 block text-sm font-medium"
         >
-          Message
+          {copy.contactForm.message}
         </label>
         <textarea
           id="message"
@@ -80,7 +82,7 @@ export default function ContactForm() {
           rows={5}
           required
           className="w-full rounded-md border border-[var(--color-border)] bg-[var(--color-background)] px-3 py-2 text-sm outline-none transition-colors focus:border-[var(--color-accent)] focus:ring-1 focus:ring-[var(--color-accent)]"
-          placeholder="How can I help?"
+          placeholder={copy.contactForm.placeholderMessage}
         />
       </div>
 
@@ -88,7 +90,7 @@ export default function ContactForm() {
         type="submit"
         className="rounded-md bg-[var(--color-accent)] px-5 py-2.5 text-sm font-medium text-white transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent)]"
       >
-        Send Message
+        {copy.contactForm.sendMessage}
       </button>
     </form>
   );

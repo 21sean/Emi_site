@@ -3,8 +3,10 @@
 import { useState, useMemo } from "react";
 import profile from "@/data/profile";
 import ProjectCard from "@/components/ProjectCard";
+import { useLanguage } from "@/components/LanguageProvider";
 
 export default function ProjectsPage() {
+  const { copy } = useLanguage();
   const allTags = useMemo(() => {
     const set = new Set<string>();
     profile.projects.forEach((p) => p.tags.forEach((t) => set.add(t)));
@@ -20,9 +22,9 @@ export default function ProjectsPage() {
   return (
     <section className="py-16">
       <div className="mx-auto max-w-5xl px-6">
-        <h1 className="text-3xl font-bold tracking-tight">Projects</h1>
+        <h1 className="text-3xl font-bold tracking-tight">{copy.projects.title}</h1>
         <p className="mt-2 text-sm text-[var(--color-muted)]">
-          Strategy, consulting, and research engagements.
+          {copy.projects.subtitle}
         </p>
 
         {/* Tag filters */}
@@ -35,7 +37,7 @@ export default function ProjectsPage() {
                 : "border-[var(--color-border)] text-[var(--color-muted)] hover:border-[var(--color-accent)]/40"
             }`}
           >
-            All
+            {copy.projects.all}
           </button>
           {allTags.map((tag) => (
             <button
@@ -63,7 +65,7 @@ export default function ProjectsPage() {
 
         {filtered.length === 0 && (
           <p className="mt-10 text-center text-sm text-[var(--color-muted)]">
-            No projects match that filter.
+            {copy.projects.noResults}
           </p>
         )}
       </div>
