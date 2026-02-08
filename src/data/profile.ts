@@ -86,7 +86,7 @@ const profile: Profile = {
     { label: "Email", url: "#", icon: "email" },
   ],
   contactEmail: "", // placeholder – add real email when ready
-  resumeUrl: "/resume", // links to /resume page; swap for a PDF URL later
+  resumeUrl: "/resume.pdf", // points to static PDF placed in public/resume.pdf
 
   // ── Skills ──────────────────────────────────
   skills: [
