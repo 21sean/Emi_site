@@ -327,7 +327,6 @@ const profile: Profile = {
       "AI governance & ethics",
       "Global supply chain resilience",
       "Startup ecosystems",
-      "Japanese business culture",
     ],
   },
 };
