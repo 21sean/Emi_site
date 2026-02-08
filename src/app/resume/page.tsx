@@ -10,13 +10,6 @@ export default function ResumePage() {
   return (
     <section className="py-12 print:py-0">
       <div className="mx-auto max-w-3xl px-6 print:max-w-none print:px-8">
-        {/* Print hint */}
-        <p className="no-print mb-6 rounded-md bg-[var(--color-accent-light)] px-4 py-2.5 text-sm text-[var(--color-muted)]">
-          Use <kbd className="font-mono text-xs">Ctrl + P</kbd> (or{" "}
-          <kbd className="font-mono text-xs">⌘ + P</kbd>) to print or save as
-          PDF.
-        </p>
-
         {/* ── Header ────────────────────────────── */}
         <header className="mb-8 border-b border-[var(--color-border)] pb-6">
           <h1 className="text-2xl font-bold tracking-tight">
