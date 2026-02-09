@@ -323,7 +323,13 @@ body {
 
 .dropdown-enter {
   animation: scale-in 200ms cubic-bezier(0.16, 1, 0.3, 1) both;
-  transform-origin: top right;
+  transform-origin: top left;
+}
+
+@media (min-width: 640px) {
+  .dropdown-enter {
+    transform-origin: top right;
+  }
 }
 
 /* ── Focus Ring ─────────────────────────────────────────── */
