@@ -32,12 +32,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} font-sans antialiased`}>
+      <body className={`${inter.variable} font-sans antialiased selection:bg-[var(--color-accent)] selection:text-white`}>
         <ThemeProvider>
           <LanguageProvider>
             <div className="flex min-h-screen flex-col">
               <Header />
-              <main className="flex-1 animate-fade-in">{children}</main>
+              <main className="flex-1">{children}</main>
               <Footer />
             </div>
           </LanguageProvider>

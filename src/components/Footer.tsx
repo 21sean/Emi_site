@@ -8,20 +8,20 @@ export default function Footer() {
   const profile = getProfile(lang);
 
   return (
-    <footer className="no-print border-t border-[var(--color-border)] py-10">
+    <footer className="no-print border-t border-[var(--color-border)] py-12">
       <div className="mx-auto max-w-5xl px-6">
-        <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
+        <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
           <div className="text-sm text-[var(--color-muted)]">
             &copy; {new Date().getFullYear()} {profile.name} &middot;{" "}
             {profile.location}
           </div>
 
-          <div className="flex gap-4">
+          <div className="flex gap-3">
             {profile.socialLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.url}
-                className="text-sm text-[var(--color-muted)] transition-colors hover:text-[var(--color-accent)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent)]"
+                className="rounded-lg px-3 py-1.5 text-sm text-[var(--color-muted)] transition-all duration-200 hover:bg-[var(--color-accent-light)] hover:text-[var(--color-accent)] focus-ring"
                 target="_blank"
                 rel="noopener noreferrer"
               >
