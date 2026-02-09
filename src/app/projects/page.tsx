@@ -1,15 +1,20 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import profile from "@/data/profile";
+import { useLanguage } from "@/components/LanguageProvider";
+import { getUI, getProfile } from "@/lib/translations";
 import ProjectCard from "@/components/ProjectCard";
 
 export default function ProjectsPage() {
+  const { lang } = useLanguage();
+  const ui = getUI(lang);
+  const profile = getProfile(lang);
+
   const allTags = useMemo(() => {
     const set = new Set<string>();
     profile.projects.forEach((p) => p.tags.forEach((t) => set.add(t)));
     return Array.from(set).sort();
-  }, []);
+  }, [profile.projects]);
 
   const [activeTag, setActiveTag] = useState<string | null>(null);
 
@@ -20,9 +25,9 @@ export default function ProjectsPage() {
   return (
     <section className="py-16">
       <div className="mx-auto max-w-5xl px-6">
-        <h1 className="text-3xl font-bold tracking-tight">Projects</h1>
+        <h1 className="text-3xl font-bold tracking-tight">{ui.projects.title}</h1>
         <p className="mt-2 text-sm text-[var(--color-muted)]">
-          Strategy, consulting, and research engagements.
+          {ui.projects.description}
         </p>
 
         {/* Tag filters */}
@@ -35,7 +40,7 @@ export default function ProjectsPage() {
                 : "border-[var(--color-border)] text-[var(--color-muted)] hover:border-[var(--color-accent)]/40"
             }`}
           >
-            All
+            {ui.common.all}
           </button>
           {allTags.map((tag) => (
             <button
@@ -63,7 +68,7 @@ export default function ProjectsPage() {
 
         {filtered.length === 0 && (
           <p className="mt-10 text-center text-sm text-[var(--color-muted)]">
-            No projects match that filter.
+            {ui.projects.noMatch}
           </p>
         )}
       </div>

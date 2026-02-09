@@ -1,9 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import { useLanguage } from "@/components/LanguageProvider";
+import { getUI } from "@/lib/translations";
 
 export default function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
+  const { lang } = useLanguage();
+  const ui = getUI(lang);
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -13,15 +17,15 @@ export default function ContactForm() {
   if (submitted) {
     return (
       <div className="rounded-lg border border-[var(--color-border)] bg-[var(--color-card)] p-8 text-center">
-        <p className="text-lg font-medium">Thank you!</p>
+        <p className="text-lg font-medium">{ui.contact.thankYou}</p>
         <p className="mt-2 text-sm text-[var(--color-muted)]">
-          Form backend not connected yet. Your message was not actually sent.
+          {ui.contact.notSent}
         </p>
         <button
           onClick={() => setSubmitted(false)}
           className="mt-4 text-sm text-[var(--color-accent)] hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent)]"
         >
-          Send another message
+          {ui.contact.sendAnother}
         </button>
       </div>
     );
@@ -30,7 +34,7 @@ export default function ContactForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
       <p className="rounded-md bg-[var(--color-accent-light)] px-4 py-2.5 text-sm text-[var(--color-muted)]">
-        Form backend not connected yet. Submissions are client-side only.
+        {ui.contact.formNotice}
       </p>
 
       <div>
@@ -38,7 +42,7 @@ export default function ContactForm() {
           htmlFor="name"
           className="mb-1.5 block text-sm font-medium"
         >
-          Name
+          {ui.contact.nameLabel}
         </label>
         <input
           id="name"
@@ -46,7 +50,7 @@ export default function ContactForm() {
           type="text"
           required
           className="w-full rounded-md border border-[var(--color-border)] bg-[var(--color-background)] px-3 py-2 text-sm outline-none transition-colors focus:border-[var(--color-accent)] focus:ring-1 focus:ring-[var(--color-accent)]"
-          placeholder="Your name"
+          placeholder={ui.contact.namePlaceholder}
         />
       </div>
 
@@ -55,7 +59,7 @@ export default function ContactForm() {
           htmlFor="email"
           className="mb-1.5 block text-sm font-medium"
         >
-          Email
+          {ui.contact.emailLabel}
         </label>
         <input
           id="email"
@@ -63,7 +67,7 @@ export default function ContactForm() {
           type="email"
           required
           className="w-full rounded-md border border-[var(--color-border)] bg-[var(--color-background)] px-3 py-2 text-sm outline-none transition-colors focus:border-[var(--color-accent)] focus:ring-1 focus:ring-[var(--color-accent)]"
-          placeholder="you@example.com"
+          placeholder={ui.contact.emailPlaceholder}
         />
       </div>
 
@@ -72,7 +76,7 @@ export default function ContactForm() {
           htmlFor="message"
           className="mb-1.5 block text-sm font-medium"
         >
-          Message
+          {ui.contact.messageLabel}
         </label>
         <textarea
           id="message"
@@ -80,7 +84,7 @@ export default function ContactForm() {
           rows={5}
           required
           className="w-full rounded-md border border-[var(--color-border)] bg-[var(--color-background)] px-3 py-2 text-sm outline-none transition-colors focus:border-[var(--color-accent)] focus:ring-1 focus:ring-[var(--color-accent)]"
-          placeholder="How can I help?"
+          placeholder={ui.contact.messagePlaceholder}
         />
       </div>
 
@@ -88,7 +92,7 @@ export default function ContactForm() {
         type="submit"
         className="rounded-md bg-[var(--color-accent)] px-5 py-2.5 text-sm font-medium text-white transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent)]"
       >
-        Send Message
+        {ui.contact.sendMessage}
       </button>
     </form>
   );

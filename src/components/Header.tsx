@@ -2,59 +2,26 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import profile from "@/data/profile";
 import ThemeToggle from "./ThemeToggle";
-import { useEffect, useState } from "react";
-
-const navItems = [
-  { label: "Home", href: "/" },
-  { label: "Projects", href: "/projects" },
-  { label: "About", href: "/about" },
-  { label: "Resume", href: "/resume" },
-  { label: "Contact", href: "/contact" },
-];
+import LanguageSelect from "./LanguageSelect";
+import { useLanguage } from "./LanguageProvider";
+import { getUI, getProfile } from "@/lib/translations";
+import { useState } from "react";
 
 export default function Header() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [language, setLanguage] = useState("en");
+  const { lang } = useLanguage();
+  const ui = getUI(lang);
+  const profile = getProfile(lang);
 
-  useEffect(() => {
-    if (typeof navigator === "undefined") {
-      return;
-    }
-
-    const browserLanguage = navigator.languages?.[0] || navigator.language || "en";
-    const normalized = browserLanguage.toLowerCase();
-
-    if (normalized.startsWith("ja")) {
-      setLanguage("ja");
-      return;
-    }
-
-    if (normalized.startsWith("zh")) {
-      setLanguage("zh");
-      return;
-    }
-
-    setLanguage("en");
-  }, []);
-
-  const languageSelect = (
-    <label className="flex items-center gap-2 text-sm text-[var(--color-muted)]">
-      <span className="sr-only">Language</span>
-      <select
-        className="rounded-md border border-[var(--color-border)] bg-transparent px-2 py-1 text-sm text-[var(--color-text)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent)]"
-        aria-label="Select language"
-        value={language}
-        onChange={(event) => setLanguage(event.target.value)}
-      >
-        <option value="en">English</option>
-        <option value="ja">Japanese</option>
-        <option value="zh">Chinese</option>
-      </select>
-    </label>
-  );
+  const navItems = [
+    { label: ui.nav.home, href: "/" },
+    { label: ui.nav.projects, href: "/projects" },
+    { label: ui.nav.about, href: "/about" },
+    { label: ui.nav.resume, href: "/resume" },
+    { label: ui.nav.contact, href: "/contact" },
+  ];
 
   return (
     <header className="no-print sticky top-0 z-50 border-b border-[var(--color-border)] bg-[var(--color-background)]/90 backdrop-blur-md">
@@ -84,13 +51,13 @@ export default function Header() {
           ))}
 
           <ThemeToggle />
-          {languageSelect}
+          <LanguageSelect />
 
           <Link
             href={profile.resumeUrl}
             className="ml-2 rounded-md border border-[var(--color-border)] px-3 py-1.5 text-sm font-medium transition-colors hover:bg-[var(--color-accent-light)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent)]"
           >
-            Download Resume
+            {ui.common.downloadResume}
           </Link>
         </nav>
 
@@ -139,12 +106,12 @@ export default function Header() {
           ))}
           <div className="flex items-center gap-4 pt-2">
             <ThemeToggle />
-            {languageSelect}
+            <LanguageSelect />
             <Link
               href={profile.resumeUrl}
               className="rounded-md border border-[var(--color-border)] px-3 py-1.5 text-sm font-medium transition-colors hover:bg-[var(--color-accent-light)]"
             >
-              Download Resume
+              {ui.common.downloadResume}
             </Link>
           </div>
         </nav>

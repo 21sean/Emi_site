@@ -1,6 +1,12 @@
-import profile from "@/data/profile";
+"use client";
+
+import { useLanguage } from "@/components/LanguageProvider";
+import { getProfile } from "@/lib/translations";
 
 export default function Footer() {
+  const { lang } = useLanguage();
+  const profile = getProfile(lang);
+
   return (
     <footer className="no-print border-t border-[var(--color-border)] py-10">
       <div className="mx-auto max-w-5xl px-6">

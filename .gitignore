@@ -38,4 +38,7 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+# font files (large, download via script)
+scripts/fonts/
 next-env.d.ts

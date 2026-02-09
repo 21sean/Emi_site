@@ -1,10 +1,17 @@
-import profile from "@/data/profile";
+"use client";
+
+import { useLanguage } from "@/components/LanguageProvider";
+import { getUI, getProfile } from "@/lib/translations";
 
 export default function Skills() {
+  const { lang } = useLanguage();
+  const ui = getUI(lang);
+  const profile = getProfile(lang);
+
   return (
     <section className="py-16">
       <div className="mx-auto max-w-5xl px-6">
-        <h2 className="mb-8 text-xl font-semibold tracking-tight">Skills</h2>
+        <h2 className="mb-8 text-xl font-semibold tracking-tight">{ui.home.skills}</h2>
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {profile.skills.map((group) => (
             <div key={group.category}>
