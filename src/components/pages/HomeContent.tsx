@@ -6,8 +6,7 @@ import { useLanguage } from "@/components/LanguageProvider";
 import { getUI, getProfile } from "@/lib/translations";
 import ProjectCard from "@/components/ProjectCard";
 import Skills from "@/components/Skills";
-import { useMounted } from "@/lib/useReveal";
-import { useReveal } from "@/lib/useReveal";
+import { useMounted, useReveal } from "@/lib/useReveal";
 
 export default function HomeContent() {
   const { lang } = useLanguage();
