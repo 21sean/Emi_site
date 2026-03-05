@@ -12,6 +12,7 @@ export default function AboutContent() {
   const mounted = useMounted();
 
   const focusRef = useReveal();
+  const certsRef = useReveal();
   const valuesRef = useReveal();
   const interestsRef = useReveal();
   const languagesRef = useReveal();
@@ -80,6 +81,42 @@ export default function AboutContent() {
               </li>
             ))}
           </ul>
+        </div>
+
+        {/* Certifications */}
+        <div
+          ref={certsRef.ref}
+          className={`mt-14 reveal ${certsRef.revealed ? "revealed" : ""}`}
+        >
+          <h2 className="mb-5 flex items-center gap-2 text-lg font-bold tracking-tight">
+            <span className="inline-block h-5 w-1 rounded-full bg-[var(--color-accent)]" />
+            {ui.about.certifications}
+          </h2>
+          <div className="grid gap-3">
+            {profile.certifications.map((cert, i) => (
+              <div
+                key={cert.name}
+                className="rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] p-4 shadow-sm transition-all duration-200 hover:border-[var(--color-accent)]/30 hover:shadow-md"
+                style={{ transitionDelay: `${i * 75}ms` }}
+              >
+                <div className="flex items-baseline justify-between gap-3">
+                  <h3 className="text-sm font-semibold">{cert.name}</h3>
+                  <span className="shrink-0 text-xs text-[var(--color-muted)]">{cert.date}</span>
+                </div>
+                <p className="mt-0.5 text-xs font-medium text-[var(--color-accent)]">{cert.issuer}</p>
+                <div className="mt-2 flex flex-wrap gap-1.5">
+                  {cert.skills.map((skill) => (
+                    <span
+                      key={skill}
+                      className="rounded-full bg-[var(--color-accent-light)] px-2 py-0.5 text-[11px] font-medium text-[var(--color-accent)]"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Values */}

@@ -42,6 +42,7 @@ export interface UI {
   about: {
     title: string;
     focusAreas: string;
+    certifications: string;
     values: string;
     interests: string;
     languages: string;
@@ -106,6 +107,7 @@ const uiEn: UI = {
   about: {
     title: "About",
     focusAreas: "Focus Areas",
+    certifications: "Certifications",
     values: "Values",
     interests: "Interests",
     languages: "Languages",
@@ -171,6 +173,7 @@ const uiJa: UI = {
   about: {
     title: "概要",
     focusAreas: "専門分野",
+    certifications: "資格・認定",
     values: "価値観",
     interests: "関心分野",
     languages: "言語",
@@ -236,6 +239,7 @@ const uiZh: UI = {
   about: {
     title: "关于",
     focusAreas: "重点领域",
+    certifications: "资格认证",
     values: "核心价值",
     interests: "兴趣方向",
     languages: "语言能力",
@@ -278,40 +282,41 @@ const uiZh: UI = {
 const profileJa: Profile = {
   ...baseProfile,
   headline:
-    "ディープテック、AI、産業政策の交差点で活動する戦略コンサルタント。",
+    "カリフォルニア大学サンディエゴ校MBA候補生 | ダッソー・システムズ（BIOVIA）グローバルSaaSマーケティング | ライフサイエンス＆科学ソフトウェア",
   summary:
-    "AI、先端製造業、官民投資の融合を専門とするMBA候補生兼戦略プロフェッショナル。テクノロジー政策と資本配分、市場戦略が交わる複雑な環境のナビゲーションを支援します。",
+    "カリフォルニア大学サンディエゴ校でSTEM分野に重点を置いたMBAを取得中。UCSD Rady Scholar Fellowshipの受給者。ダッソー・システムズのBIOVIAブランドにおけるグローバルSaaSマーケティング活動に貢献し、国際キャンペーンの開発・実行、クロスマーケット分析の実施、エンゲージメントとROIの最適化を推進。",
   location: "サンディエゴ、CA",
-  specialties: ["産業政策", "AI・ロボティクス戦略", "ディープテック投資"],
+  specialties: ["SaaSマーケティング戦略", "ライフサイエンス＆バイオテック", "AI＆先端製造業"],
   resumeUrl: "/resume-ja.pdf",
 
   skills: [
     {
       category: "戦略＆コンサルティング",
       items: [
+        "ビジネス戦略",
         "産業政策分析",
         "戦略的財務分析",
-        "戦略分析",
-        "戦略的マーケティング",
-        "Go-to-Market戦略",
-        "ビジネスモデリング",
-        "テクノロジーコンサルティング",
         "M&A（合併・買収）",
-        "オペレーション管理",
+        "財務分析",
+        "財務予測",
+        "財務モデリング",
+        "財務諸表分析",
+        "コーポレートファイナンス",
         "アジャイルプロジェクト管理",
         "アジャイル手法",
       ],
     },
     {
-      category: "AI＆ディープテック",
+      category: "AI＆ライフサイエンス",
       items: [
         "人工知能（AI）",
-        "ロボティクス",
         "AIと先端製造業",
         "バイオテック＆製薬戦略",
         "ライフサイエンス",
         "材料科学",
         "科学情報学",
+        "リサーチ",
+        "データ分析",
       ],
     },
     {
@@ -320,15 +325,15 @@ const profileJa: Profile = {
         "デジタルマーケティング戦略",
         "市場調査＆競合分析",
         "コンテンツ開発",
+        "コンテンツ制作",
         "品質＆レギュラトリーマーケティング",
-        "マーケティング",
         "イベント企画＆ロジスティクス管理",
-        "CRM（顧客管理）",
+        "アプリ構築",
       ],
     },
     {
       category: "ツール＆テクノロジー",
-      items: ["Jira", "Tableau", "R Studio", "MATLAB", "JavaScript"],
+      items: ["Jira", "Microsoft Excel", "Tableau", "R Studio", "MATLAB", "JavaScript", "ESG"],
     },
     {
       category: "コラボレーション",
@@ -453,14 +458,14 @@ const profileJa: Profile = {
 
   about: {
     bio: [
-      "ディープテック、人工知能、産業政策の交差点で活動する戦略コンサルティングに注力するMBA候補生です。最先端技術と、それを市場に投入するための戦略、政策、投資フレームワークの間の橋渡しをする仕事をしています。",
-      "CHIPS法のプライベートマーケットへの影響分析から、Fortune 500半導体企業へのロボティクスの未来に関するアドバイス、スタートアップの勝利するGo-to-Market戦略の策定まで、複雑で曖昧な課題に取り組む部門横断チームで力を発揮します。",
+      "カリフォルニア大学サンディエゴ校でSTEM分野に重点を置いたMBAを取得中であり、UCSD Rady Scholar Fellowshipの受給者です。ダッソー・システムズでは、BIOVIAブランドのグローバルSaaSマーケティング活動に貢献し、国際キャンペーンの開発・実行、クロスマーケット分析の実施、エンゲージメントとROIの最適化戦略を推進しています。",
+      "ライフサイエンスおよび科学ソフトウェアソリューションにおけるイノベーション推進に意欲を持ち、部門横断チームと協力してパフォーマンス分析を活用し、データドリブンの洞察を提供し、組織目標を支援しています。MBA課程を修了しながら、SaaSマーケティング戦略、市場調査、キャンペーン実行の専門性を高めることに取り組んでいます。",
     ],
     focusAreas: [
-      "ディープテック＆AI戦略",
-      "米国産業＆テクノロジー政策",
-      "ロボティクス＆先端製造業",
-      "ベンチャー＆プライベートエクイティ",
+      "SaaSマーケティング戦略",
+      "ライフサイエンス＆科学ソフトウェア",
+      "AI＆先端製造業",
+      "市場調査＆キャンペーン実行",
     ],
     values: [
       "厳密なエビデンスに基づく分析",
@@ -478,40 +483,42 @@ const profileJa: Profile = {
 
 const profileZh: Profile = {
   ...baseProfile,
-  headline: "深科技、人工智能与产业政策交汇领域的战略顾问。",
+  headline:
+    "加州大学圣迭戈分校MBA候选人 | 达索系统（BIOVIA）全球SaaS营销 | 生命科学与科学软件",
   summary:
-    "MBA候选人和战略专家，专注于人工智能、先进制造业和公私合作投资的融合。帮助组织驾驭技术政策与资本分配和市场战略交汇的复杂环境。",
+    "目前在加州大学圣迭戈分校攻读以STEM为重点的MBA，并荣获UCSD Rady Scholar Fellowship。在达索系统为其BIOVIA品牌的全球SaaS营销做出贡献，开发和执行国际营销活动，进行跨市场分析，并优化策略以提升参与度和投资回报率。",
   location: "圣迭戈，加利福尼亚",
-  specialties: ["产业政策", "人工智能/机器人战略", "深科技投资"],
+  specialties: ["SaaS营销策略", "生命科学与生物技术", "人工智能与先进制造"],
   resumeUrl: "/resume-zh.pdf",
 
   skills: [
     {
       category: "战略与咨询",
       items: [
+        "商业战略",
         "产业政策分析",
         "战略财务分析",
-        "战略分析",
-        "战略营销",
-        "市场进入战略",
-        "商业建模",
-        "技术咨询",
         "并购（M&A）",
-        "运营管理",
+        "财务分析",
+        "财务预测",
+        "财务建模",
+        "财务报表分析",
+        "企业财务",
         "敏捷项目管理",
         "敏捷方法论",
       ],
     },
     {
-      category: "人工智能与深科技",
+      category: "人工智能与生命科学",
       items: [
         "人工智能（AI）",
-        "机器人技术",
         "人工智能与先进制造",
         "生物技术与制药战略",
         "生命科学",
         "材料科学",
         "科学信息学",
+        "研究",
+        "数据分析",
       ],
     },
     {
@@ -520,15 +527,15 @@ const profileZh: Profile = {
         "数字营销战略",
         "市场研究与竞争分析",
         "内容开发",
+        "内容创作",
         "质量与法规营销",
-        "营销",
         "活动策划与物流管理",
-        "CRM（客户关系管理）",
+        "应用构建",
       ],
     },
     {
       category: "工具与技术",
-      items: ["Jira", "Tableau", "R Studio", "MATLAB", "JavaScript"],
+      items: ["Jira", "Microsoft Excel", "Tableau", "R Studio", "MATLAB", "JavaScript", "ESG"],
     },
     {
       category: "协作",
@@ -642,14 +649,14 @@ const profileZh: Profile = {
 
   about: {
     bio: [
-      "我是一名MBA候选人，专注于深科技、人工智能和产业政策交汇领域的战略咨询。我的工作致力于在前沿技术与将其推向市场所需的战略、政策和投资框架之间搭建桥梁。",
-      "无论是分析CHIPS法案对私募市场的深远影响、为财富500强半导体公司提供机器人技术未来的建议，还是帮助初创公司制定制胜的市场进入策略——我善于在跨职能团队中解决复杂而模糊的问题。",
+      "目前在加州大学圣迭戈分校攻读以STEM为重点的MBA，并荣获UCSD Rady Scholar Fellowship。在达索系统，我为其BIOVIA品牌的全球SaaS营销做出贡献，开发和执行国际营销活动，进行跨市场分析，并优化策略以提升参与度和投资回报率。",
+      "我致力于推动生命科学和科学软件解决方案的创新，与跨职能团队合作利用绩效分析，提供数据驱动的洞察，并支持组织目标。在完成MBA课程的同时，我致力于提升SaaS营销策略、市场研究和营销活动执行方面的专业能力。",
     ],
     focusAreas: [
-      "深科技与AI战略",
-      "美国产业与科技政策",
-      "机器人与先进制造",
-      "风险投资与私募股权",
+      "SaaS营销策略",
+      "生命科学与科学软件",
+      "人工智能与先进制造",
+      "市场研究与营销活动执行",
     ],
     values: [
       "严谨的循证分析",

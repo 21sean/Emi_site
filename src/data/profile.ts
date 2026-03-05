@@ -48,6 +48,14 @@ export interface Language {
   proficiency: string;
 }
 
+export interface Certification {
+  name: string;
+  issuer: string;
+  date: string;
+  credentialId?: string;
+  skills: string[];
+}
+
 export interface Profile {
   name: string;
   headline: string;
@@ -58,6 +66,7 @@ export interface Profile {
   contactEmail: string;
   resumeUrl: string;
   skills: Skill[];
+  certifications: Certification[];
   experience: Experience[];
   languages: Language[];
   projects: Project[];
@@ -72,14 +81,14 @@ export interface Profile {
 const profile: Profile = {
   name: "Emi Kobayashi",
   headline:
-    "Strategy consultant at the intersection of deep tech, AI, and industrial policy.",
+    "MBA candidate at UC San Diego | Global SaaS Marketing at Dassault Systèmes (BIOVIA) | Life Sciences & Scientific Software",
   summary:
-    "MBA candidate and strategy professional specializing in the convergence of AI, advanced manufacturing, and public-private investment. I help organizations navigate the complex landscape where technology policy meets capital allocation and market strategy.",
-  location: "San Diego, CA", // placeholder
+    "Currently pursuing an MBA at the University of California, San Diego with a focus on STEM and recognized as a UCSD Rady Scholar Fellowship recipient. At Dassault Systèmes, contributing to global SaaS marketing efforts for their BIOVIA brand by developing and executing international campaigns, conducting cross-market analyses, and optimizing strategies to enhance engagement and ROI.",
+  location: "San Diego, CA",
   specialties: [
-    "Industrial Policy",
-    "AI / Robotics Strategy",
-    "Deep Tech Investment",
+    "SaaS Marketing Strategy",
+    "Life Sciences & Biotech",
+    "AI & Advanced Manufacturing",
   ],
   socialLinks: [
     { label: "LinkedIn", url: "https://www.linkedin.com/in/emi-kobayashi/", icon: "linkedin" },
@@ -93,29 +102,30 @@ const profile: Profile = {
     {
       category: "Strategy & Consulting",
       items: [
+        "Business Strategy",
         "Industrial Policy Analysis",
         "Strategic Financial Analysis",
-        "Strategic Analysis",
-        "Strategic Marketing",
-        "Go-to-Market Strategy",
-        "Business Modeling",
-        "Technology Consulting",
         "Mergers & Acquisitions (M&A)",
-        "Operations Management",
+        "Financial Analysis",
+        "Financial Forecasting",
+        "Financial Modeling",
+        "Financial Statement Analysis",
+        "Corporate Finance",
         "Agile Project Management",
         "Agile Methodologies",
       ],
     },
     {
-      category: "AI & Deep Tech",
+      category: "AI & Life Sciences",
       items: [
         "Artificial Intelligence (AI)",
-        "Robotics",
         "AI and Advanced Manufacturing",
         "Biotech & Pharma Strategy",
         "Life Sciences",
         "Materials Science",
         "Scientific Informatics",
+        "Research",
+        "Data Analysis",
       ],
     },
     {
@@ -124,20 +134,22 @@ const profile: Profile = {
         "Digital Marketing Strategy",
         "Market Research & Competitive Analysis",
         "Content Development",
+        "Content Creation",
         "Quality & Regulatory Marketing",
-        "Marketing",
         "Event Planning & Logistics Management",
-        "CRM (顧客管理)",
+        "App Building",
       ],
     },
     {
       category: "Tools & Technologies",
       items: [
         "Jira",
+        "Microsoft Excel",
         "Tableau",
         "R Studio",
         "MATLAB",
         "JavaScript",
+        "ESG",
       ],
     },
     {
@@ -147,6 +159,35 @@ const profile: Profile = {
         "Cross-Functional Project Coordination",
         "Cross-Cultural Collaboration",
       ],
+    },
+  ],
+
+  // ── Certifications ─────────────────────────
+  certifications: [
+    {
+      name: "Google AI Professional Certificate",
+      issuer: "Google",
+      date: "Feb 2026",
+      credentialId: "UETBA9K11NEN",
+      skills: ["App Building", "Data Analysis", "Content Creation", "Research", "Artificial Intelligence (AI)"],
+    },
+    {
+      name: "CFI Financial Analysis and Modeling Professional Certificate",
+      issuer: "Corporate Finance Institute (CFI)",
+      date: "Feb 2026",
+      skills: ["Financial Analysis", "Financial Forecasting"],
+    },
+    {
+      name: "CFI Corporate Finance Foundations Professional Certificate",
+      issuer: "Corporate Finance Institute (CFI)",
+      date: "Feb 2026",
+      skills: ["Financial Statement Analysis", "ESG", "Microsoft Excel", "Corporate Finance", "Financial Modeling"],
+    },
+    {
+      name: "Atlassian Agile Project Management Professional Certificate",
+      issuer: "Atlassian",
+      date: "Jan 2026",
+      skills: ["Jira", "Agile Methodologies", "Agile Project Management"],
     },
   ],
 
@@ -308,14 +349,14 @@ const profile: Profile = {
   // ── About ───────────────────────────────────
   about: {
     bio: [
-      "I'm an MBA candidate focused on strategy consulting at the intersection of deep tech, artificial intelligence, and industrial policy. My work bridges the gap between cutting-edge technology and the strategic, policy, and investment frameworks that bring it to market.",
-      "I thrive in cross-functional teams tackling complex, ambiguous problems—whether that's mapping the downstream effects of the CHIPS Act on private markets, advising a Fortune 500 semiconductor company on the future of robotics, or helping a startup craft a winning go-to-market strategy.",
+      "Currently pursuing an MBA at the University of California, San Diego with a focus on STEM and recognized as a UCSD Rady Scholar Fellowship recipient. At Dassault Systèmes, I contribute to global SaaS marketing efforts for their BIOVIA brand by developing and executing international campaigns, conducting cross-market analyses, and optimizing strategies to enhance engagement and ROI.",
+      "Motivated by opportunities to drive innovation in life sciences and scientific software solutions, I collaborate with cross-functional teams to leverage performance analytics, deliver data-driven insights, and support organizational goals. Dedicated to advancing expertise in SaaS marketing strategy, market research, and campaign execution while completing an MBA program.",
     ],
     focusAreas: [
-      "Deep Tech & AI Strategy",
-      "U.S. Industrial & Technology Policy",
-      "Robotics & Advanced Manufacturing",
-      "Venture & Private Equity Landscape",
+      "SaaS Marketing Strategy",
+      "Life Sciences & Scientific Software",
+      "AI & Advanced Manufacturing",
+      "Market Research & Campaign Execution",
     ],
     values: [
       "Rigorous, evidence-based analysis",
