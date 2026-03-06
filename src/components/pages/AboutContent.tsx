@@ -209,14 +209,25 @@ export default function AboutContent() {
                 {/* Timeline dot */}
                 <div className="absolute left-0 top-1.5 h-[14px] w-[14px] rounded-full border-2 border-[var(--color-accent)] bg-[var(--color-background)]" />
                 <div className="rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] p-5 shadow-sm transition-all duration-200 hover:border-[var(--color-accent)]/30 hover:shadow-md">
-                  <h3 className="text-sm font-bold">{exp.title}</h3>
-                  <p className="mt-0.5 text-xs font-medium text-[var(--color-accent)]">
-                    {exp.company}
-                    {exp.type ? ` · ${exp.type}` : ""}
-                  </p>
-                  <p className="text-xs text-[var(--color-muted)]">
-                    {exp.dates} · {exp.location}
-                  </p>
+                  <div className="flex gap-4">
+                    {exp.logo && (
+                      <img
+                        src={exp.logo}
+                        alt={exp.company}
+                        className="h-10 w-10 shrink-0 rounded-lg object-contain"
+                      />
+                    )}
+                    <div>
+                      <h3 className="text-sm font-bold">{exp.title}</h3>
+                      <p className="mt-0.5 text-xs font-medium text-[var(--color-accent)]">
+                        {exp.company}
+                        {exp.type ? ` · ${exp.type}` : ""}
+                      </p>
+                      <p className="text-xs text-[var(--color-muted)]">
+                        {exp.dates} · {exp.location}
+                      </p>
+                    </div>
+                  </div>
                   <ul className="mt-3 list-disc space-y-1 pl-4">
                     {exp.bullets.map((b, j) => (
                       <li
