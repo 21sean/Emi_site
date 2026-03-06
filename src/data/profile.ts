@@ -312,7 +312,7 @@ const profile: Profile = {
       ],
       tags: ["AI", "Robotics", "Consulting", "Semiconductors", "Strategy"],
       artifacts: [
-        { label: "Deck", url: "/Intel - Physical AI.pdf" },
+        { label: "Deck", url: "/intel-physical-ai.pdf" },
       ],
       featured: true,
     },
