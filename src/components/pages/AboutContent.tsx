@@ -4,6 +4,7 @@ import { assetPath } from "@/lib/basePath";
 import { useLanguage } from "@/components/LanguageProvider";
 import { getUI, getProfile } from "@/lib/translations";
 import { useMounted, useReveal } from "@/lib/useReveal";
+import SideNav from "@/components/SideNav";
 
 export default function AboutContent() {
   const { lang } = useLanguage();
@@ -20,6 +21,17 @@ export default function AboutContent() {
 
   return (
     <section className="py-20">
+      <SideNav
+        items={[
+          { id: "summary", label: "Summary" },
+          { id: "languages", label: ui.about.languages },
+          { id: "focus-areas", label: ui.about.focusAreas },
+          { id: "certifications", label: ui.about.certifications },
+          { id: "values", label: ui.about.values },
+          { id: "interests", label: ui.about.interests },
+          { id: "experience", label: ui.about.experience },
+        ]}
+      />
       <div className="mx-auto max-w-3xl px-6">
         {/* Header with headshot */}
         <div
@@ -46,7 +58,8 @@ export default function AboutContent() {
 
         {/* Bio */}
         <div
-          className={`mt-10 space-y-4 ${
+          id="summary"
+          className={`mt-10 scroll-mt-20 space-y-4 ${
             mounted ? "animate-fade-in-up stagger-3" : "opacity-0"
           }`}
         >
@@ -62,8 +75,9 @@ export default function AboutContent() {
 
         {/* Languages */}
         <div
+          id="languages"
           ref={languagesRef.ref}
-          className={`mt-14 reveal ${languagesRef.revealed ? "revealed" : ""}`}
+          className={`mt-14 scroll-mt-20 reveal ${languagesRef.revealed ? "revealed" : ""}`}
         >
           <h2 className="mb-5 flex items-center gap-2 text-lg font-bold tracking-tight">
             <span className="inline-block h-5 w-1 rounded-full bg-[var(--color-accent)]" />
@@ -87,8 +101,9 @@ export default function AboutContent() {
 
         {/* Focus Areas */}
         <div
+          id="focus-areas"
           ref={focusRef.ref}
-          className={`mt-14 reveal ${focusRef.revealed ? "revealed" : ""}`}
+          className={`mt-14 scroll-mt-20 reveal ${focusRef.revealed ? "revealed" : ""}`}
         >
           <h2 className="mb-5 flex items-center gap-2 text-lg font-bold tracking-tight">
             <span className="inline-block h-5 w-1 rounded-full bg-[var(--color-accent)]" />
@@ -110,8 +125,9 @@ export default function AboutContent() {
 
         {/* Certifications */}
         <div
+          id="certifications"
           ref={certsRef.ref}
-          className={`mt-14 reveal ${certsRef.revealed ? "revealed" : ""}`}
+          className={`mt-14 scroll-mt-20 reveal ${certsRef.revealed ? "revealed" : ""}`}
         >
           <h2 className="mb-5 flex items-center gap-2 text-lg font-bold tracking-tight">
             <span className="inline-block h-5 w-1 rounded-full bg-[var(--color-accent)]" />
@@ -156,8 +172,9 @@ export default function AboutContent() {
 
         {/* Values */}
         <div
+          id="values"
           ref={valuesRef.ref}
-          className={`mt-14 reveal ${valuesRef.revealed ? "revealed" : ""}`}
+          className={`mt-14 scroll-mt-20 reveal ${valuesRef.revealed ? "revealed" : ""}`}
         >
           <h2 className="mb-5 flex items-center gap-2 text-lg font-bold tracking-tight">
             <span className="inline-block h-5 w-1 rounded-full bg-[var(--color-accent)]" />
@@ -179,8 +196,9 @@ export default function AboutContent() {
 
         {/* Interests */}
         <div
+          id="interests"
           ref={interestsRef.ref}
-          className={`mt-14 reveal ${interestsRef.revealed ? "revealed" : ""}`}
+          className={`mt-14 scroll-mt-20 reveal ${interestsRef.revealed ? "revealed" : ""}`}
         >
           <h2 className="mb-5 flex items-center gap-2 text-lg font-bold tracking-tight">
             <span className="inline-block h-5 w-1 rounded-full bg-[var(--color-accent)]" />
@@ -200,8 +218,9 @@ export default function AboutContent() {
 
         {/* Experience */}
         <div
+          id="experience"
           ref={experienceRef.ref}
-          className={`mt-14 reveal ${experienceRef.revealed ? "revealed" : ""}`}
+          className={`mt-14 scroll-mt-20 reveal ${experienceRef.revealed ? "revealed" : ""}`}
         >
           <h2 className="mb-6 flex items-center gap-2 text-lg font-bold tracking-tight">
             <span className="inline-block h-5 w-1 rounded-full bg-[var(--color-accent)]" />

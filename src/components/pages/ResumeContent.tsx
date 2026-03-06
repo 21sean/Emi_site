@@ -3,6 +3,7 @@
 import { useLanguage } from "@/components/LanguageProvider";
 import { getUI, getProfile } from "@/lib/translations";
 import { useMounted, useReveal } from "@/lib/useReveal";
+import SideNav from "@/components/SideNav";
 
 export default function ResumeContent() {
   const { lang } = useLanguage();
@@ -17,6 +18,15 @@ export default function ResumeContent() {
 
   return (
     <section className="py-16 print:py-0">
+      <SideNav
+        items={[
+          { id: "resume-summary", label: ui.resume.summary },
+          { id: "resume-experience", label: ui.resume.experience },
+          { id: "resume-projects", label: ui.resume.projects },
+          { id: "resume-skills", label: ui.resume.skills },
+          { id: "resume-languages", label: ui.resume.languages },
+        ]}
+      />
       <div className="mx-auto max-w-3xl px-6 print:max-w-none print:px-8">
         {/* ── Header ────────────────────────────── */}
         <header
@@ -51,7 +61,8 @@ export default function ResumeContent() {
 
         {/* ── Summary ───────────────────────────── */}
         <div
-          className={`mb-10 ${mounted ? "animate-fade-in-up stagger-2" : "opacity-0"}`}
+          id="resume-summary"
+          className={`mb-10 scroll-mt-20 ${mounted ? "animate-fade-in-up stagger-2" : "opacity-0"}`}
         >
           <h2 className="mb-3 flex items-center gap-2 text-sm font-bold uppercase tracking-[0.15em] text-[var(--color-accent)]">
             <span className="inline-block h-4 w-1 rounded-full bg-[var(--color-accent)]" />
@@ -64,8 +75,9 @@ export default function ResumeContent() {
 
         {/* ── Experience ─────────────────────────── */}
         <div
+          id="resume-experience"
           ref={expRef.ref}
-          className={`mb-10 reveal ${expRef.revealed ? "revealed" : ""}`}
+          className={`mb-10 scroll-mt-20 reveal ${expRef.revealed ? "revealed" : ""}`}
         >
           <h2 className="mb-5 flex items-center gap-2 text-sm font-bold uppercase tracking-[0.15em] text-[var(--color-accent)]">
             <span className="inline-block h-4 w-1 rounded-full bg-[var(--color-accent)]" />
@@ -115,8 +127,9 @@ export default function ResumeContent() {
 
         {/* ── Projects ──────────────────────────── */}
         <div
+          id="resume-projects"
           ref={projRef.ref}
-          className={`mb-10 reveal ${projRef.revealed ? "revealed" : ""}`}
+          className={`mb-10 scroll-mt-20 reveal ${projRef.revealed ? "revealed" : ""}`}
         >
           <h2 className="mb-5 flex items-center gap-2 text-sm font-bold uppercase tracking-[0.15em] text-[var(--color-accent)]">
             <span className="inline-block h-4 w-1 rounded-full bg-[var(--color-accent)]" />
@@ -159,8 +172,9 @@ export default function ResumeContent() {
 
         {/* ── Skills ────────────────────────────── */}
         <div
+          id="resume-skills"
           ref={skillsRef.ref}
-          className={`mb-10 reveal ${skillsRef.revealed ? "revealed" : ""}`}
+          className={`mb-10 scroll-mt-20 reveal ${skillsRef.revealed ? "revealed" : ""}`}
         >
           <h2 className="mb-4 flex items-center gap-2 text-sm font-bold uppercase tracking-[0.15em] text-[var(--color-accent)]">
             <span className="inline-block h-4 w-1 rounded-full bg-[var(--color-accent)]" />
@@ -183,8 +197,9 @@ export default function ResumeContent() {
 
         {/* ── Languages ─────────────────────────── */}
         <div
+          id="resume-languages"
           ref={langRef.ref}
-          className={`reveal ${langRef.revealed ? "revealed" : ""}`}
+          className={`scroll-mt-20 reveal ${langRef.revealed ? "revealed" : ""}`}
         >
           <h2 className="mb-4 flex items-center gap-2 text-sm font-bold uppercase tracking-[0.15em] text-[var(--color-accent)]">
             <span className="inline-block h-4 w-1 rounded-full bg-[var(--color-accent)]" />
