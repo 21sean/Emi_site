@@ -39,6 +39,7 @@ export interface Experience {
   type?: string;
   dates: string;
   location: string;
+  logo?: string;
   bullets: string[];
   skills: string[];
 }
@@ -199,6 +200,7 @@ const profile: Profile = {
       type: "Internship",
       dates: "Jun 2025 – Present",
       location: "San Diego, CA · Hybrid",
+      logo: "/logos/dassault.jpeg",
       bullets: [
         "Collaborated with a global marketing team at BIOVIA (life sciences brand of Dassault Systèmes) to support SaaS campaign strategy and execution across international markets.",
         "Conducted cross-market and competitor analysis to inform data-driven go-to-market strategy and annual marketing planning.",
@@ -223,6 +225,7 @@ const profile: Profile = {
       type: "Permanent",
       dates: "May 2022 – Jul 2024",
       location: "Tokyo, Japan",
+      logo: "/logos/moretec.jpeg",
       bullets: [
         "Led global B2B marketing and go-to-market strategy across North America, Europe, and Asia, driving 140% revenue growth over three years through integrated demand generation and positioning initiatives.",
         "Owned multichannel campaigns (exhibitions, SEO, digital, direct outreach) and optimized funnel performance using KPI tracking and ROI analysis.",
@@ -237,6 +240,7 @@ const profile: Profile = {
       company: "Moretec Group",
       dates: "Apr 2019 – Apr 2022",
       location: "Tokyo, Japan",
+      logo: "/logos/moretec.jpeg",
       bullets: [
         "Executed global B2B marketing campaigns across Japan, China, the U.S., and Europe, increasing revenue by 30% through data-driven customer acquisition strategies.",
         "Exceeded sales targets by 25% by optimizing channel mix and improving lead qualification across trade shows, digital, and outbound efforts.",
