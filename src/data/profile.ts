@@ -264,6 +264,29 @@ const profile: Profile = {
   // ── Projects ────────────────────────────────
   projects: [
     {
+      id: "google-wiz-ma",
+      title: "Google × Wiz – M&A Strategic & Valuation Analysis",
+      dates: "Sep 2025 – Dec 2025",
+      summary:
+        "Co-analyzed Google's $32B acquisition of Wiz, evaluating M&A deal structure, strategic multicloud security positioning, valuation multiples, and competitive implications within the evolving cloud security (CNAPP/CSPM) market.",
+      bullets: [
+        "Evaluated M&A deal structure and strategic rationale behind Google's $32B acquisition of Wiz.",
+        "Analyzed valuation multiples and competitive positioning within the CNAPP/CSPM cloud security market.",
+        "Assessed multicloud security strategy implications and competitive dynamics for Google Cloud.",
+      ],
+      skills: [
+        "Mergers & Acquisitions (M&A)",
+        "Strategic Financial Analysis",
+        "Business Strategy",
+        "Market Research",
+      ],
+      tags: ["M&A", "Strategy", "Cloud Security", "Valuation"],
+      artifacts: [
+        { label: "View Project", url: "/google-wiz-ma.pdf" },
+      ],
+      featured: true,
+    },
+    {
       id: "deep-tech-industrial-policy",
       title:
         "How Deep Tech and AI Reshape Sustainable Growth and Industrial Strategy",
