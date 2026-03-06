@@ -287,6 +287,29 @@ const profile: Profile = {
       featured: true,
     },
     {
+      id: "blockchain-bitcoin-analysis",
+      title: "Blockchain & Bitcoin – AI Technology Industry Analysis (S-Curve & TOE Framework)",
+      dates: "Sep 2025 – Dec 2025",
+      summary:
+        "Co-developed an AI-focused industry analysis of blockchain and Bitcoin using S-curve theory and the TOE framework, evaluating technological disruption, organizational transformation, regulatory constraints, and long-term digital infrastructure implications.",
+      bullets: [
+        "Applied S-curve theory to analyze blockchain's technological lifecycle and potential disruption trajectories.",
+        "Used the TOE framework to evaluate technological, organizational, and environmental factors driving adoption.",
+        "Assessed regulatory constraints and long-term digital infrastructure implications for blockchain and Bitcoin.",
+      ],
+      skills: [
+        "Strategic Analysis",
+        "Artificial Intelligence (AI)",
+        "Market Research",
+        "Business Strategy",
+      ],
+      tags: ["Blockchain", "AI", "Strategy", "Industry Analysis"],
+      artifacts: [
+        { label: "View Project", url: "/blockchain-bitcoin-analysis.pdf" },
+      ],
+      featured: true,
+    },
+    {
       id: "deep-tech-industrial-policy",
       title:
         "How Deep Tech and AI Reshape Sustainable Growth and Industrial Strategy",
