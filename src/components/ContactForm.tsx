@@ -6,12 +6,35 @@ import { getUI } from "@/lib/translations";
 
 export default function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState(false);
   const { lang } = useLanguage();
   const ui = getUI(lang);
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setSubmitted(true);
+    setSending(true);
+    setError(false);
+
+    const form = e.currentTarget;
+    const data = new FormData(form);
+
+    try {
+      const res = await fetch("https://formsubmit.co/ajax/e2kobayashi@ucsd.edu", {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: data,
+      });
+      if (res.ok) {
+        setSubmitted(true);
+      } else {
+        setError(true);
+      }
+    } catch {
+      setError(true);
+    } finally {
+      setSending(false);
+    }
   }
 
   if (submitted) {
@@ -24,7 +47,7 @@ export default function ContactForm() {
         </div>
         <p className="mt-4 text-lg font-bold">{ui.contact.thankYou}</p>
         <p className="mt-2 text-sm text-[var(--color-muted)]">
-          {ui.contact.notSent}
+          Your message has been sent successfully.
         </p>
         <button
           onClick={() => setSubmitted(false)}
@@ -38,14 +61,17 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
-      <div className="rounded-xl bg-[var(--color-accent-light)] px-4 py-3 text-sm text-[var(--color-muted)]">
-        <div className="flex items-start gap-2">
-          <svg className="mt-0.5 h-4 w-4 shrink-0 text-[var(--color-accent)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-          </svg>
-          {ui.contact.formNotice}
+      {/* Honeypot for spam prevention */}
+      <input type="text" name="_honey" className="hidden" />
+      {/* Disable captcha page */}
+      <input type="hidden" name="_captcha" value="false" />
+      <input type="hidden" name="_subject" value="New message from emikoba.com" />
+
+      {error && (
+        <div className="rounded-xl bg-red-50 dark:bg-red-900/20 px-4 py-3 text-sm text-red-600 dark:text-red-400">
+          Something went wrong. Please try again or email directly at e2kobayashi@ucsd.edu.
         </div>
-      </div>
+      )}
 
       <div className="group">
         <label
@@ -100,9 +126,10 @@ export default function ContactForm() {
 
       <button
         type="submit"
-        className="group inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--color-accent)] px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-[var(--color-accent)]/25 transition-all duration-200 hover:shadow-xl hover:shadow-[var(--color-accent)]/30 hover:-translate-y-0.5 focus-ring"
+        disabled={sending}
+        className="group inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--color-accent)] px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-[var(--color-accent)]/25 transition-all duration-200 hover:shadow-xl hover:shadow-[var(--color-accent)]/30 hover:-translate-y-0.5 focus-ring disabled:opacity-60 disabled:pointer-events-none"
       >
-        {ui.contact.sendMessage}
+        {sending ? "Sending..." : ui.contact.sendMessage}
         <svg className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
         </svg>

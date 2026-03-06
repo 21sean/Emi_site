@@ -92,9 +92,9 @@ const profile: Profile = {
   ],
   socialLinks: [
     { label: "LinkedIn", url: "https://www.linkedin.com/in/emi-kobayashi/", icon: "linkedin" },
-    { label: "Email", url: "#", icon: "email" },
+    { label: "Email", url: "mailto:e2kobayashi@ucsd.edu", icon: "email" },
   ],
-  contactEmail: "", // placeholder – add real email when ready
+  contactEmail: "e2kobayashi@ucsd.edu",
   resumeUrl: "/resume.pdf", // points to static PDF placed in public/resume.pdf
 
   // ── Skills ──────────────────────────────────
