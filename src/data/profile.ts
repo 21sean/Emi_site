@@ -287,7 +287,7 @@ const profile: Profile = {
       artifacts: [
         { label: "View Project", url: "/google-wiz-ma.pdf" },
       ],
-      featured: true,
+      featured: false,
     },
     {
       id: "blockchain-bitcoin-analysis",
@@ -310,7 +310,7 @@ const profile: Profile = {
       artifacts: [
         { label: "View Project", url: "/blockchain-bitcoin-analysis.pdf" },
       ],
-      featured: true,
+      featured: false,
     },
     {
       id: "deep-tech-industrial-policy",
@@ -384,7 +384,7 @@ const profile: Profile = {
       artifacts: [
         { label: "View Project", url: "/levels-biosensor.pdf" },
       ],
-      featured: true,
+      featured: false,
     },
     {
       id: "san-diego-consulting-competition",
@@ -436,7 +436,7 @@ const profile: Profile = {
       artifacts: [
         { label: "View Project", url: "/nokia-project.pdf" },
       ],
-      featured: true,
+      featured: false,
     },
     {
       id: "boeing-competitive-strategy",
@@ -458,7 +458,7 @@ const profile: Profile = {
       artifacts: [
         { label: "View Project", url: "/boeing-strategy.pdf" },
       ],
-      featured: true,
+      featured: false,
     },
     {
       id: "greensense-smart-plant-care",
@@ -481,7 +481,7 @@ const profile: Profile = {
       artifacts: [
         { label: "View Project", url: "/greensense-smartpot.pdf" },
       ],
-      featured: true,
+      featured: false,
     },
   ],
 
