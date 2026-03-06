@@ -336,11 +336,6 @@ const profile: Profile = {
       artifacts: [
         { label: "View Project", url: "/deep-tech-ai-capital-flow.pdf" },
       ],
-      highlights: [
-        "U.S. Industrial Policy Analysis",
-        "M&A and Private Market Response",
-        "Sector Opportunity Mapping",
-      ],
       featured: true,
     },
     {
