@@ -341,7 +341,7 @@ const profile: Profile = {
         "Competition Winner",
       ],
       artifacts: [
-        { label: "Pitch deck (coming soon)", url: "#" },
+        { label: "View Project", url: "/bzigo-canopy-project.pdf" },
       ],
       highlights: ["1st Place Winner"],
       featured: true,
