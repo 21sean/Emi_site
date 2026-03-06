@@ -262,7 +262,7 @@ const profile: Profile = {
     {
       id: "deep-tech-industrial-policy",
       title:
-        "From Policy to Practice: How Deep Tech and AI Reshape Sustainable Growth and Industrial Strategy",
+        "How Deep Tech and AI Reshape Sustainable Growth and Industrial Strategy",
       dates: "Jun 2025 – Sep 2025",
       summary:
         "Collaborated with a financial advisory firm, academic faculty, and a cross-functional MBA team to analyze how recent U.S. tech-industrial policies—such as the CHIPS Act, Inflation Reduction Act (IRA), and Stargate Project—are transforming capital flows into Deep Tech, AI, and advanced manufacturing.",
