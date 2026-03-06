@@ -368,6 +368,28 @@ const profile: Profile = {
       ],
       featured: true,
     },
+    {
+      id: "nokia-strategy-analysis",
+      title: "Failure at Nokia – Organizational & Strategy Analysis Case Study",
+      dates: "Jan 2025 – Mar 2025",
+      summary:
+        "Co-authored a strategic analysis of Nokia's decline, evaluating leadership misalignment, structural inefficiencies, and software strategy failures during the smartphone transition, and proposed a culture- and ecosystem-driven turnaround strategy grounded in innovation and platform theory.",
+      bullets: [
+        "Analyzed Nokia's organizational failures including leadership misalignment and structural inefficiencies during the smartphone era.",
+        "Evaluated software strategy missteps and competitive dynamics that contributed to Nokia's market decline.",
+        "Proposed a turnaround strategy grounded in innovation theory, platform ecosystems, and culture transformation.",
+      ],
+      skills: [
+        "Business Strategy",
+        "Strategic Analysis",
+        "Market Research",
+      ],
+      tags: ["Strategy", "Case Study", "Organizational Analysis"],
+      artifacts: [
+        { label: "View Project", url: "/nokia-project.pdf" },
+      ],
+      featured: true,
+    },
   ],
 
   // ── About ───────────────────────────────────
