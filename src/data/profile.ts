@@ -281,7 +281,7 @@ const profile: Profile = {
       ],
       tags: ["Industrial Policy", "Deep Tech", "AI", "M&A", "Strategy"],
       artifacts: [
-        { label: "Report (coming soon)", url: "#" },
+        { label: "View Project", url: "/deep-tech-ai-capital-flow.pdf" },
       ],
       highlights: [
         "U.S. Industrial Policy Analysis",
