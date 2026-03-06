@@ -89,7 +89,7 @@ const profile: Profile = {
   specialties: [
     "SaaS",
     "Semiconductor Industry",
-    "Pharmaceutical & Biotech",
+    "Pharmaceutical & Biotech Industry",
     "Global B2B Marketing",
     "Strategy",
     "AI & Advanced Manufacturing",
