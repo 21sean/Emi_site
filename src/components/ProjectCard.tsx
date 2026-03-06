@@ -1,5 +1,10 @@
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import type { Project } from "@/data/profile";
+
+const PDFSlideViewer = dynamic(() => import("@/components/PDFSlideViewer"), {
+  ssr: false,
+});
 
 export default function ProjectCard({
   project,
@@ -70,6 +75,17 @@ export default function ProjectCard({
                   </svg>
                   {a.label}
                 </a>
+              ))}
+          </div>
+        )}
+
+        {/* PDF Slide Preview */}
+        {project.artifacts && project.artifacts.some((a) => a.url !== "#" && a.url.endsWith(".pdf")) && (
+          <div className="mb-4">
+            {project.artifacts
+              .filter((a) => a.url !== "#" && a.url.endsWith(".pdf"))
+              .map((a) => (
+                <PDFSlideViewer key={a.url} url={a.url} />
               ))}
           </div>
         )}
