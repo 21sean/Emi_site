@@ -346,29 +346,6 @@ const profile: Profile = {
       featured: true,
     },
     {
-      id: "greensense-smart-plant-care",
-      title: "GreenSense – Smart Plant Care Startup Concept",
-      dates: "Oct 2024 – Dec 2024",
-      summary:
-        "Developed a go-to-market and financial strategy for a sensor-enabled smart plant pot featuring app connectivity and subscription-based plant care services, targeting urban Gen Z and Millennial consumers in the growing indoor plant market.",
-      bullets: [
-        "Designed a go-to-market strategy combining D2C e-commerce with retail partnerships to reach urban plant enthusiasts.",
-        "Built a financial model including revenue projections, unit economics, and subscription pricing for plant care services.",
-        "Conducted market research on the indoor plant and smart home device sectors to identify target segments and competitive positioning.",
-      ],
-      skills: [
-        "Go-to-Market Strategy",
-        "Financial Modeling",
-        "Market Research",
-        "Business Strategy",
-      ],
-      tags: ["Go-to-Market", "Startup", "IoT", "Strategy", "Financial Modeling"],
-      artifacts: [
-        { label: "View Project", url: "/greensense-smartpot.pdf" },
-      ],
-      featured: true,
-    },
-    {
       id: "nokia-strategy-analysis",
       title: "Failure at Nokia – Organizational & Strategy Analysis Case Study",
       dates: "Jan 2025 – Mar 2025",
@@ -409,6 +386,29 @@ const profile: Profile = {
       tags: ["Strategy", "Case Study", "Competitive Analysis"],
       artifacts: [
         { label: "View Project", url: "/boeing-strategy.pdf" },
+      ],
+      featured: true,
+    },
+    {
+      id: "greensense-smart-plant-care",
+      title: "GreenSense – Smart Plant Care Startup Concept",
+      dates: "Oct 2024 – Dec 2024",
+      summary:
+        "Developed a go-to-market and financial strategy for a sensor-enabled smart plant pot featuring app connectivity and subscription-based plant care services, targeting urban Gen Z and Millennial consumers in the growing indoor plant market.",
+      bullets: [
+        "Designed a go-to-market strategy combining D2C e-commerce with retail partnerships to reach urban plant enthusiasts.",
+        "Built a financial model including revenue projections, unit economics, and subscription pricing for plant care services.",
+        "Conducted market research on the indoor plant and smart home device sectors to identify target segments and competitive positioning.",
+      ],
+      skills: [
+        "Go-to-Market Strategy",
+        "Financial Modeling",
+        "Market Research",
+        "Business Strategy",
+      ],
+      tags: ["Go-to-Market", "Startup", "IoT", "Strategy", "Financial Modeling"],
+      artifacts: [
+        { label: "View Project", url: "/greensense-smartpot.pdf" },
       ],
       featured: true,
     },

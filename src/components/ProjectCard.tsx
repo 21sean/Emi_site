@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import type { Project } from "@/data/profile";
@@ -13,6 +16,8 @@ export default function ProjectCard({
   project: Project;
   featured?: boolean;
 }) {
+  const [expanded, setExpanded] = useState(false);
+
   return (
     <article
       className={`group relative overflow-hidden rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] transition-all duration-300 hover:border-[var(--color-accent)]/40 hover:shadow-xl hover:shadow-[var(--color-shadow-lg)] hover:-translate-y-1 ${
@@ -39,9 +44,23 @@ export default function ProjectCard({
         </div>
 
         {/* Summary */}
-        <p className="mb-5 text-sm leading-relaxed text-[var(--color-muted)]">
-          {project.summary}
-        </p>
+        <div className="mb-5">
+          <p
+            className={`text-sm leading-relaxed text-[var(--color-muted)] ${
+              !expanded ? "line-clamp-3" : ""
+            }`}
+          >
+            {project.summary}
+          </p>
+          {!expanded && (
+            <button
+              onClick={() => setExpanded(true)}
+              className="mt-1 text-xs font-semibold text-[var(--color-accent)] hover:underline"
+            >
+              Read more
+            </button>
+          )}
+        </div>
 
         {/* Highlights */}
         {project.highlights && project.highlights.length > 0 && (
