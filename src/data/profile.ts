@@ -194,13 +194,15 @@ const profile: Profile = {
   // ── Experience ──────────────────────────────
   experience: [
     {
-      title: "Marketing Specialist",
+      title: "MBA Marketing Intern",
       company: "Dassault Systèmes",
       type: "Internship",
       dates: "Jun 2025 – Present",
       location: "San Diego, CA · Hybrid",
       bullets: [
-        "Marketing Intern at BIOVIA, the life sciences brand within Dassault Systèmes, working on a dynamic global software marketing team supporting strategic campaign development and execution.",
+        "Collaborated with a global marketing team at BIOVIA (life sciences brand of Dassault Systèmes) to support SaaS campaign strategy and execution across international markets.",
+        "Conducted cross-market and competitor analysis to inform data-driven go-to-market strategy and annual marketing planning.",
+        "Executed global campaigns and events, leveraging performance analytics to optimize lead generation, engagement, and ROI.",
       ],
       skills: [
         "Digital Marketing Strategy",
@@ -216,29 +218,29 @@ const profile: Profile = {
       ],
     },
     {
-      title: "Global Marketing/Business Development Manager",
+      title: "Global Marketing & Business Strategy Manager (Semiconductor)",
       company: "Moretec Group",
       type: "Permanent",
-      dates: "Apr 2020 – Jul 2024",
+      dates: "May 2022 – Jul 2024",
       location: "Tokyo, Japan",
       bullets: [
-        "Directed B2B marketing and business development strategy, leading a cross-functional team that achieved 140% revenue growth over three years by leveraging data-driven insights and financial modeling tailored to business clients.",
-        "Streamlined international logistics in collaboration with key stakeholders, reducing major incidents by 90%.",
-        "Oversaw operations and managed the Japan department, ensuring efficient management of expenses. Prepared and delivered four comprehensive financial reports annually to the CEO, providing critical data analysis and actionable insights to support executive-level decision-making and long-term strategic planning.",
+        "Led global B2B marketing and go-to-market strategy across North America, Europe, and Asia, driving 140% revenue growth over three years through integrated demand generation and positioning initiatives.",
+        "Owned multichannel campaigns (exhibitions, SEO, digital, direct outreach) and optimized funnel performance using KPI tracking and ROI analysis.",
+        "Managed international revenue planning and marketing budget; delivered data-driven performance insights and strategic recommendations directly to the CEO.",
       ],
       skills: [
-        "Operations Management",
-        "CRM (顧客管理)",
+        "Business Strategy",
       ],
     },
     {
-      title: "Marketing/Business Development Team Lead",
+      title: "Global Marketing & Business Strategy Associate (Semiconductor)",
       company: "Moretec Group",
-      dates: "Apr 2019 – Apr 2020",
+      dates: "Apr 2019 – Apr 2022",
       location: "Tokyo, Japan",
       bullets: [
-        "Spearheaded B2B marketing and business development initiatives, enhancing team performance through training, KPIs, and multichannel acquisition strategies (in-person meetings, digital, and phone outreach).",
-        "Exceeded sales targets by 25% through cross-border collaboration and market analysis across Japan, China, the U.S., and Europe; increased revenue by 30% through data-driven growth strategies.",
+        "Executed global B2B marketing campaigns across Japan, China, the U.S., and Europe, increasing revenue by 30% through data-driven customer acquisition strategies.",
+        "Exceeded sales targets by 25% by optimizing channel mix and improving lead qualification across trade shows, digital, and outbound efforts.",
+        "Tracked marketing KPIs and supported cross-functional GTM execution to strengthen global expansion efforts.",
       ],
       skills: [
         "Marketing",
