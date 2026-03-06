@@ -54,6 +54,7 @@ export interface Certification {
   issuer: string;
   date: string;
   credentialId?: string;
+  credentialUrl?: string;
   skills: string[];
 }
 
@@ -173,24 +174,28 @@ const profile: Profile = {
       issuer: "Google",
       date: "Feb 2026",
       credentialId: "UETBA9K11NEN",
+      credentialUrl: "https://www.coursera.org/account/accomplishments/professional-cert/certificate/UETBA9K11NEN",
       skills: ["App Building", "Data Analysis", "Content Creation", "Research", "Artificial Intelligence (AI)"],
     },
     {
       name: "CFI Financial Analysis and Modeling Professional Certificate",
       issuer: "Corporate Finance Institute (CFI)",
       date: "Feb 2026",
+      credentialUrl: "https://www.linkedin.com/learning/certificates/59ab53f938a9b2b076efd83709f844d7fb80d0913831a19c6f52a2c5bb00bce1",
       skills: ["Financial Analysis", "Financial Forecasting"],
     },
     {
       name: "CFI Corporate Finance Foundations Professional Certificate",
       issuer: "Corporate Finance Institute (CFI)",
       date: "Feb 2026",
+      credentialUrl: "https://www.linkedin.com/learning/certificates/b74a7540c280cbede47a83c17cff23d9fad6992769e54e14847d5fd0d2134e4c",
       skills: ["Financial Statement Analysis", "ESG", "Microsoft Excel", "Corporate Finance", "Financial Modeling"],
     },
     {
       name: "Atlassian Agile Project Management Professional Certificate",
       issuer: "Atlassian",
       date: "Jan 2026",
+      credentialUrl: "https://www.linkedin.com/learning/certificates/0c1744dbcf169017a3034fc044f0af37f8fa6e3dc87a5abc4c60def86badcac0",
       skills: ["Jira", "Agile Methodologies", "Agile Project Management"],
     },
   ],

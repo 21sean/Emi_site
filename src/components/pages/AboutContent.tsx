@@ -129,6 +129,16 @@ export default function AboutContent() {
                   <span className="shrink-0 text-xs text-[var(--color-muted)]">{cert.date}</span>
                 </div>
                 <p className="mt-0.5 text-xs font-medium text-[var(--color-accent)]">{cert.issuer}</p>
+                {cert.credentialUrl && (
+                  <a
+                    href={cert.credentialUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-1 inline-flex items-center gap-1 text-xs text-[var(--color-muted)] underline decoration-[var(--color-border)] underline-offset-2 transition-colors hover:text-[var(--color-accent)] hover:decoration-[var(--color-accent)]"
+                  >
+                    Show credential ↗
+                  </a>
+                )}
                 <div className="mt-2 flex flex-wrap gap-1.5">
                   {cert.skills.map((skill) => (
                     <span
