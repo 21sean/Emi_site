@@ -343,6 +343,29 @@ const profile: Profile = {
       featured: true,
     },
     {
+      id: "levels-biosensor",
+      title: "Levels Biosensor – Product Adoption & Go-to-Market Strategy Analysis",
+      dates: "Mar 2025 – Jun 2025",
+      summary:
+        "Co-developed an ACCORD-based adoption strategy for Levels, a continuous glucose monitoring platform, proposing UX simplification, trial-based entry options, and targeted innovator/early-adopter marketing to reduce behavioral barriers and accelerate adoption in the digital health market.",
+      bullets: [
+        "Developed an ACCORD-based adoption strategy to reduce behavioral barriers for a continuous glucose monitoring platform.",
+        "Proposed UX simplification and trial-based entry options to accelerate user adoption.",
+        "Designed targeted marketing strategies for innovator and early-adopter segments in the digital health market.",
+      ],
+      skills: [
+        "Go-to-Market Strategy",
+        "Market Research",
+        "Business Strategy",
+        "Digital Marketing Strategy",
+      ],
+      tags: ["Go-to-Market", "Digital Health", "Strategy", "Product Adoption"],
+      artifacts: [
+        { label: "View Project", url: "/levels-biosensor.pdf" },
+      ],
+      featured: true,
+    },
+    {
       id: "san-diego-consulting-competition",
       title: "San Diego Immersion Consulting Competition – 1st Place",
       dates: "Mar 2025 – Apr 2025",
