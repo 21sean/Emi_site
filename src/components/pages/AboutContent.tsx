@@ -17,6 +17,7 @@ export default function AboutContent() {
   const valuesRef = useReveal();
   const interestsRef = useReveal();
   const languagesRef = useReveal();
+  const educationRef = useReveal();
   const experienceRef = useReveal();
 
   return (
@@ -29,6 +30,7 @@ export default function AboutContent() {
           { id: "certifications", label: ui.about.certifications },
           { id: "values", label: ui.about.values },
           { id: "interests", label: ui.about.interests },
+          { id: "education", label: ui.about.education },
           { id: "experience", label: ui.about.experience },
         ]}
       />
@@ -212,6 +214,40 @@ export default function AboutContent() {
               >
                 {interest}
               </span>
+            ))}
+          </div>
+        </div>
+
+        {/* Education */}
+        <div
+          id="education"
+          ref={educationRef.ref}
+          className={`mt-14 scroll-mt-20 reveal ${educationRef.revealed ? "revealed" : ""}`}
+        >
+          <h2 className="mb-6 flex items-center gap-2 text-lg font-bold tracking-tight">
+            <span className="inline-block h-5 w-1 rounded-full bg-[var(--color-accent)]" />
+            {ui.about.education}
+          </h2>
+          <div className="space-y-4">
+            {profile.education.map((edu, i) => (
+              <div
+                key={i}
+                className="flex gap-4 rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] p-5 shadow-sm transition-all duration-200 hover:border-[var(--color-accent)]/30 hover:shadow-md"
+                style={{ transitionDelay: `${i * 75}ms` }}
+              >
+                {edu.logo && (
+                  <img
+                    src={edu.logo}
+                    alt={edu.school}
+                    className="h-10 w-10 shrink-0 rounded-lg object-contain"
+                  />
+                )}
+                <div>
+                  <h3 className="text-sm font-bold">{edu.school}</h3>
+                  <p className="mt-0.5 text-xs font-medium text-[var(--color-accent)]">{edu.degree}</p>
+                  <p className="text-xs text-[var(--color-muted)]">{edu.dates}</p>
+                </div>
+              </div>
             ))}
           </div>
         </div>

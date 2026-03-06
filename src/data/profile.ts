@@ -49,6 +49,13 @@ export interface Language {
   proficiency: string;
 }
 
+export interface Education {
+  school: string;
+  degree: string;
+  dates: string;
+  logo?: string;
+}
+
 export interface Certification {
   name: string;
   issuer: string;
@@ -70,6 +77,7 @@ export interface Profile {
   skills: Skill[];
   certifications: Certification[];
   experience: Experience[];
+  education: Education[];
   languages: Language[];
   projects: Project[];
   about: {
@@ -267,6 +275,28 @@ const profile: Profile = {
     { name: "English", proficiency: "Full professional" },
     { name: "Japanese", proficiency: "Native or bilingual" },
     { name: "Shanghainese", proficiency: "Native or bilingual" },
+  ],
+
+  // ── Education ───────────────────────────────
+  education: [
+    {
+      school: "University of California, San Diego – Rady School of Management",
+      degree: "MBA STEM Program, Master of Business Administration",
+      dates: "Aug 2024 – Jun 2026",
+      logo: "/logos/ucsandiego_rady_school_of_management_logo.jpeg",
+    },
+    {
+      school: "Temple University",
+      degree: "Bachelor's Degree, Economics & Psychology",
+      dates: "2016 – 2019",
+      logo: "/logos/templeuniversity_logo.jpeg",
+    },
+    {
+      school: "Miami University",
+      degree: "Bachelor's Degree, International Business",
+      dates: "2015 – 2016",
+      logo: "/logos/miami_university_logo.jpeg",
+    },
   ],
 
   // ── Projects ────────────────────────────────

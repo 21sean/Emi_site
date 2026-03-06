@@ -12,6 +12,7 @@ export default function ResumeContent() {
   const mounted = useMounted();
 
   const expRef = useReveal();
+  const eduRef = useReveal();
   const projRef = useReveal();
   const skillsRef = useReveal();
   const langRef = useReveal();
@@ -22,6 +23,7 @@ export default function ResumeContent() {
         items={[
           { id: "resume-summary", label: ui.resume.summary },
           { id: "resume-experience", label: ui.resume.experience },
+          { id: "resume-education", label: ui.resume.education },
           { id: "resume-projects", label: ui.resume.projects },
           { id: "resume-skills", label: ui.resume.skills },
           { id: "resume-languages", label: ui.resume.languages },
@@ -120,6 +122,45 @@ export default function ResumeContent() {
                     </li>
                   ))}
                 </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* ── Education ──────────────────────────── */}
+        <div
+          id="resume-education"
+          ref={eduRef.ref}
+          className={`mb-10 scroll-mt-20 reveal ${eduRef.revealed ? "revealed" : ""}`}
+        >
+          <h2 className="mb-5 flex items-center gap-2 text-sm font-bold uppercase tracking-[0.15em] text-[var(--color-accent)]">
+            <span className="inline-block h-4 w-1 rounded-full bg-[var(--color-accent)]" />
+            {ui.resume.education}
+          </h2>
+          <div className="space-y-4">
+            {profile.education.map((edu, i) => (
+              <div
+                key={i}
+                className="rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] p-5 shadow-sm transition-all duration-200 hover:border-[var(--color-accent)]/20 hover:shadow-md print:border-0 print:p-0 print:shadow-none"
+              >
+                <div className="flex gap-4">
+                  {edu.logo && (
+                    <img
+                      src={edu.logo}
+                      alt={edu.school}
+                      className="h-10 w-10 shrink-0 rounded-lg object-contain"
+                    />
+                  )}
+                  <div className="flex-1">
+                    <div className="flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between">
+                      <h3 className="text-sm font-bold">{edu.school}</h3>
+                      <span className="rounded-full bg-[var(--color-accent-light)] px-2.5 py-0.5 text-[11px] font-medium text-[var(--color-accent)] shrink-0 print:bg-transparent print:px-0">
+                        {edu.dates}
+                      </span>
+                    </div>
+                    <p className="mt-0.5 text-xs text-[var(--color-muted)]">{edu.degree}</p>
+                  </div>
+                </div>
               </div>
             ))}
           </div>

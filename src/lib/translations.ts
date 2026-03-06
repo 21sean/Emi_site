@@ -46,6 +46,7 @@ export interface UI {
     values: string;
     interests: string;
     languages: string;
+    education: string;
     experience: string;
   };
   resume: {
@@ -53,6 +54,7 @@ export interface UI {
     experience: string;
     projects: string;
     skills: string;
+    education: string;
     languages: string;
   };
   contact: {
@@ -111,6 +113,7 @@ const uiEn: UI = {
     values: "Values",
     interests: "Interests",
     languages: "Languages",
+    education: "Education",
     experience: "Experience",
   },
   resume: {
@@ -118,6 +121,7 @@ const uiEn: UI = {
     experience: "Experience",
     projects: "Projects",
     skills: "Skills",
+    education: "Education",
     languages: "Languages",
   },
   contact: {
@@ -175,6 +179,7 @@ const uiJa: UI = {
     values: "価値観",
     interests: "関心分野",
     languages: "言語",
+    education: "学歴",
     experience: "経歴",
   },
   resume: {
@@ -182,6 +187,7 @@ const uiJa: UI = {
     experience: "経歴",
     projects: "プロジェクト",
     skills: "スキル",
+    education: "学歴",
     languages: "言語",
   },
   contact: {
@@ -239,6 +245,7 @@ const uiZh: UI = {
     values: "核心价值",
     interests: "兴趣方向",
     languages: "语言能力",
+    education: "教育背景",
     experience: "工作经历",
   },
   resume: {
@@ -246,6 +253,7 @@ const uiZh: UI = {
     experience: "工作经历",
     projects: "项目经历",
     skills: "专业技能",
+    education: "教育背景",
     languages: "语言能力",
   },
   contact: {
