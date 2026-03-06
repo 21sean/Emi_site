@@ -390,6 +390,28 @@ const profile: Profile = {
       ],
       featured: true,
     },
+    {
+      id: "boeing-competitive-strategy",
+      title: "Boeing – Competitive Strategy & Value Creation Analysis",
+      dates: "Jan 2025 – Mar 2025",
+      summary:
+        "Co-authored a strategic evaluation of Boeing's value creation model, analyzing its differentiation-driven competitive advantage, global supply chain scale, R&D investment, and diversified commercial and defense revenue streams.",
+      bullets: [
+        "Evaluated Boeing's competitive advantage through differentiation strategy, R&D investment, and global supply chain scale.",
+        "Analyzed diversified revenue streams across commercial aviation and defense segments.",
+        "Assessed value creation drivers and strategic positioning within the aerospace industry.",
+      ],
+      skills: [
+        "Business Strategy",
+        "Strategic Financial Analysis",
+        "Market Research",
+      ],
+      tags: ["Strategy", "Case Study", "Competitive Analysis"],
+      artifacts: [
+        { label: "View Project", url: "/boeing-strategy.pdf" },
+      ],
+      featured: true,
+    },
   ],
 
   // ── About ───────────────────────────────────
