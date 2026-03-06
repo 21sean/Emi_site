@@ -60,6 +60,31 @@ export default function AboutContent() {
           ))}
         </div>
 
+        {/* Languages */}
+        <div
+          ref={languagesRef.ref}
+          className={`mt-14 reveal ${languagesRef.revealed ? "revealed" : ""}`}
+        >
+          <h2 className="mb-5 flex items-center gap-2 text-lg font-bold tracking-tight">
+            <span className="inline-block h-5 w-1 rounded-full bg-[var(--color-accent)]" />
+            {ui.about.languages}
+          </h2>
+          <div className="grid gap-3 sm:grid-cols-2">
+            {profile.languages.map((lng, i) => (
+              <div
+                key={lng.name}
+                className="flex items-baseline justify-between rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] px-5 py-4 shadow-sm transition-all duration-200 hover:border-[var(--color-accent)]/30 hover:shadow-md"
+                style={{ transitionDelay: `${i * 75}ms` }}
+              >
+                <span className="text-sm font-semibold">{lng.name}</span>
+                <span className="rounded-full bg-[var(--color-accent-light)] px-2.5 py-0.5 text-xs font-medium text-[var(--color-accent)]">
+                  {lng.proficiency}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* Focus Areas */}
         <div
           ref={focusRef.ref}
@@ -159,31 +184,6 @@ export default function AboutContent() {
               >
                 {interest}
               </span>
-            ))}
-          </div>
-        </div>
-
-        {/* Languages */}
-        <div
-          ref={languagesRef.ref}
-          className={`mt-14 reveal ${languagesRef.revealed ? "revealed" : ""}`}
-        >
-          <h2 className="mb-5 flex items-center gap-2 text-lg font-bold tracking-tight">
-            <span className="inline-block h-5 w-1 rounded-full bg-[var(--color-accent)]" />
-            {ui.about.languages}
-          </h2>
-          <div className="grid gap-3 sm:grid-cols-2">
-            {profile.languages.map((lng, i) => (
-              <div
-                key={lng.name}
-                className="flex items-baseline justify-between rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] px-5 py-4 shadow-sm transition-all duration-200 hover:border-[var(--color-accent)]/30 hover:shadow-md"
-                style={{ transitionDelay: `${i * 75}ms` }}
-              >
-                <span className="text-sm font-semibold">{lng.name}</span>
-                <span className="rounded-full bg-[var(--color-accent-light)] px-2.5 py-0.5 text-xs font-medium text-[var(--color-accent)]">
-                  {lng.proficiency}
-                </span>
-              </div>
             ))}
           </div>
         </div>
