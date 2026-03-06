@@ -60,10 +60,39 @@ export default function AboutContent() {
           ))}
         </div>
 
+        {/* Section Navigation */}
+        <nav
+          className={`sticky top-16 z-10 -mx-6 mt-10 flex gap-2 overflow-x-auto border-b border-[var(--color-border)] bg-[var(--color-background)]/80 px-6 py-3 backdrop-blur-md scrollbar-none ${
+            mounted ? "animate-fade-in-up stagger-4" : "opacity-0"
+          }`}
+        >
+          {[
+            { id: "languages", label: ui.about.languages },
+            { id: "focus-areas", label: ui.about.focusAreas },
+            { id: "certifications", label: ui.about.certifications },
+            { id: "values", label: ui.about.values },
+            { id: "interests", label: ui.about.interests },
+            { id: "experience", label: ui.about.experience },
+          ].map((section) => (
+            <button
+              key={section.id}
+              onClick={() =>
+                document
+                  .getElementById(section.id)
+                  ?.scrollIntoView({ behavior: "smooth", block: "start" })
+              }
+              className="shrink-0 rounded-full border border-[var(--color-border)] px-3 py-1 text-xs font-medium text-[var(--color-muted)] transition-colors hover:border-[var(--color-accent)]/40 hover:text-[var(--color-foreground)]"
+            >
+              {section.label}
+            </button>
+          ))}
+        </nav>
+
         {/* Languages */}
         <div
+          id="languages"
           ref={languagesRef.ref}
-          className={`mt-14 reveal ${languagesRef.revealed ? "revealed" : ""}`}
+          className={`mt-14 scroll-mt-28 reveal ${languagesRef.revealed ? "revealed" : ""}`}
         >
           <h2 className="mb-5 flex items-center gap-2 text-lg font-bold tracking-tight">
             <span className="inline-block h-5 w-1 rounded-full bg-[var(--color-accent)]" />
@@ -87,8 +116,9 @@ export default function AboutContent() {
 
         {/* Focus Areas */}
         <div
+          id="focus-areas"
           ref={focusRef.ref}
-          className={`mt-14 reveal ${focusRef.revealed ? "revealed" : ""}`}
+          className={`mt-14 scroll-mt-28 reveal ${focusRef.revealed ? "revealed" : ""}`}
         >
           <h2 className="mb-5 flex items-center gap-2 text-lg font-bold tracking-tight">
             <span className="inline-block h-5 w-1 rounded-full bg-[var(--color-accent)]" />
@@ -110,8 +140,9 @@ export default function AboutContent() {
 
         {/* Certifications */}
         <div
+          id="certifications"
           ref={certsRef.ref}
-          className={`mt-14 reveal ${certsRef.revealed ? "revealed" : ""}`}
+          className={`mt-14 scroll-mt-28 reveal ${certsRef.revealed ? "revealed" : ""}`}
         >
           <h2 className="mb-5 flex items-center gap-2 text-lg font-bold tracking-tight">
             <span className="inline-block h-5 w-1 rounded-full bg-[var(--color-accent)]" />
@@ -156,8 +187,9 @@ export default function AboutContent() {
 
         {/* Values */}
         <div
+          id="values"
           ref={valuesRef.ref}
-          className={`mt-14 reveal ${valuesRef.revealed ? "revealed" : ""}`}
+          className={`mt-14 scroll-mt-28 reveal ${valuesRef.revealed ? "revealed" : ""}`}
         >
           <h2 className="mb-5 flex items-center gap-2 text-lg font-bold tracking-tight">
             <span className="inline-block h-5 w-1 rounded-full bg-[var(--color-accent)]" />
@@ -179,8 +211,9 @@ export default function AboutContent() {
 
         {/* Interests */}
         <div
+          id="interests"
           ref={interestsRef.ref}
-          className={`mt-14 reveal ${interestsRef.revealed ? "revealed" : ""}`}
+          className={`mt-14 scroll-mt-28 reveal ${interestsRef.revealed ? "revealed" : ""}`}
         >
           <h2 className="mb-5 flex items-center gap-2 text-lg font-bold tracking-tight">
             <span className="inline-block h-5 w-1 rounded-full bg-[var(--color-accent)]" />
@@ -200,8 +233,9 @@ export default function AboutContent() {
 
         {/* Experience */}
         <div
+          id="experience"
           ref={experienceRef.ref}
-          className={`mt-14 reveal ${experienceRef.revealed ? "revealed" : ""}`}
+          className={`mt-14 scroll-mt-28 reveal ${experienceRef.revealed ? "revealed" : ""}`}
         >
           <h2 className="mb-6 flex items-center gap-2 text-lg font-bold tracking-tight">
             <span className="inline-block h-5 w-1 rounded-full bg-[var(--color-accent)]" />
