@@ -24,11 +24,6 @@ export async function prefetchPdf(url: string) {
   return promise;
 }
 
-export function preloadPdfs(urls: string[]) {
-  // Start all fetches concurrently
-  urls.forEach((u) => prefetchPdf(u));
-}
-
 export function getCachedPdf(url: string) {
   return pdfCache.get(url) ?? null;
 }
