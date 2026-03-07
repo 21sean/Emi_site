@@ -28,6 +28,6 @@
     "eslint-config-next": "16.1.6",
     "pdf-lib": "^1.17.1",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "5.9.3"
   }
 }
