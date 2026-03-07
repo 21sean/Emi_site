@@ -103,30 +103,16 @@ export default function PDFSlideViewer({ url }: { url: string }) {
               </div>
             }
           >
-            {/* Render all pages, show only active one with fade */}
-            {containerWidth > 0 &&
-              numPages > 0 &&
-              Array.from({ length: numPages }, (_, i) => (
-                <div
-                  key={i + 1}
-                  className="transition-opacity duration-200"
-                  style={{
-                    position: i + 1 === pageNumber ? "relative" : "absolute",
-                    top: 0,
-                    left: 0,
-                    width: "100%",
-                    opacity: i + 1 === pageNumber ? 1 : 0,
-                    pointerEvents: i + 1 === pageNumber ? "auto" : "none",
-                  }}
-                >
-                  <Page
-                    pageNumber={i + 1}
-                    width={containerWidth}
-                    renderAnnotationLayer={false}
-                    renderTextLayer={false}
-                  />
-                </div>
-              ))}
+            {/* Render only the active page to avoid memory pressure on mobile */}
+            {containerWidth > 0 && numPages > 0 && (
+              <Page
+                key={pageNumber}
+                pageNumber={pageNumber}
+                width={containerWidth}
+                renderAnnotationLayer={false}
+                renderTextLayer={false}
+              />
+            )}
           </Document>
         )}
         {!ready && (

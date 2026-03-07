@@ -1,26 +1,16 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo } from "react";
 import { useLanguage } from "@/components/LanguageProvider";
 import { getUI, getProfile } from "@/lib/translations";
 import ProjectCard from "@/components/ProjectCard";
 import { useMounted } from "@/lib/useReveal";
-import { preloadPdfs } from "@/lib/pdfCache";
 
 export default function ProjectsPage() {
   const { lang } = useLanguage();
   const ui = getUI(lang);
   const profile = getProfile(lang);
   const mounted = useMounted();
-
-  // Preload all project PDFs on mount
-  useEffect(() => {
-    const urls = profile.projects
-      .flatMap((p) => p.artifacts)
-      .filter((a) => a.url.endsWith(".pdf"))
-      .map((a) => a.url);
-    preloadPdfs(urls);
-  }, [profile.projects]);
 
   const allTags = useMemo(() => {
     const set = new Set<string>();
