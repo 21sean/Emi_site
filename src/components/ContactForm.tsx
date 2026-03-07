@@ -1,13 +1,20 @@
 "use client";
 
 import { useState } from "react";
+import dynamic from "next/dynamic";
 import { useLanguage } from "@/components/LanguageProvider";
 import { getUI } from "@/lib/translations";
+
+const ReCAPTCHA = dynamic(() => import("react-google-recaptcha"), { ssr: false });
+
+const RECAPTCHA_SITE_KEY = "6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"; // Google test key – replace with your real key
 
 export default function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState(false);
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const [captchaKey, setCaptchaKey] = useState(0);
   const { lang } = useLanguage();
   const ui = getUI(lang);
 
@@ -34,6 +41,8 @@ export default function ContactForm() {
       setError(true);
     } finally {
       setSending(false);
+      setCaptchaToken(null);
+      setCaptchaKey((k) => k + 1);
     }
   }
 
@@ -124,9 +133,18 @@ export default function ContactForm() {
         />
       </div>
 
+      <div className="flex justify-center">
+        <ReCAPTCHA
+          key={captchaKey}
+          sitekey={RECAPTCHA_SITE_KEY}
+          onChange={(token: string | null) => setCaptchaToken(token)}
+          onExpired={() => setCaptchaToken(null)}
+        />
+      </div>
+
       <button
         type="submit"
-        disabled={sending}
+        disabled={sending || !captchaToken}
         className="group inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--color-accent)] px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-[var(--color-accent)]/25 transition-all duration-200 hover:shadow-xl hover:shadow-[var(--color-accent)]/30 hover:-translate-y-0.5 focus-ring disabled:opacity-60 disabled:pointer-events-none"
       >
         {sending ? "Sending..." : ui.contact.sendMessage}
