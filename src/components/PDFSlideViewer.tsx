@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useRef, useEffect, useMemo } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
 import "react-pdf/dist/Page/AnnotationLayer.css";
 import "react-pdf/dist/Page/TextLayer.css";
@@ -13,24 +13,37 @@ export default function PDFSlideViewer({ url }: { url: string }) {
   const [pageNumber, setPageNumber] = useState(1);
   const [containerWidth, setContainerWidth] = useState<number>(0);
   const [hovered, setHovered] = useState(false);
-  const [pdfData, setPdfData] = useState<{ data: ArrayBuffer } | null>(
-    getCachedPdf(url),
-  );
+  const [ready, setReady] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  // Stable file reference — only set once per URL
+  const fileRef = useRef<string | { data: ArrayBuffer }>(url);
+  const urlRef = useRef(url);
 
-  // Fetch & cache if not already cached
+  // On mount or URL change, resolve cached data into a stable file ref
   useEffect(() => {
-    if (pdfData) return;
-    prefetchPdf(url).then(() => {
-      const cached = getCachedPdf(url);
-      if (cached) setPdfData(cached);
-    });
-  }, [url, pdfData]);
+    if (urlRef.current !== url) {
+      urlRef.current = url;
+      fileRef.current = url;
+      setReady(false);
+      setNumPages(0);
+      setPageNumber(1);
+    }
 
-  const file = useMemo(
-    () => (pdfData ? { data: pdfData.data.slice(0) } : url),
-    [pdfData, url],
-  );
+    const cached = getCachedPdf(url);
+    if (cached) {
+      fileRef.current = { data: cached.data.slice(0) };
+      setReady(true);
+      return;
+    }
+
+    prefetchPdf(url).then(() => {
+      const c = getCachedPdf(url);
+      if (c) {
+        fileRef.current = { data: c.data.slice(0) };
+      }
+      setReady(true);
+    });
+  }, [url]);
 
   const onDocumentLoadSuccess = useCallback(
     ({ numPages }: { numPages: number }) => {
@@ -75,29 +88,52 @@ export default function PDFSlideViewer({ url }: { url: string }) {
             View Project
           </span>
         </a>
-        <Document
-          file={file}
-          onLoadSuccess={onDocumentLoadSuccess}
-          loading={
-            <div className="flex h-48 items-center justify-center text-xs text-[var(--color-muted)]">
-              Loading...
-            </div>
-          }
-          error={
-            <div className="flex h-48 items-center justify-center text-xs text-[var(--color-muted)]">
-              Failed to load PDF
-            </div>
-          }
-        >
-          {containerWidth > 0 && (
-            <Page
-              pageNumber={pageNumber}
-              width={containerWidth}
-              renderAnnotationLayer={false}
-              renderTextLayer={false}
-            />
-          )}
-        </Document>
+        {ready && (
+          <Document
+            file={fileRef.current}
+            onLoadSuccess={onDocumentLoadSuccess}
+            loading={
+              <div className="flex h-48 items-center justify-center text-xs text-[var(--color-muted)]">
+                Loading...
+              </div>
+            }
+            error={
+              <div className="flex h-48 items-center justify-center text-xs text-[var(--color-muted)]">
+                Failed to load PDF
+              </div>
+            }
+          >
+            {/* Render all pages, show only active one with fade */}
+            {containerWidth > 0 &&
+              numPages > 0 &&
+              Array.from({ length: numPages }, (_, i) => (
+                <div
+                  key={i + 1}
+                  className="transition-opacity duration-200"
+                  style={{
+                    position: i + 1 === pageNumber ? "relative" : "absolute",
+                    top: 0,
+                    left: 0,
+                    width: "100%",
+                    opacity: i + 1 === pageNumber ? 1 : 0,
+                    pointerEvents: i + 1 === pageNumber ? "auto" : "none",
+                  }}
+                >
+                  <Page
+                    pageNumber={i + 1}
+                    width={containerWidth}
+                    renderAnnotationLayer={false}
+                    renderTextLayer={false}
+                  />
+                </div>
+              ))}
+          </Document>
+        )}
+        {!ready && (
+          <div className="flex h-48 items-center justify-center text-xs text-[var(--color-muted)]">
+            Loading...
+          </div>
+        )}
       </div>
 
       {/* Controls */}
