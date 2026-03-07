@@ -4,6 +4,7 @@ import { useLanguage } from "@/components/LanguageProvider";
 import { getUI, getProfile } from "@/lib/translations";
 import { useMounted, useReveal } from "@/lib/useReveal";
 import SideNav from "@/components/SideNav";
+import Link from "next/link";
 
 export default function ResumeContent() {
   const { lang } = useLanguage();
@@ -210,6 +211,14 @@ export default function ResumeContent() {
                 </ul>
               </div>
             ))}
+          </div>
+          <div className="mt-4 text-center">
+            <Link
+              href="/projects"
+              className="inline-flex items-center gap-1 text-xs font-medium text-[var(--color-accent)] transition-colors hover:underline"
+            >
+              {ui.common.viewAll} →
+            </Link>
           </div>
         </div>
 
