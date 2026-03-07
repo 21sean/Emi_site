@@ -15,6 +15,7 @@ export default function ResumeContent() {
   const eduRef = useReveal();
   const projRef = useReveal();
   const skillsRef = useReveal();
+  const certsRef = useReveal();
   const langRef = useReveal();
 
   return (
@@ -26,6 +27,7 @@ export default function ResumeContent() {
           { id: "resume-education", label: ui.resume.education },
           { id: "resume-projects", label: ui.resume.projects },
           { id: "resume-skills", label: ui.resume.skills },
+          { id: "resume-certifications", label: ui.resume.certifications },
           { id: "resume-languages", label: ui.resume.languages },
         ]}
       />
@@ -231,6 +233,52 @@ export default function ResumeContent() {
                 <p className="mt-1 text-[var(--color-muted)]">
                   {group.items.join(" · ")}
                 </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* ── Certifications ────────────────────── */}
+        <div
+          id="resume-certifications"
+          ref={certsRef.ref}
+          className={`mb-10 scroll-mt-20 reveal ${certsRef.revealed ? "revealed" : ""}`}
+        >
+          <h2 className="mb-4 flex items-center gap-2 text-sm font-bold uppercase tracking-[0.15em] text-[var(--color-accent)]">
+            <span className="inline-block h-4 w-1 rounded-full bg-[var(--color-accent)]" />
+            {ui.resume.certifications}
+          </h2>
+          <div className="grid gap-3">
+            {profile.certifications.map((cert, i) => (
+              <div
+                key={cert.name}
+                className="rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] p-4 shadow-sm transition-all duration-200 hover:border-[var(--color-accent)]/20 hover:shadow-md print:border-0 print:p-0 print:shadow-none"
+              >
+                <div className="flex items-baseline justify-between gap-3">
+                  <h3 className="text-sm font-bold">{cert.name}</h3>
+                  <span className="shrink-0 text-xs text-[var(--color-muted)]">{cert.date}</span>
+                </div>
+                <p className="mt-0.5 text-xs font-medium text-[var(--color-accent)]">{cert.issuer}</p>
+                {cert.credentialUrl && (
+                  <a
+                    href={cert.credentialUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-1 inline-flex items-center gap-1 text-xs text-[var(--color-muted)] underline decoration-[var(--color-border)] underline-offset-2 transition-colors hover:text-[var(--color-accent)] hover:decoration-[var(--color-accent)]"
+                  >
+                    Show credential ↗
+                  </a>
+                )}
+                <div className="mt-2 flex flex-wrap gap-1.5">
+                  {cert.skills.map((skill) => (
+                    <span
+                      key={skill}
+                      className="rounded-full bg-[var(--color-accent-light)] px-2 py-0.5 text-[11px] font-medium text-[var(--color-accent)]"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
               </div>
             ))}
           </div>

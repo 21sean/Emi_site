@@ -55,6 +55,7 @@ export interface UI {
     projects: string;
     skills: string;
     education: string;
+    certifications: string;
     languages: string;
   };
   contact: {
@@ -122,6 +123,7 @@ const uiEn: UI = {
     projects: "Projects",
     skills: "Skills",
     education: "Education",
+    certifications: "Certifications",
     languages: "Languages",
   },
   contact: {
@@ -188,6 +190,7 @@ const uiJa: UI = {
     projects: "プロジェクト",
     skills: "スキル",
     education: "学歴",
+    certifications: "資格・認定",
     languages: "言語",
   },
   contact: {
@@ -254,6 +257,7 @@ const uiZh: UI = {
     projects: "项目经历",
     skills: "专业技能",
     education: "教育背景",
+    certifications: "资格认证",
     languages: "语言能力",
   },
   contact: {
