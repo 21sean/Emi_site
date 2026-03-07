@@ -15,11 +15,16 @@ export default function ContactForm() {
   const [error, setError] = useState(false);
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
   const [captchaKey, setCaptchaKey] = useState(0);
+  const [message, setMessage] = useState("");
   const { lang } = useLanguage();
   const ui = getUI(lang);
 
+  const wordCount = message.trim() === "" ? 0 : message.trim().split(/\s+/).length;
+  const overLimit = wordCount > 200;
+
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (overLimit) return;
     setSending(true);
     setError(false);
 
@@ -94,6 +99,7 @@ export default function ContactForm() {
           name="name"
           type="text"
           required
+          minLength={2}
           className="w-full rounded-xl border border-[var(--color-border)] bg-[var(--color-background)] px-4 py-3 text-sm outline-none transition-all duration-200 placeholder:text-[var(--color-muted)]/60 focus:border-[var(--color-accent)] focus:ring-2 focus:ring-[var(--color-accent)]/20 focus:shadow-lg focus:shadow-[var(--color-accent)]/5"
           placeholder={ui.contact.namePlaceholder}
         />
@@ -111,6 +117,8 @@ export default function ContactForm() {
           name="email"
           type="email"
           required
+          pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}"
+          title="Please enter a valid email address"
           className="w-full rounded-xl border border-[var(--color-border)] bg-[var(--color-background)] px-4 py-3 text-sm outline-none transition-all duration-200 placeholder:text-[var(--color-muted)]/60 focus:border-[var(--color-accent)] focus:ring-2 focus:ring-[var(--color-accent)]/20 focus:shadow-lg focus:shadow-[var(--color-accent)]/5"
           placeholder={ui.contact.emailPlaceholder}
         />
@@ -128,9 +136,15 @@ export default function ContactForm() {
           name="message"
           rows={5}
           required
-          className="w-full resize-none rounded-xl border border-[var(--color-border)] bg-[var(--color-background)] px-4 py-3 text-sm outline-none transition-all duration-200 placeholder:text-[var(--color-muted)]/60 focus:border-[var(--color-accent)] focus:ring-2 focus:ring-[var(--color-accent)]/20 focus:shadow-lg focus:shadow-[var(--color-accent)]/5"
+          minLength={10}
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          className={`w-full resize-none rounded-xl border bg-[var(--color-background)] px-4 py-3 text-sm outline-none transition-all duration-200 placeholder:text-[var(--color-muted)]/60 focus:ring-2 focus:shadow-lg focus:shadow-[var(--color-accent)]/5 ${overLimit ? "border-red-400 focus:border-red-400 focus:ring-red-400/20" : "border-[var(--color-border)] focus:border-[var(--color-accent)] focus:ring-[var(--color-accent)]/20"}`}
           placeholder={ui.contact.messagePlaceholder}
         />
+        <div className={`mt-1.5 text-right text-xs ${overLimit ? "text-red-500 font-medium" : "text-[var(--color-muted)]"}`}>
+          {wordCount} / 200 words
+        </div>
       </div>
 
       <div className="flex justify-center">
@@ -144,7 +158,7 @@ export default function ContactForm() {
 
       <button
         type="submit"
-        disabled={sending || !captchaToken}
+        disabled={sending || !captchaToken || overLimit}
         className="group inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--color-accent)] px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-[var(--color-accent)]/25 transition-all duration-200 hover:shadow-xl hover:shadow-[var(--color-accent)]/30 hover:-translate-y-0.5 focus-ring disabled:opacity-60 disabled:pointer-events-none"
       >
         {sending ? "Sending..." : ui.contact.sendMessage}
