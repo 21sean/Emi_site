@@ -7,7 +7,7 @@ import { getUI } from "@/lib/translations";
 
 const ReCAPTCHA = dynamic(() => import("react-google-recaptcha"), { ssr: false });
 
-const RECAPTCHA_SITE_KEY = "6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"; // Google test key – replace with your real key
+const RECAPTCHA_SITE_KEY = "6Lf8DYMsAAAAAAwVXa0OfqHsKMyfttw6zCOqruV2";
 
 export default function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
