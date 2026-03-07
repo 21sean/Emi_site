@@ -104,7 +104,7 @@ const uiEn: UI = {
     skills: "Skills",
     interestedTitle: "Interested in working together?",
     interestedDesc:
-      "I'm open to consulting engagements, research collaborations, and strategic advisory roles.",
+      "I'm open to marketing strategy engagements, market research collaborations, and strategic growth advisory roles.",
     contactMe: "Contact Me",
   },
   about: {
