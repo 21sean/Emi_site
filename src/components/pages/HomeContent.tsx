@@ -1,12 +1,14 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect } from "react";
 import { assetPath } from "@/lib/basePath";
 import { useLanguage } from "@/components/LanguageProvider";
 import { getUI, getProfile } from "@/lib/translations";
 import ProjectCard from "@/components/ProjectCard";
 import Skills from "@/components/Skills";
 import { useMounted, useReveal } from "@/lib/useReveal";
+import { preloadPdfs } from "@/lib/pdfCache";
 
 export default function HomeContent() {
   const { lang } = useLanguage();
@@ -17,6 +19,15 @@ export default function HomeContent() {
   const featuredProjects = profile.projects
     .filter((p) => p.featured)
     .slice(0, 3);
+
+  // Preload all project PDFs early so they're cached when navigating
+  useEffect(() => {
+    const urls = profile.projects
+      .flatMap((p) => p.artifacts)
+      .filter((a) => a.url.endsWith(".pdf"))
+      .map((a) => a.url);
+    preloadPdfs(urls);
+  }, [profile.projects]);
 
   const featuredRef = useReveal();
   const skillsRef = useReveal();

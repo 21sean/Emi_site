@@ -1,9 +1,10 @@
 "use client";
 
-import { useState, useCallback, useRef, useEffect } from "react";
+import { useState, useCallback, useRef, useEffect, useMemo } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
 import "react-pdf/dist/Page/AnnotationLayer.css";
 import "react-pdf/dist/Page/TextLayer.css";
+import { getCachedPdf, prefetchPdf } from "@/lib/pdfCache";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
@@ -12,7 +13,24 @@ export default function PDFSlideViewer({ url }: { url: string }) {
   const [pageNumber, setPageNumber] = useState(1);
   const [containerWidth, setContainerWidth] = useState<number>(0);
   const [hovered, setHovered] = useState(false);
+  const [pdfData, setPdfData] = useState<{ data: ArrayBuffer } | null>(
+    getCachedPdf(url),
+  );
   const containerRef = useRef<HTMLDivElement>(null);
+
+  // Fetch & cache if not already cached
+  useEffect(() => {
+    if (pdfData) return;
+    prefetchPdf(url).then(() => {
+      const cached = getCachedPdf(url);
+      if (cached) setPdfData(cached);
+    });
+  }, [url, pdfData]);
+
+  const file = useMemo(
+    () => (pdfData ? { data: pdfData.data.slice(0) } : url),
+    [pdfData, url],
+  );
 
   const onDocumentLoadSuccess = useCallback(
     ({ numPages }: { numPages: number }) => {
@@ -58,7 +76,7 @@ export default function PDFSlideViewer({ url }: { url: string }) {
           </span>
         </a>
         <Document
-          file={url}
+          file={file}
           onLoadSuccess={onDocumentLoadSuccess}
           loading={
             <div className="flex h-48 items-center justify-center text-xs text-[var(--color-muted)]">
