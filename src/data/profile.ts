@@ -302,6 +302,30 @@ const profile: Profile = {
   // ── Projects ────────────────────────────────
   projects: [
     {
+      id: "carbonate-monitoring-sensor",
+      title: "Real-Time Carbonate Monitoring for Shellfish Hatcheries",
+      dates: "Jan 2026 – Mar 2026",
+      summary:
+        "This project explores a product solution to address ocean acidification in shellfish hatcheries. Partnering with an MBA team, I helped design a real-time, continuous carbonate monitoring sensor that enables early detection of harmful water conditions during critical larval stages. The project integrates customer research, design thinking, and product strategy to reduce larval loss, improve operational reliability, and support more sustainable aquaculture systems.",
+      bullets: [
+        "Designed a real-time carbonate monitoring sensor for early detection of harmful water conditions in shellfish hatcheries.",
+        "Integrated customer research and design thinking to develop a product addressing ocean acidification challenges.",
+        "Developed product strategy to reduce larval loss, improve operational reliability, and support sustainable aquaculture.",
+      ],
+      skills: [
+        "Product Design",
+        "Design Thinking",
+        "Customer Research",
+        "Product Strategy",
+        "Sustainability",
+      ],
+      tags: ["Product Design", "Sustainability", "IoT", "Aquaculture", "Strategy"],
+      artifacts: [
+        { label: "View Project", url: "/carbonate-monitoring-sensor.pdf" },
+      ],
+      featured: true,
+    },
+    {
       id: "google-wiz-ma",
       title: "Google × Wiz – M&A Strategic & Valuation Analysis",
       dates: "Sep 2025 – Dec 2025",
@@ -449,7 +473,7 @@ const profile: Profile = {
         { label: "View Project", url: "/bzigo-canopy-project.pdf" },
       ],
       highlights: ["1st Place Winner"],
-      featured: true,
+      featured: false,
     },
     {
       id: "nokia-strategy-analysis",

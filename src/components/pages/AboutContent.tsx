@@ -5,6 +5,10 @@ import { useLanguage } from "@/components/LanguageProvider";
 import { getUI, getProfile } from "@/lib/translations";
 import { useMounted, useReveal } from "@/lib/useReveal";
 import SideNav from "@/components/SideNav";
+import SectionHeading from "@/components/shared/SectionHeading";
+import CertificationCard from "@/components/shared/CertificationCard";
+import EducationCard from "@/components/shared/EducationCard";
+import ExperienceCard from "@/components/shared/ExperienceCard";
 
 export default function AboutContent() {
   const { lang } = useLanguage();
@@ -81,10 +85,7 @@ export default function AboutContent() {
           ref={languagesRef.ref}
           className={`mt-14 scroll-mt-20 reveal ${languagesRef.revealed ? "revealed" : ""}`}
         >
-          <h2 className="mb-5 flex items-center gap-2 text-lg font-bold tracking-tight">
-            <span className="inline-block h-5 w-1 rounded-full bg-[var(--color-accent)]" />
-            {ui.about.languages}
-          </h2>
+          <SectionHeading>{ui.about.languages}</SectionHeading>
           <div className="grid gap-3 sm:grid-cols-2">
             {profile.languages.map((lng, i) => (
               <div
@@ -107,10 +108,7 @@ export default function AboutContent() {
           ref={focusRef.ref}
           className={`mt-14 scroll-mt-20 reveal ${focusRef.revealed ? "revealed" : ""}`}
         >
-          <h2 className="mb-5 flex items-center gap-2 text-lg font-bold tracking-tight">
-            <span className="inline-block h-5 w-1 rounded-full bg-[var(--color-accent)]" />
-            {ui.about.focusAreas}
-          </h2>
+          <SectionHeading>{ui.about.focusAreas}</SectionHeading>
           <ul className="grid gap-3 sm:grid-cols-2">
             {profile.about.focusAreas.map((area, i) => (
               <li
@@ -131,43 +129,10 @@ export default function AboutContent() {
           ref={certsRef.ref}
           className={`mt-14 scroll-mt-20 reveal ${certsRef.revealed ? "revealed" : ""}`}
         >
-          <h2 className="mb-5 flex items-center gap-2 text-lg font-bold tracking-tight">
-            <span className="inline-block h-5 w-1 rounded-full bg-[var(--color-accent)]" />
-            {ui.about.certifications}
-          </h2>
+          <SectionHeading>{ui.about.certifications}</SectionHeading>
           <div className="grid gap-3">
             {profile.certifications.map((cert, i) => (
-              <div
-                key={cert.name}
-                className="rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] p-4 shadow-sm transition-all duration-200 hover:border-[var(--color-accent)]/30 hover:shadow-md"
-                style={{ transitionDelay: `${i * 75}ms` }}
-              >
-                <div className="flex items-baseline justify-between gap-3">
-                  <h3 className="text-sm font-semibold">{cert.name}</h3>
-                  <span className="shrink-0 text-xs text-[var(--color-muted)]">{cert.date}</span>
-                </div>
-                <p className="mt-0.5 text-xs font-medium text-[var(--color-accent)]">{cert.issuer}</p>
-                {cert.credentialUrl && (
-                  <a
-                    href={cert.credentialUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-1 inline-flex items-center gap-1 text-xs text-[var(--color-muted)] underline decoration-[var(--color-border)] underline-offset-2 transition-colors hover:text-[var(--color-accent)] hover:decoration-[var(--color-accent)]"
-                  >
-                    Show credential ↗
-                  </a>
-                )}
-                <div className="mt-2 flex flex-wrap gap-1.5">
-                  {cert.skills.map((skill) => (
-                    <span
-                      key={skill}
-                      className="rounded-full bg-[var(--color-accent-light)] px-2 py-0.5 text-[11px] font-medium text-[var(--color-accent)]"
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </div>
+              <CertificationCard key={cert.name} cert={cert} index={i} variant="about" />
             ))}
           </div>
         </div>
@@ -178,10 +143,7 @@ export default function AboutContent() {
           ref={valuesRef.ref}
           className={`mt-14 scroll-mt-20 reveal ${valuesRef.revealed ? "revealed" : ""}`}
         >
-          <h2 className="mb-5 flex items-center gap-2 text-lg font-bold tracking-tight">
-            <span className="inline-block h-5 w-1 rounded-full bg-[var(--color-accent)]" />
-            {ui.about.values}
-          </h2>
+          <SectionHeading>{ui.about.values}</SectionHeading>
           <ul className="grid gap-3 sm:grid-cols-2">
             {profile.about.values.map((value, i) => (
               <li
@@ -202,10 +164,7 @@ export default function AboutContent() {
           ref={interestsRef.ref}
           className={`mt-14 scroll-mt-20 reveal ${interestsRef.revealed ? "revealed" : ""}`}
         >
-          <h2 className="mb-5 flex items-center gap-2 text-lg font-bold tracking-tight">
-            <span className="inline-block h-5 w-1 rounded-full bg-[var(--color-accent)]" />
-            {ui.about.interests}
-          </h2>
+          <SectionHeading>{ui.about.interests}</SectionHeading>
           <div className="flex flex-wrap gap-2">
             {profile.about.interests.map((interest) => (
               <span
@@ -224,30 +183,10 @@ export default function AboutContent() {
           ref={educationRef.ref}
           className={`mt-14 scroll-mt-20 reveal ${educationRef.revealed ? "revealed" : ""}`}
         >
-          <h2 className="mb-6 flex items-center gap-2 text-lg font-bold tracking-tight">
-            <span className="inline-block h-5 w-1 rounded-full bg-[var(--color-accent)]" />
-            {ui.about.education}
-          </h2>
+          <SectionHeading className="mb-6">{ui.about.education}</SectionHeading>
           <div className="space-y-4">
             {profile.education.map((edu, i) => (
-              <div
-                key={i}
-                className="flex gap-4 rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] p-5 shadow-sm transition-all duration-200 hover:border-[var(--color-accent)]/30 hover:shadow-md"
-                style={{ transitionDelay: `${i * 75}ms` }}
-              >
-                {edu.logo && (
-                  <img
-                    src={edu.logo}
-                    alt={edu.school}
-                    className="h-10 w-10 shrink-0 rounded-lg object-contain"
-                  />
-                )}
-                <div>
-                  <h3 className="text-sm font-bold">{edu.school}</h3>
-                  <p className="mt-0.5 text-xs font-medium text-[var(--color-accent)]">{edu.degree}</p>
-                  <p className="text-xs text-[var(--color-muted)]">{edu.dates}</p>
-                </div>
-              </div>
+              <EducationCard key={i} edu={edu} index={i} variant="about" />
             ))}
           </div>
         </div>
@@ -258,52 +197,16 @@ export default function AboutContent() {
           ref={experienceRef.ref}
           className={`mt-14 scroll-mt-20 reveal ${experienceRef.revealed ? "revealed" : ""}`}
         >
-          <h2 className="mb-6 flex items-center gap-2 text-lg font-bold tracking-tight">
-            <span className="inline-block h-5 w-1 rounded-full bg-[var(--color-accent)]" />
-            {ui.about.experience}
-          </h2>
+          <SectionHeading className="mb-6">{ui.about.experience}</SectionHeading>
           <div className="relative space-y-8">
             {/* Timeline line */}
             <div className="absolute left-[7px] top-2 bottom-2 w-px bg-gradient-to-b from-[var(--color-accent)] via-[var(--color-border)] to-transparent" />
 
             {profile.experience.map((exp, i) => (
-              <div
-                key={i}
-                className="relative pl-8"
-              >
+              <div key={i} className="relative pl-8">
                 {/* Timeline dot */}
                 <div className="absolute left-0 top-1.5 h-[14px] w-[14px] rounded-full border-2 border-[var(--color-accent)] bg-[var(--color-background)]" />
-                <div className="rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] p-5 shadow-sm transition-all duration-200 hover:border-[var(--color-accent)]/30 hover:shadow-md">
-                  <div className="flex gap-4">
-                    {exp.logo && (
-                      <img
-                        src={exp.logo}
-                        alt={exp.company}
-                        className="h-10 w-10 shrink-0 rounded-lg object-contain"
-                      />
-                    )}
-                    <div>
-                      <h3 className="text-sm font-bold">{exp.title}</h3>
-                      <p className="mt-0.5 text-xs font-medium text-[var(--color-accent)]">
-                        {exp.company}
-                        {exp.type ? ` · ${exp.type}` : ""}
-                      </p>
-                      <p className="text-xs text-[var(--color-muted)]">
-                        {exp.dates} · {exp.location}
-                      </p>
-                    </div>
-                  </div>
-                  <ul className="mt-3 list-disc space-y-1 pl-4">
-                    {exp.bullets.map((b, j) => (
-                      <li
-                        key={j}
-                        className="text-sm leading-relaxed text-[var(--color-muted)]"
-                      >
-                        {b}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                <ExperienceCard exp={exp} variant="about" />
               </div>
             ))}
           </div>

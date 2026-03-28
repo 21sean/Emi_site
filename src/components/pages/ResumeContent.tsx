@@ -5,6 +5,10 @@ import { getUI, getProfile } from "@/lib/translations";
 import { useMounted, useReveal } from "@/lib/useReveal";
 import SideNav from "@/components/SideNav";
 import Link from "next/link";
+import SectionHeading from "@/components/shared/SectionHeading";
+import CertificationCard from "@/components/shared/CertificationCard";
+import EducationCard from "@/components/shared/EducationCard";
+import ExperienceCard from "@/components/shared/ExperienceCard";
 
 export default function ResumeContent() {
   const { lang } = useLanguage();
@@ -69,10 +73,7 @@ export default function ResumeContent() {
           id="resume-summary"
           className={`mb-10 scroll-mt-20 ${mounted ? "animate-fade-in-up stagger-2" : "opacity-0"}`}
         >
-          <h2 className="mb-3 flex items-center gap-2 text-sm font-bold uppercase tracking-[0.15em] text-[var(--color-accent)]">
-            <span className="inline-block h-4 w-1 rounded-full bg-[var(--color-accent)]" />
-            {ui.resume.summary}
-          </h2>
+          <SectionHeading variant="resume" className="mb-3">{ui.resume.summary}</SectionHeading>
           <p className="text-sm leading-relaxed text-[var(--color-muted)]">
             {profile.summary}
           </p>
@@ -84,48 +85,10 @@ export default function ResumeContent() {
           ref={expRef.ref}
           className={`mb-10 scroll-mt-20 reveal ${expRef.revealed ? "revealed" : ""}`}
         >
-          <h2 className="mb-5 flex items-center gap-2 text-sm font-bold uppercase tracking-[0.15em] text-[var(--color-accent)]">
-            <span className="inline-block h-4 w-1 rounded-full bg-[var(--color-accent)]" />
-            {ui.resume.experience}
-          </h2>
+          <SectionHeading variant="resume">{ui.resume.experience}</SectionHeading>
           <div className="space-y-6">
             {profile.experience.map((exp, i) => (
-              <div
-                key={i}
-                className="rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] p-5 shadow-sm transition-all duration-200 hover:border-[var(--color-accent)]/20 hover:shadow-md print:border-0 print:p-0 print:shadow-none"
-              >
-                <div className="flex gap-4">
-                  {exp.logo && (
-                    <img
-                      src={exp.logo}
-                      alt={exp.company}
-                      className="h-10 w-10 shrink-0 rounded-lg object-contain"
-                    />
-                  )}
-                  <div className="flex-1">
-                    <div className="flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between">
-                      <h3 className="text-sm font-bold">{exp.title}</h3>
-                      <span className="rounded-full bg-[var(--color-accent-light)] px-2.5 py-0.5 text-[11px] font-medium text-[var(--color-accent)] shrink-0 print:bg-transparent print:px-0">
-                        {exp.dates}
-                      </span>
-                    </div>
-                    <p className="mt-0.5 text-xs text-[var(--color-muted)]">
-                      {exp.company}
-                      {exp.type ? ` · ${exp.type}` : ""} · {exp.location}
-                    </p>
-                  </div>
-                </div>
-                <ul className="mt-3 list-disc space-y-1 pl-4">
-                  {exp.bullets.map((b, j) => (
-                    <li
-                      key={j}
-                      className="text-xs leading-relaxed text-[var(--color-muted)]"
-                    >
-                      {b}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              <ExperienceCard key={i} exp={exp} variant="resume" />
             ))}
           </div>
         </div>
@@ -136,35 +99,10 @@ export default function ResumeContent() {
           ref={eduRef.ref}
           className={`mb-10 scroll-mt-20 reveal ${eduRef.revealed ? "revealed" : ""}`}
         >
-          <h2 className="mb-5 flex items-center gap-2 text-sm font-bold uppercase tracking-[0.15em] text-[var(--color-accent)]">
-            <span className="inline-block h-4 w-1 rounded-full bg-[var(--color-accent)]" />
-            {ui.resume.education}
-          </h2>
+          <SectionHeading variant="resume">{ui.resume.education}</SectionHeading>
           <div className="space-y-4">
             {profile.education.map((edu, i) => (
-              <div
-                key={i}
-                className="rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] p-5 shadow-sm transition-all duration-200 hover:border-[var(--color-accent)]/20 hover:shadow-md print:border-0 print:p-0 print:shadow-none"
-              >
-                <div className="flex gap-4">
-                  {edu.logo && (
-                    <img
-                      src={edu.logo}
-                      alt={edu.school}
-                      className="h-10 w-10 shrink-0 rounded-lg object-contain"
-                    />
-                  )}
-                  <div className="flex-1">
-                    <div className="flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between">
-                      <h3 className="text-sm font-bold">{edu.school}</h3>
-                      <span className="rounded-full bg-[var(--color-accent-light)] px-2.5 py-0.5 text-[11px] font-medium text-[var(--color-accent)] shrink-0 print:bg-transparent print:px-0">
-                        {edu.dates}
-                      </span>
-                    </div>
-                    <p className="mt-0.5 text-xs text-[var(--color-muted)]">{edu.degree}</p>
-                  </div>
-                </div>
-              </div>
+              <EducationCard key={i} edu={edu} index={i} variant="resume" />
             ))}
           </div>
         </div>
@@ -175,10 +113,7 @@ export default function ResumeContent() {
           ref={projRef.ref}
           className={`mb-10 scroll-mt-20 reveal ${projRef.revealed ? "revealed" : ""}`}
         >
-          <h2 className="mb-5 flex items-center gap-2 text-sm font-bold uppercase tracking-[0.15em] text-[var(--color-accent)]">
-            <span className="inline-block h-4 w-1 rounded-full bg-[var(--color-accent)]" />
-            {ui.resume.projects}
-          </h2>
+          <SectionHeading variant="resume">{ui.resume.projects}</SectionHeading>
           <div className="space-y-6">
             {profile.projects.map((project) => (
               <div
@@ -228,10 +163,7 @@ export default function ResumeContent() {
           ref={skillsRef.ref}
           className={`mb-10 scroll-mt-20 reveal ${skillsRef.revealed ? "revealed" : ""}`}
         >
-          <h2 className="mb-4 flex items-center gap-2 text-sm font-bold uppercase tracking-[0.15em] text-[var(--color-accent)]">
-            <span className="inline-block h-4 w-1 rounded-full bg-[var(--color-accent)]" />
-            {ui.resume.skills}
-          </h2>
+          <SectionHeading variant="resume">{ui.resume.skills}</SectionHeading>
           <div className="grid gap-3 sm:grid-cols-2">
             {profile.skills.map((group) => (
               <div
@@ -253,42 +185,10 @@ export default function ResumeContent() {
           ref={certsRef.ref}
           className={`mb-10 scroll-mt-20 reveal ${certsRef.revealed ? "revealed" : ""}`}
         >
-          <h2 className="mb-4 flex items-center gap-2 text-sm font-bold uppercase tracking-[0.15em] text-[var(--color-accent)]">
-            <span className="inline-block h-4 w-1 rounded-full bg-[var(--color-accent)]" />
-            {ui.resume.certifications}
-          </h2>
+          <SectionHeading variant="resume">{ui.resume.certifications}</SectionHeading>
           <div className="grid gap-3">
             {profile.certifications.map((cert, i) => (
-              <div
-                key={cert.name}
-                className="rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] p-4 shadow-sm transition-all duration-200 hover:border-[var(--color-accent)]/20 hover:shadow-md print:border-0 print:p-0 print:shadow-none"
-              >
-                <div className="flex items-baseline justify-between gap-3">
-                  <h3 className="text-sm font-bold">{cert.name}</h3>
-                  <span className="shrink-0 text-xs text-[var(--color-muted)]">{cert.date}</span>
-                </div>
-                <p className="mt-0.5 text-xs font-medium text-[var(--color-accent)]">{cert.issuer}</p>
-                {cert.credentialUrl && (
-                  <a
-                    href={cert.credentialUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-1 inline-flex items-center gap-1 text-xs text-[var(--color-muted)] underline decoration-[var(--color-border)] underline-offset-2 transition-colors hover:text-[var(--color-accent)] hover:decoration-[var(--color-accent)]"
-                  >
-                    Show credential ↗
-                  </a>
-                )}
-                <div className="mt-2 flex flex-wrap gap-1.5">
-                  {cert.skills.map((skill) => (
-                    <span
-                      key={skill}
-                      className="rounded-full bg-[var(--color-accent-light)] px-2 py-0.5 text-[11px] font-medium text-[var(--color-accent)]"
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </div>
+              <CertificationCard key={cert.name} cert={cert} index={i} variant="resume" />
             ))}
           </div>
         </div>
@@ -299,10 +199,7 @@ export default function ResumeContent() {
           ref={langRef.ref}
           className={`scroll-mt-20 reveal ${langRef.revealed ? "revealed" : ""}`}
         >
-          <h2 className="mb-4 flex items-center gap-2 text-sm font-bold uppercase tracking-[0.15em] text-[var(--color-accent)]">
-            <span className="inline-block h-4 w-1 rounded-full bg-[var(--color-accent)]" />
-            {ui.resume.languages}
-          </h2>
+          <SectionHeading variant="resume">{ui.resume.languages}</SectionHeading>
           <div className="flex flex-wrap gap-3">
             {profile.languages.map((lng) => (
               <div
