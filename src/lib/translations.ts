@@ -42,12 +42,8 @@ export interface UI {
   about: {
     title: string;
     focusAreas: string;
-    certifications: string;
     values: string;
     interests: string;
-    languages: string;
-    education: string;
-    experience: string;
   };
   resume: {
     summary: string;
@@ -110,12 +106,8 @@ const uiEn: UI = {
   about: {
     title: "About",
     focusAreas: "Focus Areas",
-    certifications: "Certifications",
     values: "Values",
     interests: "Interests",
-    languages: "Languages",
-    education: "Education",
-    experience: "Experience",
   },
   resume: {
     summary: "Summary",
@@ -177,12 +169,8 @@ const uiJa: UI = {
   about: {
     title: "概要",
     focusAreas: "専門分野",
-    certifications: "資格・認定",
     values: "価値観",
     interests: "関心分野",
-    languages: "言語",
-    education: "学歴",
-    experience: "経歴",
   },
   resume: {
     summary: "概要",
@@ -244,12 +232,8 @@ const uiZh: UI = {
   about: {
     title: "关于",
     focusAreas: "重点领域",
-    certifications: "资格认证",
     values: "核心价值",
     interests: "兴趣方向",
-    languages: "语言能力",
-    education: "教育背景",
-    experience: "工作经历",
   },
   resume: {
     summary: "概述",
