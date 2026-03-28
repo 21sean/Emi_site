@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(osascript -e ':*)",
+      "Bash(osascript -e 'tell application \"\"Microsoft PowerPoint\"\" to quit')"
+    ]
+  }
+}

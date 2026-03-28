@@ -45,3 +45,14 @@ Never run `git push --force` on `master`. Force-pushing rewrites shared history 
 ### Before pushing
 - Run `npx tsc --noEmit` to catch TypeScript errors
 - Run `npm run build` if you want to verify a clean production build
+
+## Development
+
+### Always run the app locally when making changes
+Before and during any code changes, ensure the dev server is running:
+
+```bash
+npm run dev
+```
+
+This lets you verify changes work correctly in the browser at `http://localhost:3000`.
