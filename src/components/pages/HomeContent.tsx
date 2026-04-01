@@ -14,9 +14,7 @@ export default function HomeContent() {
   const profile = getProfile(lang);
   const mounted = useMounted();
 
-  const featuredProjects = profile.projects
-    .filter((p) => p.featured)
-    .slice(0, 3);
+  const featuredProjects = profile.projects.filter((p) => p.featured);
 
   const featuredRef = useReveal();
   const skillsRef = useReveal();
@@ -176,12 +174,18 @@ export default function HomeContent() {
               </svg>
             </Link>
           </div>
-          <div className="grid gap-6 lg:grid-cols-3">
-            {featuredProjects.map((project, i) => (
+        </div>
+        {/* Auto-scrolling marquee */}
+        <div className="group relative overflow-hidden">
+          {/* Fade edges */}
+          <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-16 bg-gradient-to-r from-[var(--color-background)] to-transparent" />
+          <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-16 bg-gradient-to-l from-[var(--color-background)] to-transparent" />
+          <div className="flex w-max animate-marquee group-hover:[animation-play-state:paused]">
+            {/* Duplicate the list for seamless looping */}
+            {[...featuredProjects, ...featuredProjects].map((project, i) => (
               <div
-                key={project.id}
-                className={`reveal ${featuredRef.revealed ? "revealed" : ""}`}
-                style={{ transitionDelay: `${(i + 1) * 100}ms` }}
+                key={`${project.id}-${i}`}
+                className="w-[350px] shrink-0 px-3"
               >
                 <ProjectCard project={project} featured />
               </div>
