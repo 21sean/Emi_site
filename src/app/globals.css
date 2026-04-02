@@ -122,6 +122,17 @@ body {
   animation-play-state: paused;
 }
 
+.marquee-wrapper article {
+  transform: none !important;
+  box-shadow: none !important;
+  transition: border-color 0.3s, background-color 0.3s !important;
+}
+
+.marquee-wrapper article:hover {
+  border-color: var(--color-accent);
+  background-color: var(--color-card-hover);
+}
+
 /* ── Intersection Observer (appear-on-scroll) ───────────── */
 
 .reveal {
