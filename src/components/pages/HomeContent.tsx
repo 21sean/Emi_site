@@ -14,7 +14,7 @@ export default function HomeContent() {
   const profile = getProfile(lang);
   const mounted = useMounted();
 
-  const featuredProjects = profile.projects.filter((p) => p.featured);
+  const allProjects = profile.projects;
 
   const featuredRef = useReveal();
   const skillsRef = useReveal();
@@ -23,7 +23,7 @@ export default function HomeContent() {
   return (
     <>
       {/* ── Hero ──────────────────────────────── */}
-      <section className="relative overflow-hidden py-24 lg:py-32">
+      <section className="relative overflow-hidden py-12 lg:py-16">
         {/* Subtle background gradient */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
           <div className="absolute -top-24 -right-24 h-96 w-96 rounded-full bg-[var(--color-accent)]/5 blur-3xl" />
@@ -148,11 +148,11 @@ export default function HomeContent() {
       {/* ── Featured Projects ─────────────────── */}
       <section
         ref={featuredRef.ref}
-        className={`py-20 ${featuredRef.revealed ? "" : ""}`}
+        className={`py-10 ${featuredRef.revealed ? "" : ""}`}
       >
         <div className="mx-auto max-w-5xl px-6">
           <div
-            className={`mb-10 flex items-end justify-between reveal ${
+            className={`mb-6 flex items-end justify-between reveal ${
               featuredRef.revealed ? "revealed" : ""
             }`}
           >
@@ -182,7 +182,7 @@ export default function HomeContent() {
           <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-16 bg-gradient-to-l from-[var(--color-background)] to-transparent" />
           <div className="flex w-max animate-marquee group-hover:[animation-play-state:paused]">
             {/* Duplicate the list for seamless looping */}
-            {[...featuredProjects, ...featuredProjects].map((project, i) => (
+            {[...allProjects, ...allProjects].map((project, i) => (
               <div
                 key={`${project.id}-${i}`}
                 className="w-[350px] shrink-0 px-3"
