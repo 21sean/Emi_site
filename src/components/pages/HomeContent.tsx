@@ -78,7 +78,7 @@ export default function HomeContent() {
                 }`}
               >
                 <Link
-                  href="/projects"
+                  href="/resume"
                   className="group inline-flex items-center gap-2 rounded-xl bg-[var(--color-accent)] px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-[var(--color-accent)]/25 transition-all duration-200 hover:shadow-xl hover:shadow-[var(--color-accent)]/30 hover:-translate-y-0.5 focus-ring"
                 >
                   {ui.home.viewProjects}

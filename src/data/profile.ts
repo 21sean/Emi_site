@@ -319,7 +319,7 @@ const profile: Profile = {
         "Product Strategy",
         "Sustainability",
       ],
-      tags: ["Product Design", "Sustainability", "IoT", "Aquaculture", "Strategy"],
+      tags: ["Product & IoT", "Strategy"],
       artifacts: [
         { label: "View Project", url: "/carbonate-monitoring-sensor.pdf" },
       ],
@@ -342,7 +342,7 @@ const profile: Profile = {
         "Business Strategy",
         "Market Research",
       ],
-      tags: ["M&A", "Strategy", "Cloud Security", "Valuation"],
+      tags: ["M&A", "Strategy"],
       artifacts: [
         { label: "View Project", url: "/google-wiz-ma.pdf" },
       ],
@@ -365,7 +365,7 @@ const profile: Profile = {
         "Market Research",
         "Business Strategy",
       ],
-      tags: ["Blockchain", "AI", "Strategy", "Industry Analysis"],
+      tags: ["AI & Deep Tech", "Industry Analysis"],
       artifacts: [
         { label: "View Project", url: "/blockchain-bitcoin-analysis.pdf" },
       ],
@@ -391,7 +391,7 @@ const profile: Profile = {
         "AI and Advanced Manufacturing",
         "Cross-functional Collaboration",
       ],
-      tags: ["Industrial Policy", "Deep Tech", "AI", "M&A", "Strategy"],
+      tags: ["AI & Deep Tech", "M&A", "Strategy"],
       artifacts: [
         { label: "View Project", url: "/deep-tech-ai-capital-flow.pdf" },
       ],
@@ -416,7 +416,7 @@ const profile: Profile = {
         "Market Research",
         "Robotics",
       ],
-      tags: ["AI", "Robotics", "Consulting", "Semiconductors", "Strategy"],
+      tags: ["AI & Deep Tech", "Consulting", "Strategy"],
       artifacts: [
         { label: "View Project", url: "/intel-physical-ai.pdf" },
       ],
@@ -439,7 +439,7 @@ const profile: Profile = {
         "Business Strategy",
         "Digital Marketing Strategy",
       ],
-      tags: ["Go-to-Market", "Digital Health", "Strategy", "Product Adoption"],
+      tags: ["Go-to-Market", "Strategy"],
       artifacts: [
         { label: "View Project", url: "/levels-biosensor.pdf" },
       ],
@@ -462,13 +462,7 @@ const profile: Profile = {
         "Business Modeling",
         "Cross-Cultural Collaboration",
       ],
-      tags: [
-        "Go-to-Market",
-        "Consulting",
-        "Market Entry",
-        "AI",
-        "Competition Winner",
-      ],
+      tags: ["Go-to-Market", "Consulting"],
       artifacts: [
         { label: "View Project", url: "/bzigo-canopy-project.pdf" },
       ],
@@ -491,7 +485,7 @@ const profile: Profile = {
         "Strategic Analysis",
         "Market Research",
       ],
-      tags: ["Strategy", "Case Study", "Organizational Analysis"],
+      tags: ["Strategy", "Industry Analysis"],
       artifacts: [
         { label: "View Project", url: "/nokia-project.pdf" },
       ],
@@ -513,7 +507,7 @@ const profile: Profile = {
         "Strategic Financial Analysis",
         "Market Research",
       ],
-      tags: ["Strategy", "Case Study", "Competitive Analysis"],
+      tags: ["Strategy", "Industry Analysis"],
       artifacts: [
         { label: "View Project", url: "/boeing-strategy.pdf" },
       ],
@@ -536,7 +530,7 @@ const profile: Profile = {
         "Market Research",
         "Business Strategy",
       ],
-      tags: ["Go-to-Market", "Startup", "IoT", "Strategy", "Financial Modeling"],
+      tags: ["Go-to-Market", "Product & IoT", "Strategy"],
       artifacts: [
         { label: "View Project", url: "/greensense-smartpot.pdf" },
       ],
