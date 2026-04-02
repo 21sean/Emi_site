@@ -176,7 +176,7 @@ export default function HomeContent() {
           </div>
         </div>
         {/* Auto-scrolling marquee */}
-        <div className="marquee-wrapper relative overflow-hidden">
+        <div className="marquee-wrapper relative overflow-x-hidden overflow-y-visible py-4">
           {/* Fade edges */}
           <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-16 bg-gradient-to-r from-[var(--color-background)] to-transparent" />
           <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-16 bg-gradient-to-l from-[var(--color-background)] to-transparent" />
@@ -185,7 +185,7 @@ export default function HomeContent() {
             {[...allProjects, ...allProjects].map((project, i) => (
               <div
                 key={`${project.id}-${i}`}
-                className="w-[350px] shrink-0 px-3"
+                className="marquee-card w-[350px] shrink-0 px-3"
               >
                 <ProjectCard project={project} featured />
               </div>
