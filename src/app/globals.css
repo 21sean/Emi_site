@@ -118,6 +118,10 @@ body {
   animation: marquee 45s linear infinite;
 }
 
+.marquee-wrapper:hover .animate-marquee {
+  animation-play-state: paused;
+}
+
 /* ── Intersection Observer (appear-on-scroll) ───────────── */
 
 .reveal {

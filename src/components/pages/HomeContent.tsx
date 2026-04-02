@@ -176,11 +176,11 @@ export default function HomeContent() {
           </div>
         </div>
         {/* Auto-scrolling marquee */}
-        <div className="group relative overflow-hidden">
+        <div className="marquee-wrapper relative overflow-hidden">
           {/* Fade edges */}
           <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-16 bg-gradient-to-r from-[var(--color-background)] to-transparent" />
           <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-16 bg-gradient-to-l from-[var(--color-background)] to-transparent" />
-          <div className="flex w-max animate-marquee group-hover:[animation-play-state:paused]">
+          <div className="flex w-max animate-marquee">
             {/* Duplicate the list for seamless looping */}
             {[...allProjects, ...allProjects].map((project, i) => (
               <div
