@@ -122,16 +122,6 @@ body {
   animation-play-state: paused;
 }
 
-.marquee-wrapper article,
-.marquee-wrapper article:hover {
-  transform: none !important;
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), 0 1px 2px 0 rgb(0 0 0 / 0.05) !important;
-}
-
-.marquee-wrapper article:hover {
-  border-color: var(--color-accent);
-  background-color: var(--color-card-hover);
-}
 
 /* ── Intersection Observer (appear-on-scroll) ───────────── */
 

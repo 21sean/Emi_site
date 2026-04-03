@@ -12,17 +12,21 @@ const PDFSlideViewer = dynamic(() => import("@/components/PDFSlideViewer"), {
 export default function ProjectCard({
   project,
   featured = false,
+  compact = false,
 }: {
   project: Project;
   featured?: boolean;
+  compact?: boolean;
 }) {
   const [expanded, setExpanded] = useState(false);
 
   return (
     <article
-      className={`group relative overflow-hidden rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] transition-all duration-300 hover:border-[var(--color-accent)]/40 hover:shadow-xl hover:shadow-[var(--color-shadow-lg)] hover:-translate-y-1 ${
-        featured ? "p-7 lg:p-8" : "p-6"
-      }`}
+      className={`group relative overflow-hidden rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] transition-all duration-300 ${
+        compact
+          ? "hover:border-[var(--color-accent)]/40 hover:bg-[var(--color-card-hover)]"
+          : "hover:border-[var(--color-accent)]/40 hover:shadow-xl hover:shadow-[var(--color-shadow-lg)] hover:-translate-y-1"
+      } ${featured ? "p-7 lg:p-8" : "p-6"}`}
     >
       {/* Subtle gradient overlay on hover */}
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-[var(--color-accent)]/0 to-[var(--color-accent)]/0 transition-all duration-300 group-hover:from-[var(--color-accent)]/[0.02] group-hover:to-[var(--color-accent)]/[0.06]" />

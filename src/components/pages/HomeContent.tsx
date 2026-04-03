@@ -187,7 +187,7 @@ export default function HomeContent() {
                 key={`${project.id}-${i}`}
                 className="marquee-card w-[350px] shrink-0 px-3"
               >
-                <ProjectCard project={project} featured />
+                <ProjectCard project={project} featured compact />
               </div>
             ))}
           </div>
