@@ -129,7 +129,7 @@ const uiEn: UI = {
   contact: {
     title: "Contact",
     description:
-      "Interested in consulting, research collaboration, or strategic advisory? Send a message below or connect on social media.",
+      "I'm exploring opportunities in marketing strategy and growth, and would love to connect. Feel free to send a message below or reach out on LinkedIn.",
     connect: "Connect",
     location: "Location",
     formNotice: "",
@@ -196,7 +196,7 @@ const uiJa: UI = {
   contact: {
     title: "お問い合わせ",
     description:
-      "コンサルティング、リサーチコラボレーション、戦略的アドバイザリーに興味がありますか？以下のフォームまたはソーシャルメディアからご連絡ください。",
+      "マーケティング戦略とグロースの機会を探しており、ぜひつながりたいと思っています。以下のフォームからメッセージを送るか、LinkedInでお気軽にご連絡ください。",
     connect: "つながる",
     location: "所在地",
     formNotice: "",
@@ -263,7 +263,7 @@ const uiZh: UI = {
   contact: {
     title: "联系方式",
     description:
-      "对咨询、研究合作或战略顾问感兴趣？请填写下方表单或通过社交媒体联系。",
+      "我正在探索营销策略和增长方面的机会，很期待与您联系。欢迎通过下方表单留言或在LinkedIn上联系我。",
     connect: "社交链接",
     location: "所在地",
     formNotice: "",
