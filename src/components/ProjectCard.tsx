@@ -80,13 +80,13 @@ export default function ProjectCard({
           </div>
         )}
 
-        {/* PDF Slide Preview */}
-        {project.artifacts && project.artifacts.some((a) => a.url !== "#" && a.url.endsWith(".pdf")) && (
+        {/* PDF Slide Preview — skip in compact/marquee mode to avoid loading too many PDFs */}
+        {!compact && project.artifacts && project.artifacts.some((a) => a.url !== "#" && a.url.endsWith(".pdf")) && (
           <div className="mb-4">
             {project.artifacts
               .filter((a) => a.url !== "#" && a.url.endsWith(".pdf"))
               .map((a) => (
-                <PDFSlideViewer key={a.url} url={a.url} previewOnly={compact} />
+                <PDFSlideViewer key={a.url} url={a.url} />
               ))}
           </div>
         )}
