@@ -8,7 +8,7 @@ import { getCachedPdf, prefetchPdf } from "@/lib/pdfCache";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
-export default function PDFSlideViewer({ url }: { url: string }) {
+export default function PDFSlideViewer({ url, previewOnly = false }: { url: string; previewOnly?: boolean }) {
   const [numPages, setNumPages] = useState<number>(0);
   const [pageNumber, setPageNumber] = useState(1);
   const [containerWidth, setContainerWidth] = useState<number>(0);
@@ -123,25 +123,27 @@ export default function PDFSlideViewer({ url }: { url: string }) {
       </div>
 
       {/* Controls */}
-      <div className="flex items-center justify-center gap-4 border-t border-[var(--color-border)] px-4 py-2">
-        <button
-          onClick={() => setPageNumber((p) => Math.max(1, p - 1))}
-          disabled={pageNumber <= 1}
-          className="rounded-lg px-3 py-1.5 text-xs font-semibold text-[var(--color-muted)] transition-colors hover:bg-[var(--color-accent-light)] hover:text-[var(--color-accent)] disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-[var(--color-muted)]"
-        >
-          ← Prev
-        </button>
-        <span className="text-xs font-medium text-[var(--color-muted)]">
-          {pageNumber} / {numPages}
-        </span>
-        <button
-          onClick={() => setPageNumber((p) => Math.min(numPages, p + 1))}
-          disabled={pageNumber >= numPages}
-          className="rounded-lg px-3 py-1.5 text-xs font-semibold text-[var(--color-muted)] transition-colors hover:bg-[var(--color-accent-light)] hover:text-[var(--color-accent)] disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-[var(--color-muted)]"
-        >
-          Next →
-        </button>
-      </div>
+      {!previewOnly && (
+        <div className="flex items-center justify-center gap-4 border-t border-[var(--color-border)] px-4 py-2">
+          <button
+            onClick={() => setPageNumber((p) => Math.max(1, p - 1))}
+            disabled={pageNumber <= 1}
+            className="rounded-lg px-3 py-1.5 text-xs font-semibold text-[var(--color-muted)] transition-colors hover:bg-[var(--color-accent-light)] hover:text-[var(--color-accent)] disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-[var(--color-muted)]"
+          >
+            ← Prev
+          </button>
+          <span className="text-xs font-medium text-[var(--color-muted)]">
+            {pageNumber} / {numPages}
+          </span>
+          <button
+            onClick={() => setPageNumber((p) => Math.min(numPages, p + 1))}
+            disabled={pageNumber >= numPages}
+            className="rounded-lg px-3 py-1.5 text-xs font-semibold text-[var(--color-muted)] transition-colors hover:bg-[var(--color-accent-light)] hover:text-[var(--color-accent)] disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-[var(--color-muted)]"
+          >
+            Next →
+          </button>
+        </div>
+      )}
     </div>
   );
 }

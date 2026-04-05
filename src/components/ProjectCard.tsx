@@ -86,7 +86,7 @@ export default function ProjectCard({
             {project.artifacts
               .filter((a) => a.url !== "#" && a.url.endsWith(".pdf"))
               .map((a) => (
-                <PDFSlideViewer key={a.url} url={a.url} />
+                <PDFSlideViewer key={a.url} url={a.url} previewOnly={compact} />
               ))}
           </div>
         )}
