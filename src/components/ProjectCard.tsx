@@ -2,12 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import dynamic from "next/dynamic";
+import { assetPath } from "@/lib/basePath";
 import type { Project } from "@/data/profile";
-
-const PDFSlideViewer = dynamic(() => import("@/components/PDFSlideViewer"), {
-  ssr: false,
-});
 
 export default function ProjectCard({
   project,
@@ -80,14 +76,39 @@ export default function ProjectCard({
           </div>
         )}
 
-        {/* PDF Slide Preview — skip in compact/marquee mode to avoid loading too many PDFs */}
-        {!compact && project.artifacts && project.artifacts.some((a) => a.url !== "#" && a.url.endsWith(".pdf")) && (
+        {/* PDF Thumbnail Preview */}
+        {project.artifacts && project.artifacts.some((a) => a.url !== "#" && a.url.endsWith(".pdf")) && (
           <div className="mb-4">
             {project.artifacts
               .filter((a) => a.url !== "#" && a.url.endsWith(".pdf"))
-              .map((a) => (
-                <PDFSlideViewer key={a.url} url={a.url} />
-              ))}
+              .map((a) => {
+                const thumbUrl = assetPath(`/thumbnails/${a.url.replace(/^\//, "").replace(".pdf", ".png")}`);
+                return (
+                  <a
+                    key={a.url}
+                    href={a.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group/thumb relative mt-3 block overflow-hidden rounded-xl border border-[var(--color-border)]"
+                  >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={thumbUrl}
+                      alt={`${project.title} preview`}
+                      className="w-full object-cover transition-transform duration-300 group-hover/thumb:scale-[1.02]"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 flex items-center justify-center bg-black/0 transition-colors duration-200 group-hover/thumb:bg-black/40">
+                      <span className="inline-flex items-center gap-2 rounded-lg bg-white px-5 py-2.5 text-sm font-bold text-[var(--color-accent)] shadow-lg opacity-0 transition-opacity duration-200 group-hover/thumb:opacity-100">
+                        <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                        View Project
+                      </span>
+                    </div>
+                  </a>
+                );
+              })}
           </div>
         )}
 
