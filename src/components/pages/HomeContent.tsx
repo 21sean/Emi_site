@@ -101,17 +101,29 @@ export default function HomeContent() {
                 mounted ? "animate-scale-in stagger-3" : "opacity-0"
               }`}
             >
-              <div className="relative">
+              <div className="group/photo relative cursor-pointer" style={{ perspective: "600px" }}>
                 {/* Glow ring */}
                 <div className="absolute -inset-1 rounded-full bg-gradient-to-br from-[var(--color-accent)]/20 to-[var(--color-accent)]/5 blur-sm" />
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={assetPath("/headshot.jpg")}
-                  alt={profile.name}
-                  width={176}
-                  height={176}
-                  className="relative h-44 w-44 rounded-full border-2 border-[var(--color-border)] object-cover shadow-xl ring-4 ring-[var(--color-background)]"
-                />
+                <div className="relative h-44 w-44 transition-transform duration-500 [transform-style:preserve-3d] group-hover/photo:[transform:rotateY(180deg)]">
+                  {/* Front — original headshot */}
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={assetPath("/headshot.jpg")}
+                    alt={profile.name}
+                    width={176}
+                    height={176}
+                    className="absolute inset-0 h-44 w-44 rounded-full border-2 border-[var(--color-border)] object-cover shadow-xl ring-4 ring-[var(--color-background)] [backface-visibility:hidden]"
+                  />
+                  {/* Back — hover photo */}
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={assetPath("/headshot-hover.jpg")}
+                    alt={profile.name}
+                    width={176}
+                    height={176}
+                    className="absolute inset-0 h-44 w-44 rounded-full border-2 border-[var(--color-border)] object-cover shadow-xl ring-4 ring-[var(--color-background)] [backface-visibility:hidden] [transform:rotateY(180deg)]"
+                  />
+                </div>
               </div>
               <div className="mt-4 flex items-center justify-center gap-4">
                 <a
