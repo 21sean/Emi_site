@@ -341,7 +341,7 @@ const profileJa: Profile = {
     },
     {
       category: "ツール＆テクノロジー",
-      items: ["Jira", "Microsoft Excel", "Tableau", "R Studio", "MATLAB", "JavaScript", "ESG"],
+      items: ["VS Code", "GitHub Copilot", "Git", "Excel", "Office 365", "PowerPoint", "Tableau", "JavaScript", "CRM Systems", "R Studio", "MATLAB"],
     },
     {
       category: "コラボレーション",
@@ -383,7 +383,7 @@ const profileJa: Profile = {
     {
       title: "グローバルマーケティング＆ビジネス戦略アソシエイト（半導体）",
       company: "モアテックグループ",
-      dates: "2019年4月 – 2022年4月",
+      dates: "2018年4月 – 2022年4月",
       location: "東京、日本",
       bullets: [
         "日本、中国、米国、ヨーロッパにわたるグローバルB2Bマーケティングキャンペーンを実行し、データドリブンの顧客獲得戦略で収益を30%増加。",
@@ -540,7 +540,7 @@ const profileZh: Profile = {
     },
     {
       category: "工具与技术",
-      items: ["Jira", "Microsoft Excel", "Tableau", "R Studio", "MATLAB", "JavaScript", "ESG"],
+      items: ["VS Code", "GitHub Copilot", "Git", "Excel", "Office 365", "PowerPoint", "Tableau", "JavaScript", "CRM Systems", "R Studio", "MATLAB"],
     },
     {
       category: "协作",
@@ -578,7 +578,7 @@ const profileZh: Profile = {
     {
       title: "全球营销与商业战略助理（半导体）",
       company: "Moretec集团",
-      dates: "2019年4月 – 2022年4月",
+      dates: "2018年4月 – 2022年4月",
       location: "东京，日本",
       bullets: [
         "在日本、中国、美国和欧洲执行全球B2B营销活动，通过数据驱动的客户获取策略实现收入增长30%。",

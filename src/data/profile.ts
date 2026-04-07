@@ -156,13 +156,17 @@ const profile: Profile = {
     {
       category: "Tools & Technologies",
       items: [
-        "Jira",
-        "Microsoft Excel",
+        "VS Code",
+        "GitHub Copilot",
+        "Git",
+        "Excel",
+        "Office 365",
+        "PowerPoint",
         "Tableau",
+        "JavaScript",
+        "CRM Systems",
         "R Studio",
         "MATLAB",
-        "JavaScript",
-        "ESG",
       ],
     },
     {
@@ -254,7 +258,7 @@ const profile: Profile = {
     {
       title: "Global Marketing & Business Strategy Associate (Semiconductor)",
       company: "Moretec Group",
-      dates: "Apr 2019 – Apr 2022",
+      dates: "Apr 2018 – Apr 2022",
       location: "Tokyo, Japan",
       logo: "/logos/moretec.jpeg",
       bullets: [
