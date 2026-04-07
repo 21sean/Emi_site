@@ -32,7 +32,7 @@ export default function ContactForm() {
     const data = new FormData(form);
 
     try {
-      const res = await fetch("https://formsubmit.co/ajax/e2kobayashi@ucsd.edu", {
+      const res = await fetch("https://formsubmit.co/ajax/emi.kobayashi.work@gmail.com", {
         method: "POST",
         headers: { Accept: "application/json" },
         body: data,
@@ -83,7 +83,7 @@ export default function ContactForm() {
 
       {error && (
         <div className="rounded-xl bg-red-50 dark:bg-red-900/20 px-4 py-3 text-sm text-red-600 dark:text-red-400">
-          Something went wrong. Please try again or email directly at e2kobayashi@ucsd.edu.
+          Something went wrong. Please try again or email directly at emi.kobayashi.work@gmail.com.
         </div>
       )}
 
