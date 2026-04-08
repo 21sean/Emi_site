@@ -52,7 +52,15 @@ export default function HomeContent() {
                   mounted ? "animate-fade-in-up stagger-3" : "opacity-0"
                 }`}
               >
-                {profile.headline}
+                {profile.headline.split(" | ").length >= 2 ? (
+                  <>
+                    {profile.headline.split(" | ")[0]}
+                    <br />
+                    {profile.headline.split(" | ").slice(1).join(" | ")}
+                  </>
+                ) : (
+                  profile.headline
+                )}
               </p>
 
               {/* Specialties pills */}
