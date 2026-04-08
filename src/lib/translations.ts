@@ -290,7 +290,7 @@ const uiZh: UI = {
 const profileJa: Profile = {
   ...baseProfile,
   headline:
-    "MBA、カリフォルニア大学サンディエゴ校 | グローバルマーケティング＆戦略 | SaaS＆ハイテク（半導体、ライフサイエンス）",
+    "MBA、カリフォルニア大学サンディエゴ校 | グローバルマーケティング＆戦略 | SaaS＆ハイテク",
   summary:
     "カリフォルニア大学サンディエゴ校でSTEM分野に重点を置いたMBAを取得中。UCSD Rady Scholar Fellowshipの受給者。ダッソー・システムズのBIOVIAブランドにおけるグローバルSaaSマーケティング活動に貢献し、国際キャンペーンの開発・実行、クロスマーケット分析の実施、エンゲージメントとROIの最適化を推進。",
   location: "サンディエゴ、CA",
@@ -489,7 +489,7 @@ const profileJa: Profile = {
 const profileZh: Profile = {
   ...baseProfile,
   headline:
-    "MBA，加州大学圣迭戈分校 | 全球营销与战略 | SaaS与高科技（半导体、生命科学）",
+    "MBA，加州大学圣迭戈分校 | 全球营销与战略 | SaaS与高科技",
   summary:
     "目前在加州大学圣迭戈分校攻读以STEM为重点的MBA，并荣获UCSD Rady Scholar Fellowship。在达索系统为其BIOVIA品牌的全球SaaS营销做出贡献，开发和执行国际营销活动，进行跨市场分析，并优化策略以提升参与度和投资回报率。",
   location: "圣迭戈，加利福尼亚",

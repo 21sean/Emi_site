@@ -91,17 +91,15 @@ export interface Profile {
 const profile: Profile = {
   name: "Emi Kobayashi",
   headline:
-    "MBA, UC San Diego | Global Marketing & Strategy | SaaS & High Tech (Semiconductors, Life Sciences)",
+    "MBA, UC San Diego | Global Marketing & Strategy | SaaS & High Tech",
   summary:
     "Currently pursuing an MBA at the University of California, San Diego with a focus on STEM and recognized as a UCSD Rady Scholar Fellowship recipient. At Dassault Systèmes, contributing to global SaaS marketing efforts for their BIOVIA brand by developing and executing international campaigns, conducting cross-market analyses, and optimizing strategies to enhance engagement and ROI.",
   location: "🌴 San Diego, CA",
   specialties: [
-    "Global B2B Marketing",
-    "Strategy",
-    "Semiconductor Industry",
-    "Pharmaceutical & Biotech Industry",
-    "SaaS",
+    "Semiconductors",
+    "Life Sciences",
     "AI & Advanced Manufacturing",
+    "B2B",
   ],
   socialLinks: [
     { label: "LinkedIn", url: "https://www.linkedin.com/in/emi-kobayashi/", icon: "linkedin" },
