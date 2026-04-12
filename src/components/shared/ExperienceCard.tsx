@@ -6,11 +6,15 @@ import { Experience } from "@/data/profile";
 interface ExperienceCardProps {
   exp: Experience;
   variant?: "about" | "resume" | "timeline";
+  isFirst?: boolean;
+  isLast?: boolean;
 }
 
 export default function ExperienceCard({
   exp,
   variant = "about",
+  isFirst = false,
+  isLast = false,
 }: ExperienceCardProps) {
   const [open, setOpen] = useState(false);
 
@@ -18,13 +22,14 @@ export default function ExperienceCard({
     return (
       <div className="group relative flex gap-4 pb-8 last:pb-0">
         {/* Date + Timeline */}
-        <div className="flex shrink-0 w-28 items-start gap-3">
+        <div className="relative flex shrink-0 w-28 items-start gap-3">
           <span className="mt-0.5 text-[11px] font-medium text-[var(--color-muted)] text-right w-20 shrink-0 leading-tight">
             {exp.dates}
           </span>
-          <div className="flex flex-col items-center">
-            <div className="h-3 w-3 shrink-0 rounded-full border-2 border-[var(--color-accent)] bg-[var(--color-background)] transition-colors group-hover:bg-[var(--color-accent)]" />
-            <div className="w-0.5 flex-1 bg-[var(--color-border)] group-last:hidden" />
+          <div className="relative flex flex-col items-center">
+            {/* Continuous line behind the dot */}
+            <div className={`absolute w-0.5 bg-[var(--color-border)] ${isFirst ? "top-1.5" : "top-0"} ${isLast ? "bottom-auto h-1.5" : "bottom-0"}`} />
+            <div className="relative z-10 h-3 w-3 shrink-0 rounded-full border-2 border-[var(--color-accent)] bg-[var(--color-background)] transition-colors group-hover:bg-[var(--color-accent)]" />
           </div>
         </div>
         {/* Content */}

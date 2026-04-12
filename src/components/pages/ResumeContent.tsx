@@ -110,7 +110,7 @@ export default function ResumeContent() {
           <SectionHeading variant="resume">{ui.resume.experience}</SectionHeading>
           <div>
             {profile.experience.map((exp, i) => (
-              <ExperienceCard key={i} exp={exp} variant="timeline" />
+              <ExperienceCard key={i} exp={exp} variant="timeline" isFirst={i === 0} isLast={i === profile.experience.length - 1} />
             ))}
           </div>
         </div>
