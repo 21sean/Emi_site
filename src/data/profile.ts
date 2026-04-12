@@ -273,10 +273,10 @@ const profile: Profile = {
 
   // ── Languages ───────────────────────────────
   languages: [
-    { name: "Chinese", proficiency: "Native or bilingual" },
-    { name: "English", proficiency: "Full professional" },
     { name: "Japanese", proficiency: "Native or bilingual" },
+    { name: "Chinese", proficiency: "Native or bilingual" },
     { name: "Shanghainese", proficiency: "Native or bilingual" },
+    { name: "English", proficiency: "Full professional" },
   ],
 
   // ── Education ───────────────────────────────
