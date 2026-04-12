@@ -122,9 +122,9 @@ export default function ResumeContent() {
           className={`mb-10 scroll-mt-20 reveal ${eduRef.revealed ? "revealed" : ""}`}
         >
           <SectionHeading variant="resume">{ui.resume.education}</SectionHeading>
-          <div className="space-y-4">
+          <div>
             {profile.education.map((edu, i) => (
-              <EducationCard key={i} edu={edu} index={i} variant="resume" />
+              <EducationCard key={i} edu={edu} index={i} variant="timeline" isFirst={i === 0} isLast={i === profile.education.length - 1} />
             ))}
           </div>
         </div>
