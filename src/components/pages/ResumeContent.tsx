@@ -135,9 +135,9 @@ export default function ResumeContent() {
           ref={projRef.ref}
           className={`mb-10 scroll-mt-20 reveal ${projRef.revealed ? "revealed" : ""}`}
         >
-          <SectionHeading variant="resume">{ui.resume.projects}</SectionHeading>
+          <SectionHeading variant="resume">{ui.home.featuredProjects}</SectionHeading>
           <div className="space-y-6">
-            {profile.projects.map((project) => (
+            {profile.projects.slice(0, 3).map((project) => (
               <div
                 key={project.id}
                 className="rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] p-5 shadow-sm transition-all duration-200 hover:border-[var(--color-accent)]/20 hover:shadow-md print:border-0 print:p-0 print:shadow-none"
