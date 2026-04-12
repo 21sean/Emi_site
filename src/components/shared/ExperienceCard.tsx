@@ -28,15 +28,15 @@ export default function ExperienceCard({
     return (
       <div className="group relative flex items-stretch">
         {/* Left: vertical line + dot + year range */}
-        <div className="relative flex flex-col items-center w-6 shrink-0">
+        <div className="relative flex flex-col items-center w-4 shrink-0">
           {/* Vertical line */}
-          <div className={`absolute left-1/2 -translate-x-1/2 w-[3px] bg-[var(--color-border)] ${isFirst ? "top-3" : "top-0"} ${isLast ? "h-3" : "bottom-0"}`} />
+          <div className={`absolute left-1/2 -translate-x-1/2 w-[2px] bg-[var(--color-border)] ${isFirst ? "top-2.5" : "top-0"} ${isLast ? "h-2.5" : "bottom-0"}`} />
           {/* Dot */}
-          <div className="relative z-10 mt-5 h-4 w-4 shrink-0 rounded-full bg-[var(--color-accent)] shadow-[0_0_0_4px_var(--color-background)] transition-transform duration-200 group-hover:scale-125" />
+          <div className="relative z-10 mt-3.5 h-2.5 w-2.5 shrink-0 rounded-full bg-[var(--color-accent)] shadow-[0_0_0_3px_var(--color-background)] transition-transform duration-200 group-hover:scale-125" />
         </div>
         {/* Year label */}
-        <div className="flex items-start pt-3 pl-4 pr-2 shrink-0 w-24">
-          <span className="text-sm font-bold uppercase text-[var(--color-accent)] leading-tight whitespace-pre-line">
+        <div className="flex items-start pt-2 pl-3 pr-1 shrink-0 w-20">
+          <span className="text-[11px] font-semibold uppercase text-[var(--color-accent)] leading-tight whitespace-pre-line">
             {yearLabel}
           </span>
         </div>
