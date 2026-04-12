@@ -42,9 +42,8 @@ export default function ExperienceCard({
         </div>
         {/* Card content */}
         <div
-          className="flex-1 mb-6 rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] p-4 shadow-sm transition-all duration-200 hover:border-[var(--color-accent)]/30 hover:shadow-md"
-          onMouseEnter={() => setOpen(true)}
-          onMouseLeave={() => setOpen(false)}
+          className="flex-1 mb-6 cursor-pointer rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] p-4 shadow-sm transition-all duration-200 hover:border-[var(--color-accent)]/30 hover:shadow-md"
+          onClick={() => setOpen(!open)}
         >
           <div className="flex gap-3">
             {exp.logo && (
@@ -57,9 +56,15 @@ export default function ExperienceCard({
             <div className="flex-1 min-w-0">
               <div className="flex items-center justify-between gap-2">
                 <h3 className="text-sm font-bold">{exp.title}</h3>
-                <span className={`text-[10px] text-[var(--color-muted)] transition-opacity duration-200 ${open ? "opacity-0" : "opacity-100"}`}>
-                  Hover for details
-                </span>
+                <svg
+                  className={`h-3.5 w-3.5 shrink-0 text-[var(--color-muted)] transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
               </div>
               <p className="mt-0.5 text-xs text-[var(--color-muted)]">
                 {exp.company}
