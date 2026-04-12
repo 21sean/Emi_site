@@ -23,7 +23,7 @@ export default function ExperienceCard({
     const years = exp.dates.match(/\d{4}/g) ?? [];
     const startYear = years[0] ?? "";
     const endYear = years[1] ?? "Present";
-    const yearLabel = `${startYear} –\n${endYear}`;
+    const yearLabel = `${startYear} – ${endYear}`;
 
     return (
       <div className="group relative flex items-stretch">
@@ -35,8 +35,8 @@ export default function ExperienceCard({
           <div className="relative z-10 mt-3.5 h-2.5 w-2.5 shrink-0 rounded-full bg-[var(--color-accent)] shadow-[0_0_0_3px_var(--color-background)] transition-transform duration-200 group-hover:scale-125" />
         </div>
         {/* Year label */}
-        <div className="flex items-start pt-2 pl-3 pr-1 shrink-0 w-20">
-          <span className="text-[11px] font-semibold uppercase text-[var(--color-accent)] leading-tight whitespace-pre-line">
+        <div className="flex items-start pt-2 pl-3 pr-2 shrink-0">
+          <span className="text-[11px] font-semibold uppercase text-[var(--color-accent)] leading-tight whitespace-nowrap">
             {yearLabel}
           </span>
         </div>
