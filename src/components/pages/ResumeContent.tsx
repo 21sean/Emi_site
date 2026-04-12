@@ -31,9 +31,9 @@ export default function ResumeContent() {
           { id: "resume-languages", label: ui.resume.languages },
           { id: "resume-experience", label: ui.resume.experience },
           { id: "resume-education", label: ui.resume.education },
+          { id: "resume-certifications", label: ui.resume.certifications },
           { id: "resume-projects", label: ui.resume.projects },
           { id: "resume-skills", label: ui.resume.skills },
-          { id: "resume-certifications", label: ui.resume.certifications },
         ]}
       />
       <div className="mx-auto max-w-3xl px-6 print:max-w-none print:px-8">
@@ -129,6 +129,20 @@ export default function ResumeContent() {
           </div>
         </div>
 
+        {/* ── Certifications ────────────────────── */}
+        <div
+          id="resume-certifications"
+          ref={certsRef.ref}
+          className={`mb-10 scroll-mt-20 reveal ${certsRef.revealed ? "revealed" : ""}`}
+        >
+          <SectionHeading variant="resume">{ui.resume.certifications}</SectionHeading>
+          <div className="grid gap-3">
+            {profile.certifications.map((cert, i) => (
+              <CertificationCard key={cert.name} cert={cert} index={i} variant="resume" />
+            ))}
+          </div>
+        </div>
+
         {/* ── Projects ──────────────────────────── */}
         <div
           id="resume-projects"
@@ -192,19 +206,6 @@ export default function ResumeContent() {
           </div>
         </div>
 
-        {/* ── Certifications ────────────────────── */}
-        <div
-          id="resume-certifications"
-          ref={certsRef.ref}
-          className={`mb-10 scroll-mt-20 reveal ${certsRef.revealed ? "revealed" : ""}`}
-        >
-          <SectionHeading variant="resume">{ui.resume.certifications}</SectionHeading>
-          <div className="grid gap-3">
-            {profile.certifications.map((cert, i) => (
-              <CertificationCard key={cert.name} cert={cert} index={i} variant="resume" />
-            ))}
-          </div>
-        </div>
 
       </div>
     </section>
