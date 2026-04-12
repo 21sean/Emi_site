@@ -28,12 +28,12 @@ export default function ResumeContent() {
       <SideNav
         items={[
           { id: "resume-summary", label: ui.resume.summary },
+          { id: "resume-languages", label: ui.resume.languages },
           { id: "resume-experience", label: ui.resume.experience },
           { id: "resume-education", label: ui.resume.education },
           { id: "resume-projects", label: ui.resume.projects },
           { id: "resume-skills", label: ui.resume.skills },
           { id: "resume-certifications", label: ui.resume.certifications },
-          { id: "resume-languages", label: ui.resume.languages },
         ]}
       />
       <div className="mx-auto max-w-3xl px-6 print:max-w-none print:px-8">
@@ -77,6 +77,28 @@ export default function ResumeContent() {
           <p className="text-sm leading-relaxed text-[var(--color-muted)]">
             {profile.summary}
           </p>
+        </div>
+
+        {/* ── Languages ─────────────────────────── */}
+        <div
+          id="resume-languages"
+          ref={langRef.ref}
+          className={`mb-10 scroll-mt-20 reveal ${langRef.revealed ? "revealed" : ""}`}
+        >
+          <SectionHeading variant="resume">{ui.resume.languages}</SectionHeading>
+          <div className="flex flex-wrap gap-3">
+            {profile.languages.map((lng) => (
+              <div
+                key={lng.name}
+                className="rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] px-4 py-2.5 text-xs shadow-sm print:border-0 print:p-0 print:shadow-none"
+              >
+                <span className="font-bold">{lng.name}</span>{" "}
+                <span className="text-[var(--color-muted)]">
+                  — {lng.proficiency}
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* ── Experience ─────────────────────────── */}
@@ -193,27 +215,6 @@ export default function ResumeContent() {
           </div>
         </div>
 
-        {/* ── Languages ─────────────────────────── */}
-        <div
-          id="resume-languages"
-          ref={langRef.ref}
-          className={`scroll-mt-20 reveal ${langRef.revealed ? "revealed" : ""}`}
-        >
-          <SectionHeading variant="resume">{ui.resume.languages}</SectionHeading>
-          <div className="flex flex-wrap gap-3">
-            {profile.languages.map((lng) => (
-              <div
-                key={lng.name}
-                className="rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] px-4 py-2.5 text-xs shadow-sm print:border-0 print:p-0 print:shadow-none"
-              >
-                <span className="font-bold">{lng.name}</span>{" "}
-                <span className="text-[var(--color-muted)]">
-                  — {lng.proficiency}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
       </div>
     </section>
   );
