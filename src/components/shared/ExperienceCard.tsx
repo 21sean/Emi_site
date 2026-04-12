@@ -19,23 +19,30 @@ export default function ExperienceCard({
   const [open, setOpen] = useState(false);
 
   if (variant === "timeline") {
-    const year = exp.dates.match(/\d{4}/)?.[0] ?? "";
+    // Extract start and end years
+    const years = exp.dates.match(/\d{4}/g) ?? [];
+    const startYear = years[0] ?? "";
+    const endYear = years[1] ?? "Present";
+    const yearLabel = `${startYear} –\n${endYear}`;
+
     return (
-      <div className="group relative flex gap-4 pb-8 last:pb-0">
-        {/* Year + Timeline */}
-        <div className="relative flex shrink-0 w-16 items-start gap-3">
-          <span className="mt-0 text-xs font-bold text-[var(--color-muted)] text-right w-10 shrink-0">
-            {year}
-          </span>
-          <div className="relative flex flex-col items-center">
-            {/* Continuous line behind the dot */}
-            <div className={`absolute w-0.5 bg-[var(--color-border)] ${isFirst ? "top-1.5" : "top-0"} ${isLast ? "bottom-auto h-1.5" : "bottom-0"}`} />
-            <div className="relative z-10 h-3 w-3 shrink-0 rounded-full border-2 border-[var(--color-accent)] bg-[var(--color-background)] transition-colors group-hover:bg-[var(--color-accent)]" />
-          </div>
+      <div className="group relative flex items-stretch">
+        {/* Left: vertical line + dot + year range */}
+        <div className="relative flex flex-col items-center w-6 shrink-0">
+          {/* Vertical line */}
+          <div className={`absolute left-1/2 -translate-x-1/2 w-[3px] bg-[var(--color-border)] ${isFirst ? "top-3" : "top-0"} ${isLast ? "h-3" : "bottom-0"}`} />
+          {/* Dot */}
+          <div className="relative z-10 mt-5 h-4 w-4 shrink-0 rounded-full bg-[var(--color-accent)] shadow-[0_0_0_4px_var(--color-background)] transition-transform duration-200 group-hover:scale-125" />
         </div>
-        {/* Content */}
+        {/* Year label */}
+        <div className="flex items-start pt-3 pl-4 pr-2 shrink-0 w-24">
+          <span className="text-sm font-bold uppercase text-[var(--color-accent)] leading-tight whitespace-pre-line">
+            {yearLabel}
+          </span>
+        </div>
+        {/* Card content */}
         <div
-          className="-mt-0.5 flex-1 cursor-pointer rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] p-4 shadow-sm transition-all duration-200 hover:border-[var(--color-accent)]/30 hover:shadow-md"
+          className="flex-1 mb-6 cursor-pointer rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] p-4 shadow-sm transition-all duration-200 hover:border-[var(--color-accent)]/30 hover:shadow-md"
           onClick={() => setOpen(!open)}
         >
           <div className="flex gap-3">
@@ -50,7 +57,7 @@ export default function ExperienceCard({
               <h3 className="text-sm font-bold">{exp.title}</h3>
               <p className="mt-0.5 text-xs text-[var(--color-muted)]">
                 {exp.company}
-                {exp.type ? ` · ${exp.type}` : ""} · {exp.location} · {exp.dates}
+                {exp.type ? ` · ${exp.type}` : ""} · {exp.location}
               </p>
             </div>
             {/* Expand indicator */}
