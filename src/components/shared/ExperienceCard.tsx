@@ -17,10 +17,15 @@ export default function ExperienceCard({
   if (variant === "timeline") {
     return (
       <div className="group relative flex gap-4 pb-8 last:pb-0">
-        {/* Timeline line */}
-        <div className="flex flex-col items-center">
-          <div className="h-3 w-3 shrink-0 rounded-full border-2 border-[var(--color-accent)] bg-[var(--color-background)] transition-colors group-hover:bg-[var(--color-accent)]" />
-          <div className="w-0.5 flex-1 bg-[var(--color-border)] group-last:hidden" />
+        {/* Date + Timeline */}
+        <div className="flex shrink-0 w-28 items-start gap-3">
+          <span className="mt-0.5 text-[11px] font-medium text-[var(--color-muted)] text-right w-20 shrink-0 leading-tight">
+            {exp.dates}
+          </span>
+          <div className="flex flex-col items-center">
+            <div className="h-3 w-3 shrink-0 rounded-full border-2 border-[var(--color-accent)] bg-[var(--color-background)] transition-colors group-hover:bg-[var(--color-accent)]" />
+            <div className="w-0.5 flex-1 bg-[var(--color-border)] group-last:hidden" />
+          </div>
         </div>
         {/* Content */}
         <div
@@ -36,12 +41,7 @@ export default function ExperienceCard({
               />
             )}
             <div className="flex-1 min-w-0">
-              <div className="flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between">
-                <h3 className="text-sm font-bold">{exp.title}</h3>
-                <span className="rounded-full bg-[var(--color-accent-light)] px-2.5 py-0.5 text-[11px] font-medium text-[var(--color-accent)] shrink-0">
-                  {exp.dates}
-                </span>
-              </div>
+              <h3 className="text-sm font-bold">{exp.title}</h3>
               <p className="mt-0.5 text-xs text-[var(--color-muted)]">
                 {exp.company}
                 {exp.type ? ` · ${exp.type}` : ""} · {exp.location}
