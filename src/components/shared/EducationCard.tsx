@@ -35,7 +35,7 @@ export default function EducationCard({
           </span>
         </div>
         {/* Card content */}
-        <div className="flex-1 mb-6 rounded-xl border border-[var(--color-border)]/50 bg-[var(--color-card)]/40 p-4 transition-all duration-200 hover:border-[var(--color-accent)]/30 hover:bg-[var(--color-card)]/70 hover:shadow-md">
+        <div className="flex-1 mb-6 rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] p-4 shadow-sm transition-all duration-200 hover:border-[var(--color-accent)]/30 hover:shadow-md">
           <div className="flex gap-3">
             {edu.logo && (
               <img
