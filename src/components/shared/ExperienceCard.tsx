@@ -42,8 +42,9 @@ export default function ExperienceCard({
         </div>
         {/* Card content */}
         <div
-          className="flex-1 mb-6 cursor-pointer rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] p-4 shadow-sm transition-all duration-200 hover:border-[var(--color-accent)]/30 hover:shadow-md"
-          onClick={() => setOpen(!open)}
+          className="flex-1 mb-6 rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] p-4 shadow-sm transition-all duration-200 hover:border-[var(--color-accent)]/30 hover:shadow-md"
+          onMouseEnter={() => setOpen(true)}
+          onMouseLeave={() => setOpen(false)}
         >
           <div className="flex gap-3">
             {exp.logo && (
@@ -60,16 +61,6 @@ export default function ExperienceCard({
                 {exp.type ? ` · ${exp.type}` : ""} · {exp.location}
               </p>
             </div>
-            {/* Expand indicator */}
-            <svg
-              className={`h-4 w-4 shrink-0 text-[var(--color-muted)] transition-transform duration-200 ${open ? "rotate-180" : ""}`}
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2}
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-            </svg>
           </div>
           {/* Expandable bullets */}
           <div
