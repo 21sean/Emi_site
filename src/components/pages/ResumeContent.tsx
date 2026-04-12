@@ -136,11 +136,11 @@ export default function ResumeContent() {
           className={`mb-10 scroll-mt-20 reveal ${projRef.revealed ? "revealed" : ""}`}
         >
           <SectionHeading variant="resume">{ui.home.featuredProjects}</SectionHeading>
-          <div className="space-y-6">
+          <div className="space-y-4">
             {profile.projects.slice(0, 3).map((project) => (
               <div
                 key={project.id}
-                className="rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] p-5 shadow-sm transition-all duration-200 hover:border-[var(--color-accent)]/20 hover:shadow-md print:border-0 print:p-0 print:shadow-none"
+                className="rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] p-4 shadow-sm transition-all duration-200 hover:border-[var(--color-accent)]/20 hover:shadow-md print:border-0 print:p-0 print:shadow-none"
               >
                 <div className="flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between">
                   <h3 className="text-sm font-bold">{project.title}</h3>
@@ -148,24 +148,15 @@ export default function ResumeContent() {
                     {project.dates}
                   </span>
                 </div>
-                {project.org && (
-                  <p className="text-xs text-[var(--color-muted)]">
-                    {project.org}
-                  </p>
-                )}
-                <p className="mt-1 text-xs leading-relaxed text-[var(--color-muted)]">
+                <p className="mt-1 text-xs leading-relaxed text-[var(--color-muted)] line-clamp-2">
                   {project.summary}
                 </p>
-                <ul className="mt-2 list-disc space-y-0.5 pl-4">
-                  {project.bullets.map((b, i) => (
-                    <li
-                      key={i}
-                      className="text-xs leading-relaxed text-[var(--color-muted)]"
-                    >
-                      {b}
-                    </li>
-                  ))}
-                </ul>
+                <Link
+                  href={`/projects#${project.id}`}
+                  className="mt-2 inline-block text-xs font-semibold text-[var(--color-accent)] hover:underline"
+                >
+                  Read more →
+                </Link>
               </div>
             ))}
           </div>
