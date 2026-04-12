@@ -55,7 +55,12 @@ export default function ExperienceCard({
               />
             )}
             <div className="flex-1 min-w-0">
-              <h3 className="text-sm font-bold">{exp.title}</h3>
+              <div className="flex items-center justify-between gap-2">
+                <h3 className="text-sm font-bold">{exp.title}</h3>
+                <span className={`text-[10px] text-[var(--color-muted)] transition-opacity duration-200 ${open ? "opacity-0" : "opacity-100"}`}>
+                  Hover for details
+                </span>
+              </div>
               <p className="mt-0.5 text-xs text-[var(--color-muted)]">
                 {exp.company}
                 {exp.type ? ` · ${exp.type}` : ""} · {exp.location}
