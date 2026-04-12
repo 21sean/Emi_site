@@ -42,7 +42,7 @@ export default function ExperienceCard({
         </div>
         {/* Card content */}
         <div
-          className="flex-1 mb-6 cursor-pointer rounded-xl border border-[var(--color-border)] bg-[var(--color-card)]/60 backdrop-blur-sm p-4 transition-all duration-200 hover:border-[var(--color-accent)]/30 hover:bg-[var(--color-card)]/80 hover:shadow-md"
+          className="flex-1 mb-6 cursor-pointer rounded-xl border border-[var(--color-border)]/50 bg-[var(--color-card)]/40 p-4 transition-all duration-200 hover:border-[var(--color-accent)]/30 hover:bg-[var(--color-card)]/70 hover:shadow-md"
           onClick={() => setOpen(!open)}
         >
           <div className="flex gap-3">
