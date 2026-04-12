@@ -19,12 +19,13 @@ export default function ExperienceCard({
   const [open, setOpen] = useState(false);
 
   if (variant === "timeline") {
+    const year = exp.dates.match(/\d{4}/)?.[0] ?? "";
     return (
       <div className="group relative flex gap-4 pb-8 last:pb-0">
-        {/* Date + Timeline */}
-        <div className="relative flex shrink-0 w-28 items-start gap-3">
-          <span className="mt-0.5 text-[11px] font-medium text-[var(--color-muted)] text-right w-20 shrink-0 leading-tight">
-            {exp.dates}
+        {/* Year + Timeline */}
+        <div className="relative flex shrink-0 w-16 items-start gap-3">
+          <span className="mt-0 text-xs font-bold text-[var(--color-muted)] text-right w-10 shrink-0">
+            {year}
           </span>
           <div className="relative flex flex-col items-center">
             {/* Continuous line behind the dot */}
@@ -49,7 +50,7 @@ export default function ExperienceCard({
               <h3 className="text-sm font-bold">{exp.title}</h3>
               <p className="mt-0.5 text-xs text-[var(--color-muted)]">
                 {exp.company}
-                {exp.type ? ` · ${exp.type}` : ""} · {exp.location}
+                {exp.type ? ` · ${exp.type}` : ""} · {exp.location} · {exp.dates}
               </p>
             </div>
             {/* Expand indicator */}
