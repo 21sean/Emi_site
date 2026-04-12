@@ -108,9 +108,9 @@ export default function ResumeContent() {
           className={`mb-10 scroll-mt-20 reveal ${expRef.revealed ? "revealed" : ""}`}
         >
           <SectionHeading variant="resume">{ui.resume.experience}</SectionHeading>
-          <div className="space-y-6">
+          <div>
             {profile.experience.map((exp, i) => (
-              <ExperienceCard key={i} exp={exp} variant="resume" />
+              <ExperienceCard key={i} exp={exp} variant="timeline" />
             ))}
           </div>
         </div>
