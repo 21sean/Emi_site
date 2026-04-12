@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Experience } from "@/data/profile";
 
 interface ExperienceCardProps {
@@ -17,6 +17,19 @@ export default function ExperienceCard({
   isLast = false,
 }: ExperienceCardProps) {
   const [open, setOpen] = useState(false);
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = cardRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setVisible(true); observer.unobserve(el); } },
+      { threshold: 0.1, rootMargin: "0px 0px -40px 0px" }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   if (variant === "timeline") {
     // Extract start and end years
@@ -26,7 +39,7 @@ export default function ExperienceCard({
     const yearLabel = `${startYear} – ${endYear}`;
 
     return (
-      <div className="group relative flex items-stretch">
+      <div ref={cardRef} className={`group relative flex items-stretch reveal ${visible ? "revealed" : ""}`}>
         {/* Left: vertical line + dot + year range */}
         <div className="relative flex flex-col items-center w-4 shrink-0">
           {/* Vertical line */}

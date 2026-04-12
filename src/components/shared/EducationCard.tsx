@@ -1,3 +1,6 @@
+"use client";
+
+import { useRef, useState, useEffect } from "react";
 import { Education } from "@/data/profile";
 
 interface EducationCardProps {
@@ -15,6 +18,20 @@ export default function EducationCard({
   isFirst = false,
   isLast = false,
 }: EducationCardProps) {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = cardRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setVisible(true); observer.unobserve(el); } },
+      { threshold: 0.1, rootMargin: "0px 0px -40px 0px" }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   if (variant === "timeline") {
     const years = edu.dates.match(/\d{4}/g) ?? [];
     const startYear = years[0] ?? "";
@@ -22,7 +39,7 @@ export default function EducationCard({
     const yearLabel = `${startYear} – ${endYear}`;
 
     return (
-      <div className="group relative flex items-stretch">
+      <div ref={cardRef} className={`group relative flex items-stretch reveal ${visible ? "revealed" : ""}`}>
         {/* Left: vertical line + dot */}
         <div className="relative flex flex-col items-center w-4 shrink-0">
           <div className={`absolute left-1/2 -translate-x-1/2 w-[2px] bg-[var(--color-border)] ${isFirst ? "top-2.5" : "top-0"} ${isLast ? "h-2.5" : "bottom-0"}`} />
