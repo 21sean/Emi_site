@@ -29,7 +29,7 @@ export default function EducationCard({
           <div className="relative z-10 mt-3.5 h-2.5 w-2.5 shrink-0 rounded-full bg-[var(--color-accent)] shadow-[0_0_0_3px_var(--color-background)] transition-transform duration-200 group-hover:scale-125" />
         </div>
         {/* Year label */}
-        <div className="flex items-start pt-2 pl-3 pr-2 shrink-0">
+        <div className="flex items-start pt-2 pl-3 pr-2 shrink-0 w-28">
           <span className="text-[11px] font-semibold uppercase text-[var(--color-accent)] leading-tight whitespace-nowrap">
             {yearLabel}
           </span>
