@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Bash(osascript -e ':*)",
-      "Bash(osascript -e 'tell application \"\"Microsoft PowerPoint\"\" to quit')"
+      "Bash(osascript -e 'tell application \"\"Microsoft PowerPoint\"\" to quit')",
+      "Bash(ls ~/Desktop/*oogle*wiz* ~/Desktop/*oogle*Wiz* ~/Desktop/*Google*Wiz*)"
     ]
   }
 }
