@@ -39,33 +39,41 @@ export default function ResumeContent() {
       <div className="mx-auto max-w-3xl px-6 print:max-w-none print:px-8">
         {/* ── Header ────────────────────────────── */}
         <header
-          className={`mb-10 border-b border-[var(--color-border)] pb-8 ${
+          className={`mb-10 flex items-center gap-6 border-b border-[var(--color-border)] pb-8 ${
             mounted ? "animate-fade-in-up" : "opacity-0"
           }`}
         >
-          <h1 className="text-3xl font-extrabold tracking-tight">
-            {profile.name}
-          </h1>
-          <p className="mt-2 text-[var(--color-muted)]">
-            {profile.headline}
-          </p>
-          <p className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-[var(--color-muted)]">
-            <span className="flex items-center gap-1">
-              <svg className="h-3.5 w-3.5 text-[var(--color-accent)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-              </svg>
-              {profile.location}
-            </span>
-            {profile.contactEmail && (
+          <div className="flex-1 min-w-0">
+            <h1 className="text-3xl font-extrabold tracking-tight">
+              {profile.name}
+            </h1>
+            <p className="mt-2 text-[var(--color-muted)]">
+              {profile.headline}
+            </p>
+            <p className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-[var(--color-muted)]">
               <span className="flex items-center gap-1">
                 <svg className="h-3.5 w-3.5 text-[var(--color-accent)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
-                {profile.contactEmail}
+                {profile.location}
               </span>
-            )}
-          </p>
+              {profile.contactEmail && (
+                <span className="flex items-center gap-1">
+                  <svg className="h-3.5 w-3.5 text-[var(--color-accent)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                  {profile.contactEmail}
+                </span>
+              )}
+            </p>
+          </div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/about-photo.jpg"
+            alt={profile.name}
+            className="h-32 w-32 shrink-0 rounded-full border-2 border-[var(--color-border)] object-cover shadow-lg ring-4 ring-[var(--color-background)] sm:h-40 sm:w-40"
+          />
         </header>
 
         {/* ── Summary ───────────────────────────── */}
