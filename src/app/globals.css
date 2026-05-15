@@ -121,6 +121,21 @@ body > * {
   to { opacity: 1; transform: scale(1); }
 }
 
+/* Vertical text-flip carousel — slides through stacked items.
+   Use with a fixed-height container + overflow:hidden so only one item shows. */
+@keyframes text-flip {
+  8%   { transform: translateY(-112%); }
+  20%  { transform: translateY(-100%); }
+  28%  { transform: translateY(-212%); }
+  40%  { transform: translateY(-200%); }
+  48%  { transform: translateY(-312%); }
+  60%  { transform: translateY(-300%); }
+  68%  { transform: translateY(-412%); }
+  80%  { transform: translateY(-400%); }
+  88%  { transform: translateY(-512%); }
+  100% { transform: translateY(-500%); }
+}
+
 /* ── Utility Animation Classes ──────────────────────────── */
 
 .animate-fade-in-up {
@@ -129,6 +144,10 @@ body > * {
 
 .animate-scale-in {
   animation: scale-in 400ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-text-flip {
+  animation: text-flip 18s infinite;
 }
 
 /* ── Stagger Delays ─────────────────────────────────────── */
@@ -371,7 +390,8 @@ body > * {
 
 @media (prefers-reduced-motion: reduce) {
   .animate-fade-in-up,
-  .animate-scale-in {
+  .animate-scale-in,
+  .animate-text-flip {
     animation: none !important;
   }
 

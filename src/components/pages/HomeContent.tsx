@@ -7,13 +7,79 @@ import { useLanguage } from "@/components/LanguageProvider";
 import { getUI, getProfile } from "@/lib/translations";
 import ProjectCard from "@/components/ProjectCard";
 import Skills from "@/components/Skills";
+import CountUp from "@/components/CountUp";
 import { useMounted, useReveal } from "@/lib/useReveal";
+
+// Hero headline: single quantifiable sentence with one inline animated number.
+const HERO_HEADLINE: Record<"en" | "ja" | "zh", { value: number; suffix: string; prefix: string; before: string; after: string }> = {
+  en: {
+    value: 140,
+    suffix: "%",
+    prefix: "+",
+    before: "Driving ",
+    after: " revenue growth across global B2B markets in semiconductors, life sciences & AI.",
+  },
+  ja: {
+    value: 140,
+    suffix: "%",
+    prefix: "+",
+    before: "半導体・ライフサイエンス・AI分野のグローバルB2B市場で、",
+    after: " の売上成長を牽引。",
+  },
+  zh: {
+    value: 140,
+    suffix: "%",
+    prefix: "+",
+    before: "在半导体、生命科学与人工智能的全球B2B市场，推动",
+    after: " 的营收增长。",
+  },
+};
+
+// Phrases for the hero flip animation. Last entry duplicates the first so the
+// CSS keyframe loops seamlessly.
+const FLIP_PHRASES: Record<"en" | "ja" | "zh", { prefix: string; words: string[] }> = {
+  en: {
+    prefix: "I market & scale",
+    words: [
+      "Semiconductor B2B campaigns",
+      "Life sciences SaaS launches",
+      "AI & advanced manufacturing",
+      "Cross-border GTM strategy",
+      "Deep-tech brand stories",
+      "Semiconductor B2B campaigns",
+    ],
+  },
+  ja: {
+    prefix: "私が手がけるのは",
+    words: [
+      "半導体B2Bキャンペーン",
+      "ライフサイエンスSaaSローンチ",
+      "AI & 先進製造",
+      "国境を越えるGTM戦略",
+      "ディープテックのブランド戦略",
+      "半導体B2Bキャンペーン",
+    ],
+  },
+  zh: {
+    prefix: "我策划与扩展",
+    words: [
+      "半导体B2B营销",
+      "生命科学SaaS发布",
+      "AI 与先进制造",
+      "跨境市场进入策略",
+      "深科技品牌叙事",
+      "半导体B2B营销",
+    ],
+  },
+};
 
 export default function HomeContent() {
   const { lang } = useLanguage();
   const ui = getUI(lang);
   const profile = getProfile(lang);
   const mounted = useMounted();
+  const flip = FLIP_PHRASES[lang];
+  const headline = HERO_HEADLINE[lang];
 
   const allProjects = profile.projects;
 
@@ -79,21 +145,50 @@ export default function HomeContent() {
               >
                 {profile.name}
               </h1>
+              {/* Quantifiable headline with one inline animated number */}
               <p
-                className={`mt-5 max-w-2xl text-lg leading-relaxed text-[var(--color-muted)] lg:text-xl ${
+                className={`mt-5 max-w-2xl text-xl leading-relaxed text-[var(--color-foreground)] lg:text-2xl font-medium ${
                   mounted ? "animate-fade-in-up stagger-3" : "opacity-0"
                 }`}
               >
-                {profile.headline.split(" | ").length >= 2 ? (
-                  <>
-                    {profile.headline.split(" | ")[0]}
-                    <br />
-                    {profile.headline.split(" | ").slice(1).join(" | ")}
-                  </>
-                ) : (
-                  profile.headline
-                )}
+                {headline.before}
+                <span className="font-extrabold text-[var(--color-accent)] tabular-nums">
+                  {mounted ? (
+                    <CountUp
+                      end={headline.value}
+                      prefix={headline.prefix}
+                      suffix={headline.suffix}
+                      durationMs={1800}
+                    />
+                  ) : (
+                    <span>
+                      {headline.prefix}0{headline.suffix}
+                    </span>
+                  )}
+                </span>
+                {headline.after}
               </p>
+
+              {/* Flip animation: prefix + rotating phrase */}
+              <div
+                className={`mt-3 text-lg leading-[1.4] text-[var(--color-muted)] lg:text-xl ${
+                  mounted ? "animate-fade-in-up stagger-3" : "opacity-0"
+                }`}
+              >
+                <span>{flip.prefix} </span>
+                <span
+                  className="inline-flex h-[1.4em] overflow-hidden align-bottom font-semibold text-[var(--color-accent)]"
+                  aria-label={flip.words.slice(0, -1).join(", ")}
+                >
+                  <span className="flex flex-col animate-text-flip">
+                    {flip.words.map((word, i) => (
+                      <span key={i} className="block whitespace-nowrap">
+                        {word}
+                      </span>
+                    ))}
+                  </span>
+                </span>
+              </div>
 
               {/* Specialties pills */}
               <div
