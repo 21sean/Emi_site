@@ -50,7 +50,7 @@ export default function RootLayout({
       <body className={`${inter.variable} font-sans antialiased selection:bg-[var(--color-accent)] selection:text-white`}>
         <ThemeProvider>
           <LanguageProvider>
-            <div className="flex min-h-screen flex-col">
+            <div className="animate-page-in flex min-h-screen flex-col">
               <Header />
               <main className="flex-1">{children}</main>
               <Footer />

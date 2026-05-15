@@ -116,6 +116,14 @@ body > * {
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* Whole-page fade applied to the layout wrapper. Pure CSS, runs from
+   first paint regardless of hydration state — masks the iOS Safari
+   render delay so header + hero appear together instead of popping. */
+@keyframes page-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 @keyframes scale-in {
   from { opacity: 0; transform: scale(0.95); }
   to { opacity: 1; transform: scale(1); }
@@ -148,6 +156,10 @@ body > * {
 
 .animate-text-flip {
   animation: text-flip 18s infinite;
+}
+
+.animate-page-in {
+  animation: page-in 450ms ease-out both;
 }
 
 /* ── Stagger Delays ─────────────────────────────────────── */
@@ -213,6 +225,14 @@ body > * {
 
 .skills-pin-panel {
   position: relative;
+}
+
+/* Native CSS sticky stack — replaces GSAP ScrollTrigger pinning so iOS
+   Safari's momentum scroll doesn't jitter the cards. The per-card `top`
+   value is set inline from JS to stagger the stack. Higher specificity
+   than `.skills-card { position: relative }`. */
+.skills-card.skills-card-sticky {
+  position: sticky;
 }
 
 .skills-card {
@@ -391,7 +411,8 @@ body > * {
 @media (prefers-reduced-motion: reduce) {
   .animate-fade-in-up,
   .animate-scale-in,
-  .animate-text-flip {
+  .animate-text-flip,
+  .animate-page-in {
     animation: none !important;
   }
 

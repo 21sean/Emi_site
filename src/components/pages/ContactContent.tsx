@@ -3,19 +3,18 @@
 import { useLanguage } from "@/components/LanguageProvider";
 import { getUI, getProfile } from "@/lib/translations";
 import ContactForm from "@/components/ContactForm";
-import { useMounted, useReveal } from "@/lib/useReveal";
+import { useReveal } from "@/lib/useReveal";
 
 export default function ContactContent() {
   const { lang } = useLanguage();
   const ui = getUI(lang);
   const profile = getProfile(lang);
-  const mounted = useMounted();
   const asideRef = useReveal();
 
   return (
     <section className="py-20">
       <div className="mx-auto max-w-3xl px-6">
-        <div className={mounted ? "animate-fade-in-up" : "opacity-0"}>
+        <div>
           <h1 className="text-3xl font-extrabold tracking-tight">{ui.contact.title}</h1>
           <p className="mt-3 text-[var(--color-muted)]">
             {ui.contact.description}
@@ -24,7 +23,7 @@ export default function ContactContent() {
 
         <div className="mt-12 grid gap-12 lg:grid-cols-5">
           {/* Form */}
-          <div className={`lg:col-span-3 ${mounted ? "animate-fade-in-up stagger-2" : "opacity-0"}`}>
+          <div className="lg:col-span-3">
             <ContactForm />
           </div>
 
