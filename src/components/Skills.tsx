@@ -59,12 +59,14 @@ export default function Skills() {
     const cards = cardRefs.current.filter(Boolean) as HTMLDivElement[];
     if (!panel || cards.length === 0) return;
 
-    // iOS Safari: position:fixed during momentum scroll jitters/skips. Force
-    // transform-based pinning on touch devices so cards stay locked.
-    const isTouch =
-      typeof window !== "undefined" &&
-      ("ontouchstart" in window || navigator.maxTouchPoints > 0);
-    const pinType: "transform" | "fixed" = isTouch ? "transform" : "fixed";
+    // iOS Safari only: position:fixed pinning jitters during momentum scroll.
+    // Detect WebKit-on-iOS specifically so desktop/Android pinning stays on
+    // its (working) fixed-pin path.
+    const ua = typeof navigator !== "undefined" ? navigator.userAgent : "";
+    const isIOSSafari =
+      /iP(hone|ad|od)/.test(ua) &&
+      /WebKit/.test(ua) &&
+      !/CriOS|FxiOS|EdgiOS/.test(ua);
 
     const mm = gsap.matchMedia();
 
@@ -77,8 +79,7 @@ export default function Skills() {
           end: `bottom top+=${HEADER_CLEAR + 60 + cards.length * SPACER}`,
           pin: true,
           pinSpacing: false,
-          pinType,
-          anticipatePin: 1,
+          ...(isIOSSafari ? { pinType: "transform" as const } : {}),
           invalidateOnRefresh: true,
         });
       });
@@ -87,15 +88,10 @@ export default function Skills() {
     const refreshId = requestAnimationFrame(() => ScrollTrigger.refresh());
     const onLoad = () => ScrollTrigger.refresh();
     window.addEventListener("load", onLoad);
-    // iOS Safari fires resize when the URL bar collapses — refresh so pin
-    // start/end positions follow the changed viewport.
-    const onOrientation = () => ScrollTrigger.refresh();
-    window.addEventListener("orientationchange", onOrientation);
 
     return () => {
       cancelAnimationFrame(refreshId);
       window.removeEventListener("load", onLoad);
-      window.removeEventListener("orientationchange", onOrientation);
       mm.revert();
     };
   }, [categories.length, lang]);
