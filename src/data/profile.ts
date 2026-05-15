@@ -80,12 +80,6 @@ export interface Profile {
   education: Education[];
   languages: Language[];
   projects: Project[];
-  about: {
-    bio: string[];
-    focusAreas: string[];
-    values: string[];
-    interests: string[];
-  };
 }
 
 const profile: Profile = {
@@ -539,31 +533,6 @@ const profile: Profile = {
       featured: false,
     },
   ],
-
-  // ── About ───────────────────────────────────
-  about: {
-    bio: [
-      "Currently pursuing an MBA at the University of California, San Diego with a focus on STEM and recognized as a UCSD Rady Scholar Fellowship recipient. At Dassault Systèmes, I contribute to global SaaS marketing efforts for their BIOVIA brand by developing and executing international campaigns, conducting cross-market analyses, and optimizing strategies to enhance engagement and ROI.",
-      "Motivated by opportunities to drive innovation in life sciences and scientific software solutions, I collaborate with cross-functional teams to leverage performance analytics, deliver data-driven insights, and support organizational goals. Dedicated to advancing expertise in SaaS marketing strategy, market research, and campaign execution while completing an MBA program.",
-    ],
-    focusAreas: [
-      "SaaS Marketing Strategy",
-      "Life Sciences & Scientific Software",
-      "AI & Advanced Manufacturing",
-      "Market Research & Campaign Execution",
-    ],
-    values: [
-      "Rigorous, evidence-based analysis",
-      "Bridging policy and practice",
-      "Cross-cultural collaboration",
-      "Impact-driven work",
-    ],
-    interests: [
-      "AI governance & ethics",
-      "Global supply chain resilience",
-      "Startup ecosystems",
-    ],
-  },
 };
 
 export default profile;

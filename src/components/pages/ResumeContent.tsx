@@ -81,7 +81,7 @@ export default function ResumeContent() {
           id="resume-summary"
           className={`mb-10 scroll-mt-20 ${mounted ? "animate-fade-in-up stagger-2" : "opacity-0"}`}
         >
-          <SectionHeading variant="resume" className="mb-3">{ui.resume.summary}</SectionHeading>
+          <SectionHeading className="mb-3">{ui.resume.summary}</SectionHeading>
           <p className="text-sm leading-relaxed text-[var(--color-muted)]">
             {profile.summary}
           </p>
@@ -93,7 +93,7 @@ export default function ResumeContent() {
           ref={langRef.ref}
           className={`mb-10 scroll-mt-20 reveal ${langRef.revealed ? "revealed" : ""}`}
         >
-          <SectionHeading variant="resume">{ui.resume.languages}</SectionHeading>
+          <SectionHeading>{ui.resume.languages}</SectionHeading>
           <div className="flex flex-wrap gap-3">
             {profile.languages.map((lng) => (
               <div
@@ -115,10 +115,10 @@ export default function ResumeContent() {
           ref={expRef.ref}
           className={`mb-10 scroll-mt-20 reveal ${expRef.revealed ? "revealed" : ""}`}
         >
-          <SectionHeading variant="resume">{ui.resume.experience}</SectionHeading>
+          <SectionHeading>{ui.resume.experience}</SectionHeading>
           <div>
             {profile.experience.map((exp, i) => (
-              <ExperienceCard key={i} exp={exp} variant="timeline" isFirst={i === 0} isLast={i === profile.experience.length - 1} />
+              <ExperienceCard key={i} exp={exp} isFirst={i === 0} isLast={i === profile.experience.length - 1} />
             ))}
           </div>
         </div>
@@ -129,10 +129,10 @@ export default function ResumeContent() {
           ref={eduRef.ref}
           className={`mb-10 scroll-mt-20 reveal ${eduRef.revealed ? "revealed" : ""}`}
         >
-          <SectionHeading variant="resume">{ui.resume.education}</SectionHeading>
+          <SectionHeading>{ui.resume.education}</SectionHeading>
           <div>
             {profile.education.map((edu, i) => (
-              <EducationCard key={i} edu={edu} index={i} variant="timeline" isFirst={i === 0} isLast={i === profile.education.length - 1} />
+              <EducationCard key={i} edu={edu} isFirst={i === 0} isLast={i === profile.education.length - 1} />
             ))}
           </div>
         </div>
@@ -143,10 +143,10 @@ export default function ResumeContent() {
           ref={certsRef.ref}
           className={`mb-10 scroll-mt-20 reveal ${certsRef.revealed ? "revealed" : ""}`}
         >
-          <SectionHeading variant="resume">{ui.resume.certifications}</SectionHeading>
+          <SectionHeading>{ui.resume.certifications}</SectionHeading>
           <div className="grid gap-3">
             {profile.certifications.map((cert, i) => (
-              <CertificationCard key={cert.name} cert={cert} index={i} variant="resume" />
+              <CertificationCard key={cert.name} cert={cert} index={i} />
             ))}
           </div>
         </div>
@@ -157,7 +157,7 @@ export default function ResumeContent() {
           ref={projRef.ref}
           className={`mb-10 scroll-mt-20 reveal ${projRef.revealed ? "revealed" : ""}`}
         >
-          <SectionHeading variant="resume">{ui.home.featuredProjects}</SectionHeading>
+          <SectionHeading>{ui.home.featuredProjects}</SectionHeading>
           <div className="space-y-4">
             {profile.projects.slice(0, 3).map((project) => (
               <div
@@ -198,7 +198,7 @@ export default function ResumeContent() {
           ref={skillsRef.ref}
           className={`mb-10 scroll-mt-20 reveal ${skillsRef.revealed ? "revealed" : ""}`}
         >
-          <SectionHeading variant="resume">{ui.resume.skills}</SectionHeading>
+          <SectionHeading>{ui.resume.skills}</SectionHeading>
           <div className="grid gap-3 sm:grid-cols-2">
             {profile.skills.map((group) => (
               <div

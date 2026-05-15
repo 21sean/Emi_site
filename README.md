@@ -25,9 +25,7 @@ src/
 │   ├── projects/
 │   │   └── page.tsx        # All projects with tag filters
 │   ├── about/
-│   │   └── page.tsx        # Bio, focus areas, values, interests
-│   ├── resume/
-│   │   └── page.tsx        # Printable single-page resume (Ctrl+P → PDF)
+│   │   └── page.tsx        # Resume page (summary, experience, education, etc.)
 │   └── contact/
 │       └── page.tsx        # Contact form + social links
 ├── components/
@@ -35,11 +33,20 @@ src/
 │   ├── Footer.tsx          # Copyright + social links
 │   ├── ThemeProvider.tsx   # Dark/light mode context
 │   ├── ThemeToggle.tsx     # Theme switch button
+│   ├── LanguageProvider.tsx
+│   ├── LanguageSelect.tsx
+│   ├── SideNav.tsx
 │   ├── ProjectCard.tsx     # Reusable project card
 │   ├── Skills.tsx          # Skills grid section
-│   └── ContactForm.tsx     # Client-side contact form
-└── data/
-    └── profile.ts          # ★ ALL CONTENT LIVES HERE ★
+│   ├── ContactForm.tsx     # Client-side contact form
+│   ├── pages/              # Page-level content components
+│   └── shared/             # Shared card components (Experience, Education, etc.)
+├── data/
+│   └── profile.ts          # ★ ALL CONTENT LIVES HERE ★
+└── lib/
+    ├── basePath.ts
+    ├── translations.ts     # EN / JA / ZH translations
+    └── useReveal.ts
 ```
 
 ## Where the Content Lives
@@ -62,7 +69,10 @@ This file exports a fully typed `Profile` object containing:
 | `resumeUrl` | URL for "Download Resume" button |
 | `skills` | Grouped skill categories |
 | `projects` | Array of project objects |
-| `about` | Bio paragraphs, focus areas, values, interests |
+| `experience` | Work experience entries |
+| `education` | Education entries |
+| `certifications` | Certification entries |
+| `languages` | Spoken languages |
 
 **No hardcoded text exists in components.** Edit `profile.ts` and the entire site updates.
 
@@ -98,21 +108,15 @@ This file exports a fully typed `Profile` object containing:
 
 In `profile.ts`, edit the `skills` array. Each entry has a `category` (string) and `items` (string array).
 
-## How to Update About / Bio
+## Download Resume as PDF
 
-Edit the `about` object in `profile.ts`. It contains:
-- `bio`: array of paragraph strings
-- `focusAreas`: array of strings
-- `values`: array of strings
-- `interests`: array of strings
+The "Download Resume" button links to a static PDF in `public/`. The active PDF is selected per language via `resumeUrl` in `profile.ts` (English) and `translations.ts` (Japanese / Chinese).
 
-## Print / Download Resume as PDF
+To regenerate the JA / ZH PDFs from the translation data, run:
 
-Navigate to `/resume` in your browser. Press **Ctrl + P** (or **⌘ + P** on Mac) and choose "Save as PDF." The page is styled for print with non-essential UI hidden.
-
-To link the "Download Resume" button to a static PDF instead:
-1. Place your PDF in `public/resume.pdf`.
-2. In `profile.ts`, change `resumeUrl` to `"/resume.pdf"`.
+```bash
+npm run generate-pdfs
+```
 
 ## Dark Mode
 

@@ -22,7 +22,6 @@ export interface UI {
     home: string;
     projects: string;
     about: string;
-    resume: string;
     contact: string;
   };
   common: {
@@ -39,16 +38,6 @@ export interface UI {
     interestedDesc: string;
     contactMe: string;
   };
-  about: {
-    title: string;
-    focusAreas: string;
-    certifications: string;
-    values: string;
-    interests: string;
-    languages: string;
-    education: string;
-    experience: string;
-  };
   resume: {
     summary: string;
     experience: string;
@@ -63,13 +52,11 @@ export interface UI {
     description: string;
     connect: string;
     location: string;
-    formNotice: string;
     nameLabel: string;
     emailLabel: string;
     messageLabel: string;
     sendMessage: string;
     thankYou: string;
-    notSent: string;
     sendAnother: string;
     namePlaceholder: string;
     emailPlaceholder: string;
@@ -89,7 +76,6 @@ const uiEn: UI = {
     home: "Home",
     projects: "Projects",
     about: "About",
-    resume: "Resume",
     contact: "Contact",
   },
   common: {
@@ -107,16 +93,6 @@ const uiEn: UI = {
       "I'm open to marketing strategy engagements, market research collaborations, and strategic growth advisory roles.",
     contactMe: "Contact Me",
   },
-  about: {
-    title: "About",
-    focusAreas: "Focus Areas",
-    certifications: "Certifications",
-    values: "Values",
-    interests: "Interests",
-    languages: "Languages",
-    education: "Education",
-    experience: "Experience",
-  },
   resume: {
     summary: "Summary",
     experience: "Experience",
@@ -132,13 +108,11 @@ const uiEn: UI = {
       "I'm exploring opportunities in marketing strategy and growth, and would love to connect. Feel free to send a message below or reach out on LinkedIn.",
     connect: "Connect",
     location: "Location",
-    formNotice: "",
     nameLabel: "Name",
     emailLabel: "Email",
     messageLabel: "Message",
     sendMessage: "Send Message",
     thankYou: "Thank you!",
-    notSent: "Your message has been sent successfully.",
     sendAnother: "Send another message",
     namePlaceholder: "Your name",
     emailPlaceholder: "you@example.com",
@@ -156,7 +130,6 @@ const uiJa: UI = {
     home: "ホーム",
     projects: "プロジェクト",
     about: "概要",
-    resume: "履歴書",
     contact: "お問い合わせ",
   },
   common: {
@@ -174,16 +147,6 @@ const uiJa: UI = {
       "コンサルティング、リサーチコラボレーション、戦略的アドバイザリーに対応しています。",
     contactMe: "お問い合わせ",
   },
-  about: {
-    title: "概要",
-    focusAreas: "専門分野",
-    certifications: "資格・認定",
-    values: "価値観",
-    interests: "関心分野",
-    languages: "言語",
-    education: "学歴",
-    experience: "経歴",
-  },
   resume: {
     summary: "概要",
     experience: "経歴",
@@ -199,13 +162,11 @@ const uiJa: UI = {
       "マーケティング戦略とグロースの機会を探しており、ぜひつながりたいと思っています。以下のフォームからメッセージを送るか、LinkedInでお気軽にご連絡ください。",
     connect: "つながる",
     location: "所在地",
-    formNotice: "",
     nameLabel: "お名前",
     emailLabel: "メールアドレス",
     messageLabel: "メッセージ",
     sendMessage: "送信する",
     thankYou: "ありがとうございます！",
-    notSent: "メッセージが正常に送信されました。",
     sendAnother: "もう一通送る",
     namePlaceholder: "お名前",
     emailPlaceholder: "you@example.com",
@@ -223,7 +184,6 @@ const uiZh: UI = {
     home: "首页",
     projects: "项目",
     about: "关于",
-    resume: "简历",
     contact: "联系",
   },
   common: {
@@ -241,16 +201,6 @@ const uiZh: UI = {
       "我对咨询合作、研究合作和战略顾问均持开放态度。",
     contactMe: "联系我",
   },
-  about: {
-    title: "关于",
-    focusAreas: "重点领域",
-    certifications: "资格认证",
-    values: "核心价值",
-    interests: "兴趣方向",
-    languages: "语言能力",
-    education: "教育背景",
-    experience: "工作经历",
-  },
   resume: {
     summary: "概述",
     experience: "工作经历",
@@ -266,13 +216,11 @@ const uiZh: UI = {
       "我正在探索营销策略和增长方面的机会，很期待与您联系。欢迎通过下方表单留言或在LinkedIn上联系我。",
     connect: "社交链接",
     location: "所在地",
-    formNotice: "",
     nameLabel: "姓名",
     emailLabel: "邮箱",
     messageLabel: "留言",
     sendMessage: "发送消息",
     thankYou: "谢谢！",
-    notSent: "您的消息已成功发送。",
     sendAnother: "再发送一条",
     namePlaceholder: "您的姓名",
     emailPlaceholder: "you@example.com",
@@ -460,30 +408,6 @@ const profileJa: Profile = {
       featured: true,
     },
   ],
-
-  about: {
-    bio: [
-      "カリフォルニア大学サンディエゴ校でSTEM分野に重点を置いたMBAを取得中であり、UCSD Rady Scholar Fellowshipの受給者です。ダッソー・システムズでは、BIOVIAブランドのグローバルSaaSマーケティング活動に貢献し、国際キャンペーンの開発・実行、クロスマーケット分析の実施、エンゲージメントとROIの最適化戦略を推進しています。",
-      "ライフサイエンスおよび科学ソフトウェアソリューションにおけるイノベーション推進に意欲を持ち、部門横断チームと協力してパフォーマンス分析を活用し、データドリブンの洞察を提供し、組織目標を支援しています。MBA課程を修了しながら、SaaSマーケティング戦略、市場調査、キャンペーン実行の専門性を高めることに取り組んでいます。",
-    ],
-    focusAreas: [
-      "SaaSマーケティング戦略",
-      "ライフサイエンス＆科学ソフトウェア",
-      "AI＆先端製造業",
-      "市場調査＆キャンペーン実行",
-    ],
-    values: [
-      "厳密なエビデンスに基づく分析",
-      "政策と実践の橋渡し",
-      "異文化間コラボレーション",
-      "インパクト志向の仕事",
-    ],
-    interests: [
-      "AIガバナンス＆倫理",
-      "グローバルサプライチェーンのレジリエンス",
-      "スタートアップエコシステム",
-    ],
-  },
 };
 
 const profileZh: Profile = {
@@ -655,30 +579,6 @@ const profileZh: Profile = {
       featured: true,
     },
   ],
-
-  about: {
-    bio: [
-      "目前在加州大学圣迭戈分校攻读以STEM为重点的MBA，并荣获UCSD Rady Scholar Fellowship。在达索系统，我为其BIOVIA品牌的全球SaaS营销做出贡献，开发和执行国际营销活动，进行跨市场分析，并优化策略以提升参与度和投资回报率。",
-      "我致力于推动生命科学和科学软件解决方案的创新，与跨职能团队合作利用绩效分析，提供数据驱动的洞察，并支持组织目标。在完成MBA课程的同时，我致力于提升SaaS营销策略、市场研究和营销活动执行方面的专业能力。",
-    ],
-    focusAreas: [
-      "SaaS营销策略",
-      "生命科学与科学软件",
-      "人工智能与先进制造",
-      "市场研究与营销活动执行",
-    ],
-    values: [
-      "严谨的循证分析",
-      "连接政策与实践",
-      "跨文化协作",
-      "以影响力为导向的工作",
-    ],
-    interests: [
-      "AI治理与伦理",
-      "全球供应链韧性",
-      "创业生态系统",
-    ],
-  },
 };
 
 /* ── Public API ─────────────────────────────── */

@@ -3,20 +3,15 @@ import { Certification } from "@/data/profile";
 interface CertificationCardProps {
   cert: Certification;
   index?: number;
-  variant?: "about" | "resume";
 }
 
 export default function CertificationCard({
   cert,
   index = 0,
-  variant = "about",
 }: CertificationCardProps) {
-  const hoverOpacity = variant === "about" ? "hover:border-[var(--color-accent)]/30" : "hover:border-[var(--color-accent)]/20";
-  const printClasses = variant === "resume" ? "print:border-0 print:p-0 print:shadow-none" : "";
-
   return (
     <div
-      className={`rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] p-4 shadow-sm transition-all duration-200 ${hoverOpacity} hover:shadow-md ${printClasses}`}
+      className="rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] p-4 shadow-sm transition-all duration-200 hover:border-[var(--color-accent)]/20 hover:shadow-md print:border-0 print:p-0 print:shadow-none"
       style={{ transitionDelay: `${index * 75}ms` }}
     >
       <div className="flex items-baseline justify-between gap-3">
