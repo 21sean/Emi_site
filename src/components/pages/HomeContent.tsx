@@ -285,10 +285,10 @@ export default function HomeContent() {
       {/* ── CTA ───────────────────────────────── */}
       <section
         ref={ctaRef.ref}
-        className={`py-20 reveal ${ctaRef.revealed ? "revealed" : ""}`}
+        className={`pt-4 pb-16 sm:pt-6 sm:pb-20 reveal ${ctaRef.revealed ? "revealed" : ""}`}
       >
         <div className="mx-auto max-w-5xl px-6">
-          <div className="glass-card relative overflow-hidden px-8 py-16 text-center">
+          <div className="skills-card relative overflow-hidden px-8 py-16 text-center">
             {/* Decorative gradient */}
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-[var(--color-accent)]/8 via-transparent to-[var(--color-accent)]/8" />
             <div className="relative">

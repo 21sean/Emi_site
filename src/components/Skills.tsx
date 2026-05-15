@@ -87,12 +87,9 @@ export default function Skills() {
   }, [categories.length, lang]);
 
   return (
-    <section id="skills" className="w-full px-4 sm:px-6 py-12 sm:py-20">
+    <section id="skills" className="w-full px-4 sm:px-6 pt-12 pb-4 sm:pt-20 sm:pb-6">
       <div className="mx-auto max-w-5xl">
         <div className="mb-10 text-center">
-          <p className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-accent)]">
-            {ui.home.skills}
-          </p>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight tracking-tight">
             {ui.home.skills}
           </h2>
