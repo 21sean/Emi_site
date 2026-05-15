@@ -16,18 +16,51 @@ export default function ProjectCard({
 }) {
   const [expanded, setExpanded] = useState(false);
 
+  const pdfArtifact = project.artifacts?.find(
+    (a) => a.url !== "#" && a.url.endsWith(".pdf")
+  );
+  const thumbUrl = pdfArtifact
+    ? assetPath(
+        `/thumbnails/${pdfArtifact.url.replace(/^\//, "").replace(".pdf", ".png")}`
+      )
+    : null;
+
   return (
     <article
-      className={`group relative overflow-hidden rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] transition-all duration-300 ${
-        compact
-          ? "hover:border-[var(--color-accent)]/40 hover:bg-[var(--color-card-hover)]"
-          : "hover:border-[var(--color-accent)]/40 hover:shadow-xl hover:shadow-[var(--color-shadow-lg)] hover:-translate-y-1"
-      } ${featured ? "p-7 lg:p-8" : "p-6"}`}
+      className={`group glass-card relative flex h-full flex-col overflow-hidden rounded-2xl transition-all duration-300 hover:-translate-y-1 ${
+        featured ? "" : ""
+      }`}
     >
-      {/* Subtle gradient overlay on hover */}
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-[var(--color-accent)]/0 to-[var(--color-accent)]/0 transition-all duration-300 group-hover:from-[var(--color-accent)]/[0.02] group-hover:to-[var(--color-accent)]/[0.06]" />
+      {/* Thumbnail — fixed aspect-ratio so every card's image aligns horizontally */}
+      {thumbUrl ? (
+        <a
+          href={pdfArtifact!.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group/thumb relative block aspect-[16/10] w-full overflow-hidden bg-[var(--color-card)]"
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={thumbUrl}
+            alt={`${project.title} preview`}
+            className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover/thumb:scale-[1.03]"
+            loading="lazy"
+          />
+          <div className="absolute inset-0 flex items-center justify-center bg-black/0 transition-colors duration-200 group-hover/thumb:bg-black/40">
+            <span className="inline-flex items-center gap-2 rounded-lg bg-white px-4 py-2 text-xs font-bold text-[var(--color-accent)] shadow-lg opacity-0 transition-opacity duration-200 group-hover/thumb:opacity-100">
+              <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+              View Project
+            </span>
+          </div>
+        </a>
+      ) : (
+        <div className="aspect-[16/10] w-full bg-gradient-to-br from-[var(--color-accent)]/10 via-[var(--color-card)] to-[var(--color-accent)]/5" />
+      )}
 
-      <div className="relative">
+      {/* Body */}
+      <div className={`flex flex-1 flex-col ${compact ? "p-5" : featured ? "p-7 lg:p-8" : "p-6"}`}>
         {/* Header */}
         <div className="mb-3 flex flex-col gap-1.5">
           {project.org && (
@@ -44,7 +77,7 @@ export default function ProjectCard({
         </div>
 
         {/* Summary */}
-        <div className="mb-5">
+        <div className="mb-4">
           <p
             className={`text-sm leading-relaxed text-[var(--color-muted)] ${
               !expanded ? "line-clamp-3" : ""
@@ -64,7 +97,7 @@ export default function ProjectCard({
 
         {/* Highlights */}
         {project.highlights && project.highlights.length > 0 && (
-          <div className="mb-5 flex flex-wrap gap-2">
+          <div className="mb-4 flex flex-wrap gap-2">
             {project.highlights.map((h) => (
               <span
                 key={h}
@@ -76,48 +109,12 @@ export default function ProjectCard({
           </div>
         )}
 
-        {/* PDF Thumbnail Preview */}
-        {project.artifacts && project.artifacts.some((a) => a.url !== "#" && a.url.endsWith(".pdf")) && (
-          <div className="mb-4">
-            {project.artifacts
-              .filter((a) => a.url !== "#" && a.url.endsWith(".pdf"))
-              .map((a) => {
-                const thumbUrl = assetPath(`/thumbnails/${a.url.replace(/^\//, "").replace(".pdf", ".png")}`);
-                return (
-                  <a
-                    key={a.url}
-                    href={a.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group/thumb relative mt-3 block overflow-hidden rounded-xl border border-[var(--color-border)]"
-                  >
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={thumbUrl}
-                      alt={`${project.title} preview`}
-                      className="w-full object-cover transition-transform duration-300 group-hover/thumb:scale-[1.02]"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 flex items-center justify-center bg-black/0 transition-colors duration-200 group-hover/thumb:bg-black/40">
-                      <span className="inline-flex items-center gap-2 rounded-lg bg-white px-5 py-2.5 text-sm font-bold text-[var(--color-accent)] shadow-lg opacity-0 transition-opacity duration-200 group-hover/thumb:opacity-100">
-                        <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                        </svg>
-                        View Project
-                      </span>
-                    </div>
-                  </a>
-                );
-              })}
-          </div>
-        )}
-
-        {/* Tags */}
-        <div className="flex flex-wrap gap-1.5">
+        {/* Tags — push to bottom */}
+        <div className="mt-auto flex flex-wrap gap-1.5 pt-2">
           {project.tags.map((tag) => (
             <span
               key={tag}
-              className="rounded-md border border-[var(--color-border)] bg-[var(--color-background)] px-2 py-0.5 text-[11px] font-medium text-[var(--color-muted)] transition-colors duration-150 group-hover:border-[var(--color-accent)]/20"
+              className="rounded-md border border-[var(--color-border)] bg-[var(--color-card)]/60 px-2 py-0.5 text-[11px] font-medium text-[var(--color-muted)] transition-colors duration-150 group-hover:border-[var(--color-accent)]/20"
             >
               {tag}
             </span>

@@ -1,53 +1,129 @@
 "use client";
 
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import type { IconType } from "react-icons";
+import {
+  SiGit,
+  SiJavascript,
+  SiR,
+  SiGithubcopilot,
+} from "react-icons/si";
+import { VscCode } from "react-icons/vsc";
+import {
+  PiMicrosoftExcelLogo,
+  PiMicrosoftPowerpointLogo,
+  PiMicrosoftOutlookLogoFill,
+} from "react-icons/pi";
+import { TbMathFunction, TbChartBar } from "react-icons/tb";
+import { HiOutlineUserGroup } from "react-icons/hi2";
 import { useLanguage } from "@/components/LanguageProvider";
-import { getUI, getProfile } from "@/lib/translations";
-import { useReveal } from "@/lib/useReveal";
+import { getProfile, getUI } from "@/lib/translations";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
+
+const iconMap: Record<string, IconType> = {
+  "VS Code": VscCode,
+  "GitHub Copilot": SiGithubcopilot,
+  Git: SiGit,
+  Excel: PiMicrosoftExcelLogo,
+  "Office 365": PiMicrosoftOutlookLogoFill,
+  PowerPoint: PiMicrosoftPowerpointLogo,
+  Tableau: TbChartBar,
+  JavaScript: SiJavascript,
+  "CRM Systems": HiOutlineUserGroup,
+  "R Studio": SiR,
+  MATLAB: TbMathFunction,
+};
+
+const SPACER = 52;
+const HEADER_CLEAR = 80; // sticky header (62px) + breathing room
 
 export default function Skills() {
   const { lang } = useLanguage();
   const ui = getUI(lang);
   const profile = getProfile(lang);
-  const sectionRef = useReveal();
+
+  const panelRef = useRef<HTMLDivElement>(null);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  const categories = profile.skills.filter(
+    (s) => !s.category.toLowerCase().includes("collab")
+  );
+
+  useEffect(() => {
+    const panel = panelRef.current;
+    const cards = cardRefs.current.filter(Boolean) as HTMLDivElement[];
+    if (!panel || cards.length === 0) return;
+
+    const mm = gsap.matchMedia();
+
+    mm.add("(min-width: 768px)", () => {
+      cards.forEach((card, index) => {
+        ScrollTrigger.create({
+          trigger: card,
+          start: `top-=${index * SPACER} top+=${HEADER_CLEAR}`,
+          endTrigger: panel,
+          end: `bottom top+=${HEADER_CLEAR + 60 + cards.length * SPACER}`,
+          pin: true,
+          pinSpacing: false,
+          invalidateOnRefresh: true,
+        });
+      });
+    });
+
+    const refreshId = requestAnimationFrame(() => ScrollTrigger.refresh());
+    const onLoad = () => ScrollTrigger.refresh();
+    window.addEventListener("load", onLoad);
+
+    return () => {
+      cancelAnimationFrame(refreshId);
+      window.removeEventListener("load", onLoad);
+      mm.revert();
+    };
+  }, [categories.length, lang]);
 
   return (
-    <section
-      ref={sectionRef.ref}
-      className="py-20"
-    >
-      <div className="mx-auto max-w-5xl px-6">
-        <div className={`mb-10 reveal ${sectionRef.revealed ? "revealed" : ""}`}>
-          <p className="mb-1 text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-accent)]">
+    <section id="skills" className="w-full px-4 sm:px-6 py-12 sm:py-20">
+      <div className="mx-auto max-w-5xl">
+        <div className="mb-10 text-center">
+          <p className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-accent)]">
             {ui.home.skills}
           </p>
-          <h2 className="text-2xl font-bold tracking-tight">{ui.home.skills}</h2>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight tracking-tight">
+            {ui.home.skills}
+          </h2>
         </div>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {profile.skills.map((group, gi) => (
+
+        <div ref={panelRef} className="skills-pin-panel relative">
+          {categories.map((cat, i) => (
             <div
-              key={group.category}
-              className={`rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] p-5 shadow-sm transition-all duration-300 hover:border-[var(--color-accent)]/30 hover:shadow-md hover:-translate-y-0.5 reveal ${
-                sectionRef.revealed ? "revealed" : ""
-              }`}
-              style={{ transitionDelay: `${(gi + 1) * 100}ms` }}
+              key={cat.category}
+              ref={(el) => {
+                cardRefs.current[i] = el;
+              }}
+              className="skills-card mb-6 w-full"
             >
-              <h3 className="mb-4 flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-[var(--color-accent)]">
-                <span className="inline-block h-4 w-1 rounded-full bg-[var(--color-accent)]" />
-                {group.category}
-              </h3>
-              <ul className="space-y-2">
-                {group.items.map((skill) => (
-                  <li
-                    key={skill}
-                    className="flex items-center gap-2 text-sm text-[var(--color-muted)] transition-colors duration-150 hover:text-[var(--color-foreground)]"
-                  >
-                    <span className="h-1 w-1 shrink-0 rounded-full bg-[var(--color-accent)]/50" />
-                    {skill}
-                  </li>
-                ))}
-              </ul>
+              <div className="skills-card-title">{cat.category}</div>
+              <div className="flex flex-wrap gap-2.5">
+                {cat.items.map((tag) => {
+                  const Icon = iconMap[tag];
+                  return (
+                    <span key={tag} className="skills-tag">
+                      {Icon && <Icon />}
+                      {tag}
+                    </span>
+                  );
+                })}
+              </div>
             </div>
           ))}
+          {/* Scroll runway inside the panel so the last card has room to pin
+              and dwell before the whole stack unpins. */}
+          <div className="h-[60vh] md:h-[55vh]" aria-hidden="true" />
         </div>
       </div>
     </section>

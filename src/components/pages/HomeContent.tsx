@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { assetPath } from "@/lib/basePath";
 import { useLanguage } from "@/components/LanguageProvider";
 import { getUI, getProfile } from "@/lib/translations";
@@ -17,8 +18,39 @@ export default function HomeContent() {
   const allProjects = profile.projects;
 
   const featuredRef = useReveal();
-  const skillsRef = useReveal();
   const ctaRef = useReveal();
+
+  // ── Carousel state ─────────────────────────
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
+
+  const updateScrollState = useCallback(() => {
+    const el = carouselRef.current;
+    if (!el) return;
+    setCanScrollLeft(el.scrollLeft > 4);
+    setCanScrollRight(el.scrollLeft + el.clientWidth < el.scrollWidth - 4);
+  }, []);
+
+  useEffect(() => {
+    const el = carouselRef.current;
+    if (!el) return;
+    updateScrollState();
+    el.addEventListener("scroll", updateScrollState, { passive: true });
+    window.addEventListener("resize", updateScrollState);
+    return () => {
+      el.removeEventListener("scroll", updateScrollState);
+      window.removeEventListener("resize", updateScrollState);
+    };
+  }, [updateScrollState]);
+
+  const scrollCarousel = (dir: "left" | "right") => {
+    const el = carouselRef.current;
+    if (!el) return;
+    const firstCard = el.querySelector<HTMLElement>("[data-carousel-card]");
+    const step = firstCard ? firstCard.offsetWidth + 24 : el.clientWidth * 0.8;
+    el.scrollBy({ left: dir === "left" ? -step : step, behavior: "smooth" });
+  };
 
   return (
     <>
@@ -72,7 +104,7 @@ export default function HomeContent() {
                 {profile.specialties.map((s) => (
                   <span
                     key={s}
-                    className="rounded-full border border-[var(--color-border)] bg-[var(--color-card)] px-4 py-1.5 text-sm font-medium text-[var(--color-foreground)] shadow-sm transition-all duration-200 hover:border-[var(--color-accent)]/40 hover:shadow-md"
+                    className="glass-card glass-card-hover !rounded-full px-4 py-1.5 text-sm font-medium text-[var(--color-foreground)]"
                   >
                     {s}
                   </span>
@@ -168,7 +200,7 @@ export default function HomeContent() {
       {/* ── Featured Projects ─────────────────── */}
       <section
         ref={featuredRef.ref}
-        className={`py-10 ${featuredRef.revealed ? "" : ""}`}
+        className="py-10"
       >
         <div className="mx-auto max-w-5xl px-6">
           <div
@@ -177,35 +209,61 @@ export default function HomeContent() {
             }`}
           >
             <div>
-              <p className="mb-1 text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-accent)]">
-                {ui.home.featuredProjects}
-              </p>
-              <h2 className="text-2xl font-bold tracking-tight">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight tracking-tight">
                 {ui.home.featuredProjects}
               </h2>
             </div>
-            <Link
-              href="/projects"
-              className="group flex items-center gap-1 text-sm font-medium text-[var(--color-accent)] transition-colors hover:text-[var(--color-accent-hover)] focus-ring"
-            >
-              {ui.common.viewAll}
-              <svg className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-              </svg>
-            </Link>
+            <div className="flex items-center gap-3">
+              <div className="hidden gap-2 sm:flex">
+                <button
+                  type="button"
+                  onClick={() => scrollCarousel("left")}
+                  disabled={!canScrollLeft}
+                  aria-label="Previous projects"
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-[var(--color-border)] bg-[var(--color-card)] text-[var(--color-foreground)] shadow-sm transition-all duration-200 hover:border-[var(--color-accent)]/40 hover:bg-[var(--color-accent-light)] hover:text-[var(--color-accent)] hover:shadow-md disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:border-[var(--color-border)] disabled:hover:bg-[var(--color-card)] disabled:hover:text-[var(--color-foreground)] disabled:hover:shadow-sm focus-ring"
+                >
+                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => scrollCarousel("right")}
+                  disabled={!canScrollRight}
+                  aria-label="Next projects"
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-[var(--color-border)] bg-[var(--color-card)] text-[var(--color-foreground)] shadow-sm transition-all duration-200 hover:border-[var(--color-accent)]/40 hover:bg-[var(--color-accent-light)] hover:text-[var(--color-accent)] hover:shadow-md disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:border-[var(--color-border)] disabled:hover:bg-[var(--color-card)] disabled:hover:text-[var(--color-foreground)] disabled:hover:shadow-sm focus-ring"
+                >
+                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </div>
+              <Link
+                href="/projects"
+                className="group flex items-center gap-1 text-sm font-medium text-[var(--color-accent)] transition-colors hover:text-[var(--color-accent-hover)] focus-ring"
+              >
+                {ui.common.viewAll}
+                <svg className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              </Link>
+            </div>
           </div>
         </div>
-        {/* Auto-scrolling marquee */}
-        <div className="marquee-wrapper relative overflow-hidden">
+        {/* Snap-scroll carousel */}
+        <div className="relative">
           {/* Fade edges */}
-          <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-16 bg-gradient-to-r from-[var(--color-background)] to-transparent" />
-          <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-16 bg-gradient-to-l from-[var(--color-background)] to-transparent" />
-          <div className="flex w-max animate-marquee">
-            {/* Duplicate the list for seamless looping */}
-            {[...allProjects, ...allProjects].map((project, i) => (
+          <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-24 bg-gradient-to-r from-[var(--color-background)] via-[var(--color-background)]/80 to-transparent" />
+          <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-24 bg-gradient-to-l from-[var(--color-background)] via-[var(--color-background)]/80 to-transparent" />
+          <div
+            ref={carouselRef}
+            className="carousel-scroll flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth py-4 [scroll-padding-left:max(1.5rem,calc((100%-64rem)/2))] px-[max(1.5rem,calc((100%-64rem)/2))]"
+          >
+            {allProjects.map((project) => (
               <div
-                key={`${project.id}-${i}`}
-                className="marquee-card w-[350px] shrink-0 px-3"
+                key={project.id}
+                data-carousel-card
+                className="flex w-[340px] shrink-0 snap-start"
               >
                 <ProjectCard project={project} featured compact />
               </div>
@@ -219,13 +277,10 @@ export default function HomeContent() {
         <hr className="border-[var(--color-border)]" />
       </div>
 
-      {/* ── Skills ────────────────────────────── */}
-      <div
-        ref={skillsRef.ref}
-        className={`reveal ${skillsRef.revealed ? "revealed" : ""}`}
-      >
-        <Skills />
-      </div>
+      {/* ── Skills ──────────────────────────────
+          Note: cannot wrap in .reveal — its CSS transform breaks
+          GSAP ScrollTrigger pinning inside Skills. */}
+      <Skills />
 
       {/* ── CTA ───────────────────────────────── */}
       <section
@@ -233,9 +288,9 @@ export default function HomeContent() {
         className={`py-20 reveal ${ctaRef.revealed ? "revealed" : ""}`}
       >
         <div className="mx-auto max-w-5xl px-6">
-          <div className="relative overflow-hidden rounded-2xl border border-[var(--color-border)] bg-[var(--color-card)] px-8 py-16 text-center shadow-sm">
+          <div className="glass-card relative overflow-hidden px-8 py-16 text-center">
             {/* Decorative gradient */}
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-[var(--color-accent)]/5 via-transparent to-[var(--color-accent)]/5" />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-[var(--color-accent)]/8 via-transparent to-[var(--color-accent)]/8" />
             <div className="relative">
               <h2 className="text-2xl font-bold tracking-tight">
                 {ui.home.interestedTitle}
