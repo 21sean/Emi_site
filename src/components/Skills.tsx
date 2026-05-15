@@ -68,21 +68,19 @@ export default function Skills() {
       /WebKit/.test(ua) &&
       !/CriOS|FxiOS|EdgiOS/.test(ua);
 
-    const mm = gsap.matchMedia();
-
-    mm.add("(min-width: 768px)", () => {
-      cards.forEach((card, index) => {
-        ScrollTrigger.create({
-          trigger: card,
-          start: `top-=${index * SPACER} top+=${HEADER_CLEAR}`,
-          endTrigger: panel,
-          end: `bottom top+=${HEADER_CLEAR + 60 + cards.length * SPACER}`,
-          pin: true,
-          pinSpacing: false,
-          ...(isIOSSafari ? { pinType: "transform" as const } : {}),
-          invalidateOnRefresh: true,
-        });
+    const triggers: ScrollTrigger[] = [];
+    cards.forEach((card, index) => {
+      const st = ScrollTrigger.create({
+        trigger: card,
+        start: `top-=${index * SPACER} top+=${HEADER_CLEAR}`,
+        endTrigger: panel,
+        end: `bottom top+=${HEADER_CLEAR + 60 + cards.length * SPACER}`,
+        pin: true,
+        pinSpacing: false,
+        ...(isIOSSafari ? { pinType: "transform" as const } : {}),
+        invalidateOnRefresh: true,
       });
+      triggers.push(st);
     });
 
     const refreshId = requestAnimationFrame(() => ScrollTrigger.refresh());
@@ -92,7 +90,7 @@ export default function Skills() {
     return () => {
       cancelAnimationFrame(refreshId);
       window.removeEventListener("load", onLoad);
-      mm.revert();
+      triggers.forEach((st) => st.kill());
     };
   }, [categories.length, lang]);
 

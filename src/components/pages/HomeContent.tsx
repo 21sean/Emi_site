@@ -232,7 +232,7 @@ export default function HomeContent() {
 
             {/* Headshot */}
             <div
-              className={`shrink-0 ${
+              className={`shrink-0 self-center sm:self-auto ${
                 mounted ? "animate-scale-in stagger-3" : "opacity-0"
               }`}
             >
