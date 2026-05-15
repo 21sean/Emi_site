@@ -59,14 +59,14 @@ export default function Skills() {
     const cards = cardRefs.current.filter(Boolean) as HTMLDivElement[];
     if (!panel || cards.length === 0) return;
 
-    // iOS Safari only: position:fixed pinning jitters during momentum scroll.
-    // Detect WebKit-on-iOS specifically so desktop/Android pinning stays on
-    // its (working) fixed-pin path.
-    const ua = typeof navigator !== "undefined" ? navigator.userAgent : "";
-    const isIOSSafari =
-      /iP(hone|ad|od)/.test(ua) &&
-      /WebKit/.test(ua) &&
-      !/CriOS|FxiOS|EdgiOS/.test(ua);
+    // Mobile: skip pinning entirely. ScrollTrigger pin (even with
+    // pinType:"transform") jitters badly on iOS Safari momentum scroll, and
+    // pinSpacing:false makes the next section overlap. Cards just stack and
+    // scroll naturally on touch devices — cleaner UX, zero jitter.
+    const isMobile =
+      typeof window !== "undefined" &&
+      window.matchMedia("(max-width: 767px)").matches;
+    if (isMobile) return;
 
     const triggers: ScrollTrigger[] = [];
     cards.forEach((card, index) => {
@@ -77,7 +77,6 @@ export default function Skills() {
         end: `bottom top+=${HEADER_CLEAR + 60 + cards.length * SPACER}`,
         pin: true,
         pinSpacing: false,
-        ...(isIOSSafari ? { pinType: "transform" as const } : {}),
         invalidateOnRefresh: true,
       });
       triggers.push(st);
@@ -126,9 +125,10 @@ export default function Skills() {
               </div>
             </div>
           ))}
-          {/* Scroll runway inside the panel so the last card has room to pin
-              and dwell before the whole stack unpins. */}
-          <div className="h-[60vh] md:h-[55vh]" aria-hidden="true" />
+          {/* Scroll runway: only needed when cards are pinned (md+). On
+              mobile, cards stack naturally so the runway would just be dead
+              space that pulls the next section away. */}
+          <div className="hidden md:block md:h-[55vh]" aria-hidden="true" />
         </div>
       </div>
     </section>

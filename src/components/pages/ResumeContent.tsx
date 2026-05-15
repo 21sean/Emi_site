@@ -2,7 +2,7 @@
 
 import { useLanguage } from "@/components/LanguageProvider";
 import { getUI, getProfile } from "@/lib/translations";
-import { useMounted, useReveal } from "@/lib/useReveal";
+import { useReveal } from "@/lib/useReveal";
 import SideNav from "@/components/SideNav";
 import Link from "next/link";
 import SectionHeading from "@/components/shared/SectionHeading";
@@ -14,7 +14,6 @@ export default function ResumeContent() {
   const { lang } = useLanguage();
   const ui = getUI(lang);
   const profile = getProfile(lang);
-  const mounted = useMounted();
 
   const expRef = useReveal();
   const eduRef = useReveal();
@@ -39,9 +38,7 @@ export default function ResumeContent() {
       <div className="mx-auto max-w-3xl px-6 print:max-w-none print:px-8">
         {/* ── Header ────────────────────────────── */}
         <header
-          className={`mb-10 flex items-center gap-6 border-b border-[var(--color-border)] pb-8 ${
-            mounted ? "animate-fade-in-up" : "opacity-0"
-          }`}
+          className="mb-10 flex items-center gap-6 border-b border-[var(--color-border)] pb-8 animate-fade-in-up"
         >
           <div className="flex-1 min-w-0">
             <h1 className="text-3xl font-extrabold tracking-tight">
@@ -79,7 +76,7 @@ export default function ResumeContent() {
         {/* ── Summary ───────────────────────────── */}
         <div
           id="resume-summary"
-          className={`mb-10 scroll-mt-20 ${mounted ? "animate-fade-in-up stagger-2" : "opacity-0"}`}
+          className="mb-10 scroll-mt-20 animate-fade-in-up stagger-2"
         >
           <SectionHeading className="mb-3">{ui.resume.summary}</SectionHeading>
           <p className="text-sm leading-relaxed text-[var(--color-muted)]">

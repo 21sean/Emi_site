@@ -116,6 +116,11 @@ body > * {
   to { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes page-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 @keyframes scale-in {
   from { opacity: 0; transform: scale(0.95); }
   to { opacity: 1; transform: scale(1); }
@@ -148,6 +153,13 @@ body > * {
 
 .animate-text-flip {
   animation: text-flip 18s infinite;
+}
+
+/* Page-level fade-in applied by app/template.tsx. Runs from first paint —
+   no JS dependency — so mobile (iOS Safari) doesn't show empty pop-in
+   while the page hydrates. */
+.page-enter {
+  animation: page-fade-in 350ms ease-out both;
 }
 
 /* ── Stagger Delays ─────────────────────────────────────── */
@@ -391,7 +403,8 @@ body > * {
 @media (prefers-reduced-motion: reduce) {
   .animate-fade-in-up,
   .animate-scale-in,
-  .animate-text-flip {
+  .animate-text-flip,
+  .page-enter {
     animation: none !important;
   }
 
