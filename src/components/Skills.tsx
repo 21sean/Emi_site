@@ -59,6 +59,13 @@ export default function Skills() {
     const cards = cardRefs.current.filter(Boolean) as HTMLDivElement[];
     if (!panel || cards.length === 0) return;
 
+    // iOS Safari: position:fixed during momentum scroll jitters/skips. Force
+    // transform-based pinning on touch devices so cards stay locked.
+    const isTouch =
+      typeof window !== "undefined" &&
+      ("ontouchstart" in window || navigator.maxTouchPoints > 0);
+    const pinType: "transform" | "fixed" = isTouch ? "transform" : "fixed";
+
     const mm = gsap.matchMedia();
 
     mm.add("(min-width: 768px)", () => {
@@ -70,6 +77,8 @@ export default function Skills() {
           end: `bottom top+=${HEADER_CLEAR + 60 + cards.length * SPACER}`,
           pin: true,
           pinSpacing: false,
+          pinType,
+          anticipatePin: 1,
           invalidateOnRefresh: true,
         });
       });
@@ -78,10 +87,15 @@ export default function Skills() {
     const refreshId = requestAnimationFrame(() => ScrollTrigger.refresh());
     const onLoad = () => ScrollTrigger.refresh();
     window.addEventListener("load", onLoad);
+    // iOS Safari fires resize when the URL bar collapses — refresh so pin
+    // start/end positions follow the changed viewport.
+    const onOrientation = () => ScrollTrigger.refresh();
+    window.addEventListener("orientationchange", onOrientation);
 
     return () => {
       cancelAnimationFrame(refreshId);
       window.removeEventListener("load", onLoad);
+      window.removeEventListener("orientationchange", onOrientation);
       mm.revert();
     };
   }, [categories.length, lang]);

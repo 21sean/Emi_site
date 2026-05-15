@@ -31,6 +31,21 @@ export default function ProjectCard({
         featured ? "" : ""
       }`}
     >
+      {/* External-link icon — top-right indicator that the PDF opens in a new tab */}
+      {pdfArtifact && (
+        <a
+          href={pdfArtifact.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`Open ${project.title} in new tab`}
+          className="absolute right-3 top-3 z-20 flex h-8 w-8 items-center justify-center rounded-full border border-[var(--color-border)] bg-[var(--color-card)]/90 text-[var(--color-muted)] shadow-sm backdrop-blur-md transition-all duration-200 hover:border-[var(--color-accent)]/40 hover:bg-[var(--color-card)] hover:text-[var(--color-accent)] focus-ring"
+        >
+          <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+          </svg>
+        </a>
+      )}
+
       {/* Thumbnail — fixed aspect-ratio so every card's image aligns horizontally */}
       {thumbUrl ? (
         <a

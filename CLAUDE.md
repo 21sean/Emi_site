@@ -56,3 +56,17 @@ npm run dev
 ```
 
 This lets you verify changes work correctly in the browser at `http://localhost:3000`.
+
+### Clean up debug artifacts after verification
+Playwright/MCP browser screenshots and the `.playwright-mcp/` directory are
+debug artifacts — delete them once the visual check is done, before committing.
+They should never end up tracked in git.
+
+```bash
+# at project root
+rm -f *.png
+rm -rf .playwright-mcp
+```
+
+Project-owned images (the `public/`, `src/`, or referenced assets) are not
+debug artifacts — only delete loose screenshots from the repo root.

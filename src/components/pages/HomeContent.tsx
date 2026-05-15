@@ -252,9 +252,6 @@ export default function HomeContent() {
         </div>
         {/* Snap-scroll carousel */}
         <div className="relative">
-          {/* Fade edges */}
-          <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-24 bg-gradient-to-r from-[var(--color-background)] via-[var(--color-background)]/80 to-transparent" />
-          <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-24 bg-gradient-to-l from-[var(--color-background)] via-[var(--color-background)]/80 to-transparent" />
           <div
             ref={carouselRef}
             className="carousel-scroll flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth py-4 [scroll-padding-left:max(1.5rem,calc((100%-64rem)/2))] px-[max(1.5rem,calc((100%-64rem)/2))]"
