@@ -3,10 +3,9 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import ThemeToggle from "./ThemeToggle";
-import LanguageSelect from "./LanguageSelect";
 import { useLanguage } from "./LanguageProvider";
 import { getUI, getProfile } from "@/lib/translations";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 
 export default function Header() {
   const pathname = usePathname();
@@ -15,7 +14,6 @@ export default function Header() {
   const { lang } = useLanguage();
   const ui = getUI(lang);
   const profile = getProfile(lang);
-  const mobileNavRef = useRef<HTMLDivElement>(null);
 
   // Track scroll for header shadow
   useEffect(() => {
@@ -85,7 +83,6 @@ export default function Header() {
 
             <div className="ml-2 flex items-center gap-1">
               <ThemeToggle />
-              <LanguageSelect />
             </div>
 
             <Link
@@ -101,7 +98,7 @@ export default function Header() {
 
           {/* Mobile hamburger */}
           <button
-            className="relative z-50 flex h-10 w-10 items-center justify-center rounded-lg transition-colors hover:bg-[var(--color-accent-light)] focus-ring md:hidden"
+            className="relative z-[60] flex h-10 w-10 items-center justify-center rounded-lg text-[var(--color-foreground)] transition-colors hover:bg-[var(--color-accent-light)] focus-ring md:hidden"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle menu"
             aria-expanded={menuOpen}
@@ -127,24 +124,26 @@ export default function Header() {
         </div>
       </header>
 
-      {/* Mobile overlay */}
+      {/* ── Mobile fullscreen menu (md:hidden) ────────────────────
+          Full-bleed glassy overlay with large tap targets and
+          staggered fade-in. Desktop nav above is untouched. */}
       <div
-        className={`fixed inset-0 z-40 bg-[var(--color-overlay)] transition-opacity duration-300 md:hidden ${
-          menuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        className={`fixed inset-0 z-40 md:hidden ${
+          menuOpen ? "pointer-events-auto" : "pointer-events-none"
         }`}
-        onClick={() => setMenuOpen(false)}
-        aria-hidden="true"
-      />
-
-      {/* Mobile slide-over menu */}
-      <div
-        ref={mobileNavRef}
-        className={`fixed top-0 right-0 z-40 flex h-full w-72 flex-col bg-[var(--color-background)] shadow-2xl transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] md:hidden ${
-          menuOpen ? "translate-x-0" : "translate-x-full"
-        }`}
+        aria-hidden={!menuOpen}
       >
-        <div className="flex-1 overflow-y-auto px-6 pt-20 pb-6">
-          <nav aria-label="Mobile navigation" className="space-y-1">
+        {/* Backdrop — solid bg so the underlying page isn't readable */}
+        <div
+          className={`absolute inset-0 bg-[var(--color-background)]/95 backdrop-blur-2xl transition-opacity duration-300 ${
+            menuOpen ? "opacity-100" : "opacity-0"
+          }`}
+          onClick={() => setMenuOpen(false)}
+        />
+
+        {/* Content */}
+        <div className="relative flex h-full flex-col px-6 pt-24 pb-10">
+          <nav aria-label="Mobile navigation" className="flex flex-col gap-1">
             {navItems.map((item, i) => {
               const isActive = pathname === item.href;
               return (
@@ -152,41 +151,64 @@ export default function Header() {
                   key={item.href}
                   href={item.href}
                   onClick={() => setMenuOpen(false)}
-                  className={`flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium transition-all duration-200 ${
+                  className={`group flex items-center justify-between rounded-2xl px-5 py-4 text-2xl font-semibold tracking-tight transition-all duration-300 ${
                     isActive
                       ? "bg-[var(--color-accent-light)] text-[var(--color-accent)]"
-                      : "text-[var(--color-muted)] hover:bg-[var(--color-accent-light)]/50 hover:text-[var(--color-foreground)]"
+                      : "text-[var(--color-foreground)] hover:bg-[var(--color-accent-light)]/40 active:bg-[var(--color-accent-light)]/60"
                   }`}
                   style={{
-                    transitionDelay: menuOpen ? `${i * 50}ms` : "0ms",
+                    transitionDelay: menuOpen ? `${80 + i * 60}ms` : "0ms",
                     opacity: menuOpen ? 1 : 0,
-                    transform: menuOpen ? "translateX(0)" : "translateX(16px)",
+                    transform: menuOpen ? "translateY(0)" : "translateY(8px)",
                   }}
                 >
-                  {isActive && (
-                    <span className="h-1.5 w-1.5 rounded-full bg-[var(--color-accent)]" />
-                  )}
-                  {item.label}
+                  <span className="flex items-center gap-3">
+                    {isActive && (
+                      <span className="h-2 w-2 rounded-full bg-[var(--color-accent)]" />
+                    )}
+                    {item.label}
+                  </span>
+                  <svg
+                    className="h-5 w-5 text-[var(--color-muted)] transition-transform duration-200 group-hover:translate-x-1 group-active:translate-x-1"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                  </svg>
                 </Link>
               );
             })}
           </nav>
 
-          <div className="mt-8 border-t border-[var(--color-border)] pt-6">
-            <div className="flex items-center gap-3 px-4">
-              <ThemeToggle />
-              <LanguageSelect />
-            </div>
+          {/* Resume CTA — anchored to bottom, big tappable */}
+          <div
+            className="mt-auto flex flex-col gap-4 pt-8"
+            style={{
+              transitionProperty: "opacity, transform",
+              transitionDuration: "300ms",
+              transitionDelay: menuOpen ? `${80 + navItems.length * 60}ms` : "0ms",
+              opacity: menuOpen ? 1 : 0,
+              transform: menuOpen ? "translateY(0)" : "translateY(8px)",
+            }}
+          >
             <Link
               href={profile.resumeUrl}
               onClick={() => setMenuOpen(false)}
-              className="mt-4 flex items-center justify-center gap-2 rounded-lg bg-[var(--color-accent)] px-4 py-3 text-sm font-medium text-white transition-opacity hover:opacity-90 focus-ring"
+              className="flex items-center justify-center gap-2 rounded-2xl bg-[var(--color-accent)] px-6 py-4 text-base font-semibold text-white shadow-lg shadow-[var(--color-accent)]/25 transition-all duration-200 hover:shadow-xl hover:shadow-[var(--color-accent)]/30 active:scale-[0.98] focus-ring"
             >
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
               </svg>
               {ui.common.downloadResume}
             </Link>
+
+            {/* Theme toggle — small, secondary */}
+            <div className="flex items-center justify-center gap-3 pt-2 text-xs text-[var(--color-muted)]">
+              <span>Theme</span>
+              <ThemeToggle />
+            </div>
           </div>
         </div>
       </div>

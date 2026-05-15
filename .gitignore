@@ -36,6 +36,10 @@ yarn-error.log*
 # vercel
 .vercel
 
+# playwright / mcp debug artifacts (screenshots, console logs, snapshots)
+.playwright-mcp/
+/*.png
+
 # typescript
 *.tsbuildinfo
 
