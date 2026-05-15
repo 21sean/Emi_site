@@ -4,13 +4,11 @@ import { useState, useMemo } from "react";
 import { useLanguage } from "@/components/LanguageProvider";
 import { getUI, getProfile } from "@/lib/translations";
 import ProjectCard from "@/components/ProjectCard";
-import { useMounted } from "@/lib/useReveal";
 
 export default function ProjectsPage() {
   const { lang } = useLanguage();
   const ui = getUI(lang);
   const profile = getProfile(lang);
-  const mounted = useMounted();
 
   const allTags = useMemo(() => {
     const set = new Set<string>();
@@ -27,7 +25,7 @@ export default function ProjectsPage() {
   return (
     <section className="py-20">
       <div className="mx-auto max-w-5xl px-6">
-        <div className={mounted ? "animate-fade-in-up" : "opacity-0"}>
+        <div className="animate-fade-in-up">
           <h1 className="text-3xl font-extrabold tracking-tight">{ui.projects.title}</h1>
           <p className="mt-2 text-[var(--color-muted)]">
             {ui.projects.description}
@@ -35,7 +33,7 @@ export default function ProjectsPage() {
         </div>
 
         {/* Tag filters */}
-        <div className={`mt-10 flex flex-wrap gap-2 ${mounted ? "animate-fade-in-up stagger-2" : "opacity-0"}`}>
+        <div className="mt-10 flex flex-wrap gap-2 animate-fade-in-up stagger-2">
           <button
             onClick={() => setActiveTag(null)}
             className={`rounded-full border px-4 py-1.5 text-xs font-semibold transition-all duration-200 focus-ring ${
@@ -67,7 +65,7 @@ export default function ProjectsPage() {
             <div
               key={project.id}
               id={project.id}
-              className={mounted ? "animate-fade-in-up" : "opacity-0"}
+              className="animate-fade-in-up"
               style={{ animationDelay: `${(i + 1) * 80}ms` }}
             >
               <ProjectCard project={project} />

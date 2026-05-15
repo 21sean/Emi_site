@@ -132,24 +132,18 @@ export default function HomeContent() {
           <div className="flex flex-col-reverse items-start gap-10 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex-1">
               <p
-                className={`mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-accent)] ${
-                  mounted ? "animate-fade-in-up" : "opacity-0"
-                }`}
+                className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-accent)] animate-fade-in-up"
               >
                 {profile.location}
               </p>
               <h1
-                className={`max-w-3xl text-4xl font-extrabold leading-[1.1] tracking-tight lg:text-6xl ${
-                  mounted ? "animate-fade-in-up stagger-2" : "opacity-0"
-                }`}
+                className="max-w-3xl text-4xl font-extrabold leading-[1.1] tracking-tight lg:text-6xl animate-fade-in-up stagger-2"
               >
                 {profile.name}
               </h1>
               {/* Quantifiable headline with one inline animated number */}
               <p
-                className={`mt-5 max-w-2xl text-xl leading-relaxed text-[var(--color-foreground)] lg:text-2xl font-medium ${
-                  mounted ? "animate-fade-in-up stagger-3" : "opacity-0"
-                }`}
+                className="mt-5 max-w-2xl text-xl leading-relaxed text-[var(--color-foreground)] lg:text-2xl font-medium animate-fade-in-up stagger-3"
               >
                 {headline.before}
                 <span className="font-extrabold text-[var(--color-accent)] tabular-nums">
@@ -171,9 +165,7 @@ export default function HomeContent() {
 
               {/* Flip animation: prefix + rotating phrase */}
               <div
-                className={`mt-3 text-lg leading-[1.4] text-[var(--color-muted)] lg:text-xl ${
-                  mounted ? "animate-fade-in-up stagger-3" : "opacity-0"
-                }`}
+                className="mt-3 text-lg leading-[1.4] text-[var(--color-muted)] lg:text-xl animate-fade-in-up stagger-3"
               >
                 <span>{flip.prefix} </span>
                 <span
@@ -192,9 +184,7 @@ export default function HomeContent() {
 
               {/* Specialties pills */}
               <div
-                className={`mt-7 flex flex-wrap gap-2 ${
-                  mounted ? "animate-fade-in-up stagger-4" : "opacity-0"
-                }`}
+                className="mt-7 flex flex-wrap gap-2 animate-fade-in-up stagger-4"
               >
                 {profile.specialties.map((s) => (
                   <span
@@ -208,9 +198,7 @@ export default function HomeContent() {
 
               {/* CTAs */}
               <div
-                className={`mt-9 flex flex-wrap gap-3 ${
-                  mounted ? "animate-fade-in-up stagger-5" : "opacity-0"
-                }`}
+                className="mt-9 flex flex-wrap gap-3 animate-fade-in-up stagger-5"
               >
                 <Link
                   href="/about"
@@ -232,9 +220,7 @@ export default function HomeContent() {
 
             {/* Headshot */}
             <div
-              className={`shrink-0 self-center sm:self-auto ${
-                mounted ? "animate-scale-in stagger-3" : "opacity-0"
-              }`}
+              className="shrink-0 self-center sm:self-auto animate-scale-in stagger-3"
             >
               <div className="group/photo relative cursor-pointer" style={{ perspective: "600px" }}>
                 {/* Glow ring */}
