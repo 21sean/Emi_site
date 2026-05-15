@@ -14,7 +14,7 @@ export default function ContactContent() {
   return (
     <section className="py-20">
       <div className="mx-auto max-w-3xl px-6">
-        <div className="animate-fade-in-up">
+        <div>
           <h1 className="text-3xl font-extrabold tracking-tight">{ui.contact.title}</h1>
           <p className="mt-3 text-[var(--color-muted)]">
             {ui.contact.description}
@@ -23,7 +23,7 @@ export default function ContactContent() {
 
         <div className="mt-12 grid gap-12 lg:grid-cols-5">
           {/* Form */}
-          <div className="lg:col-span-3 animate-fade-in-up stagger-2">
+          <div className="lg:col-span-3">
             <ContactForm />
           </div>
 

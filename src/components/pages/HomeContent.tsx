@@ -131,20 +131,14 @@ export default function HomeContent() {
         <div className="relative mx-auto max-w-5xl px-6">
           <div className="flex flex-col-reverse items-start gap-10 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex-1">
-              <p
-                className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-accent)] animate-fade-in-up"
-              >
+              <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-accent)]">
                 {profile.location}
               </p>
-              <h1
-                className="max-w-3xl text-4xl font-extrabold leading-[1.1] tracking-tight lg:text-6xl animate-fade-in-up stagger-2"
-              >
+              <h1 className="max-w-3xl text-4xl font-extrabold leading-[1.1] tracking-tight lg:text-6xl">
                 {profile.name}
               </h1>
               {/* Quantifiable headline with one inline animated number */}
-              <p
-                className="mt-5 max-w-2xl text-xl leading-relaxed text-[var(--color-foreground)] lg:text-2xl font-medium animate-fade-in-up stagger-3"
-              >
+              <p className="mt-5 max-w-2xl text-xl leading-relaxed text-[var(--color-foreground)] lg:text-2xl font-medium">
                 {headline.before}
                 <span className="font-extrabold text-[var(--color-accent)] tabular-nums">
                   {mounted ? (
@@ -164,9 +158,7 @@ export default function HomeContent() {
               </p>
 
               {/* Flip animation: prefix + rotating phrase */}
-              <div
-                className="mt-3 text-lg leading-[1.4] text-[var(--color-muted)] lg:text-xl animate-fade-in-up stagger-3"
-              >
+              <div className="mt-3 text-lg leading-[1.4] text-[var(--color-muted)] lg:text-xl">
                 <span>{flip.prefix} </span>
                 <span
                   className="inline-flex h-[1.4em] overflow-hidden align-bottom font-semibold text-[var(--color-accent)]"
@@ -183,9 +175,7 @@ export default function HomeContent() {
               </div>
 
               {/* Specialties pills */}
-              <div
-                className="mt-7 flex flex-wrap gap-2 animate-fade-in-up stagger-4"
-              >
+              <div className="mt-7 flex flex-wrap gap-2">
                 {profile.specialties.map((s) => (
                   <span
                     key={s}
@@ -197,9 +187,7 @@ export default function HomeContent() {
               </div>
 
               {/* CTAs */}
-              <div
-                className="mt-9 flex flex-wrap gap-3 animate-fade-in-up stagger-5"
-              >
+              <div className="mt-9 flex flex-wrap gap-3">
                 <Link
                   href="/about"
                   className="group inline-flex items-center gap-2 rounded-xl bg-[var(--color-accent)] px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-[var(--color-accent)]/25 transition-all duration-200 hover:shadow-xl hover:shadow-[var(--color-accent)]/30 hover:-translate-y-0.5 focus-ring"
@@ -219,9 +207,7 @@ export default function HomeContent() {
             </div>
 
             {/* Headshot */}
-            <div
-              className="shrink-0 self-center sm:self-auto animate-scale-in stagger-3"
-            >
+            <div className="shrink-0 self-center sm:self-auto">
               <div className="group/photo relative cursor-pointer" style={{ perspective: "600px" }}>
                 {/* Glow ring */}
                 <div className="absolute -inset-1 rounded-full bg-gradient-to-br from-[var(--color-accent)]/20 to-[var(--color-accent)]/5 blur-sm" />

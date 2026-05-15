@@ -37,9 +37,7 @@ export default function ResumeContent() {
       />
       <div className="mx-auto max-w-3xl px-6 print:max-w-none print:px-8">
         {/* ── Header ────────────────────────────── */}
-        <header
-          className="mb-10 flex items-center gap-6 border-b border-[var(--color-border)] pb-8 animate-fade-in-up"
-        >
+        <header className="mb-10 flex items-center gap-6 border-b border-[var(--color-border)] pb-8">
           <div className="flex-1 min-w-0">
             <h1 className="text-3xl font-extrabold tracking-tight">
               {profile.name}
@@ -74,10 +72,7 @@ export default function ResumeContent() {
         </header>
 
         {/* ── Summary ───────────────────────────── */}
-        <div
-          id="resume-summary"
-          className="mb-10 scroll-mt-20 animate-fade-in-up stagger-2"
-        >
+        <div id="resume-summary" className="mb-10 scroll-mt-20">
           <SectionHeading className="mb-3">{ui.resume.summary}</SectionHeading>
           <p className="text-sm leading-relaxed text-[var(--color-muted)]">
             {profile.summary}

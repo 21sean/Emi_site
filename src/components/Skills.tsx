@@ -1,8 +1,5 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import type { IconType } from "react-icons";
 import {
   SiGit,
@@ -21,10 +18,6 @@ import { HiOutlineUserGroup } from "react-icons/hi2";
 import { useLanguage } from "@/components/LanguageProvider";
 import { getProfile, getUI } from "@/lib/translations";
 
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
-
 const iconMap: Record<string, IconType> = {
   "VS Code": VscCode,
   "GitHub Copilot": SiGithubcopilot,
@@ -39,59 +32,18 @@ const iconMap: Record<string, IconType> = {
   MATLAB: TbMathFunction,
 };
 
-const SPACER = 52;
-const HEADER_CLEAR = 80; // sticky header (62px) + breathing room
+// Per-card sticky-top stagger so cards pile up showing each title row.
+const STACK_OFFSET = 52;
+const HEADER_CLEAR = 80;
 
 export default function Skills() {
   const { lang } = useLanguage();
   const ui = getUI(lang);
   const profile = getProfile(lang);
 
-  const panelRef = useRef<HTMLDivElement>(null);
-  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
-
   const categories = profile.skills.filter(
     (s) => !s.category.toLowerCase().includes("collab")
   );
-
-  useEffect(() => {
-    const panel = panelRef.current;
-    const cards = cardRefs.current.filter(Boolean) as HTMLDivElement[];
-    if (!panel || cards.length === 0) return;
-
-    // Mobile: skip pinning entirely. ScrollTrigger pin (even with
-    // pinType:"transform") jitters badly on iOS Safari momentum scroll, and
-    // pinSpacing:false makes the next section overlap. Cards just stack and
-    // scroll naturally on touch devices — cleaner UX, zero jitter.
-    const isMobile =
-      typeof window !== "undefined" &&
-      window.matchMedia("(max-width: 767px)").matches;
-    if (isMobile) return;
-
-    const triggers: ScrollTrigger[] = [];
-    cards.forEach((card, index) => {
-      const st = ScrollTrigger.create({
-        trigger: card,
-        start: `top-=${index * SPACER} top+=${HEADER_CLEAR}`,
-        endTrigger: panel,
-        end: `bottom top+=${HEADER_CLEAR + 60 + cards.length * SPACER}`,
-        pin: true,
-        pinSpacing: false,
-        invalidateOnRefresh: true,
-      });
-      triggers.push(st);
-    });
-
-    const refreshId = requestAnimationFrame(() => ScrollTrigger.refresh());
-    const onLoad = () => ScrollTrigger.refresh();
-    window.addEventListener("load", onLoad);
-
-    return () => {
-      cancelAnimationFrame(refreshId);
-      window.removeEventListener("load", onLoad);
-      triggers.forEach((st) => st.kill());
-    };
-  }, [categories.length, lang]);
 
   return (
     <section id="skills" className="w-full px-4 sm:px-6 pt-12 pb-4 sm:pt-20 sm:pb-6">
@@ -102,14 +54,15 @@ export default function Skills() {
           </h2>
         </div>
 
-        <div ref={panelRef} className="skills-pin-panel relative">
+        {/* Native CSS sticky stack. Each card sticks at a staggered top
+            offset so they pile up on scroll. Browser-driven — no GSAP,
+            no momentum-scroll jitter on iOS Safari. */}
+        <div className="skills-pin-panel relative">
           {categories.map((cat, i) => (
             <div
               key={cat.category}
-              ref={(el) => {
-                cardRefs.current[i] = el;
-              }}
-              className="skills-card mb-6 w-full"
+              className="skills-card skills-card-sticky mb-6 w-full"
+              style={{ top: `${HEADER_CLEAR + i * STACK_OFFSET}px` }}
             >
               <div className="skills-card-title">{cat.category}</div>
               <div className="flex flex-wrap gap-2.5">
@@ -125,10 +78,9 @@ export default function Skills() {
               </div>
             </div>
           ))}
-          {/* Scroll runway: only needed when cards are pinned (md+). On
-              mobile, cards stack naturally so the runway would just be dead
-              space that pulls the next section away. */}
-          <div className="hidden md:block md:h-[55vh]" aria-hidden="true" />
+          {/* Runway so the last card has room to stay stuck for a beat
+              before the whole stack unsticks and scrolls away. */}
+          <div className="h-[60vh] md:h-[55vh]" aria-hidden="true" />
         </div>
       </div>
     </section>
