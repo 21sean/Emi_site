@@ -173,6 +173,14 @@ const profile: Profile = {
   // ── Certifications ─────────────────────────
   certifications: [
     {
+      name: "IBM AI Product Manager Specialization",
+      issuer: "IBM",
+      date: "May 2026",
+      credentialId: "KB3PL0HID9B5",
+      credentialUrl: "https://www.coursera.org/account/accomplishments/specialization/KB3PL0HID9B5",
+      skills: ["Artificial Intelligence (AI)", "Product Management", "AI Strategy", "Agile Project Management"],
+    },
+    {
       name: "Google AI Professional Certificate",
       issuer: "Google",
       date: "Feb 2026",
