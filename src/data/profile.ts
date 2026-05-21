@@ -181,6 +181,14 @@ const profile: Profile = {
       skills: ["Artificial Intelligence (AI)", "Product Management", "AI Strategy", "Agile Project Management"],
     },
     {
+      name: "Google Project Management Specialization",
+      issuer: "Google",
+      date: "May 2026",
+      credentialId: "J04REFMDB4TC",
+      credentialUrl: "https://www.coursera.org/account/accomplishments/specialization/J04REFMDB4TC",
+      skills: ["Project Management", "Agile Project Management", "Agile Methodologies", "Cross-functional Collaboration"],
+    },
+    {
       name: "Google AI Professional Certificate",
       issuer: "Google",
       date: "Feb 2026",
