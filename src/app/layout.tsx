@@ -4,6 +4,7 @@ import Script from "next/script";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import FooterScene from "@/components/FooterScene";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { LanguageProvider } from "@/components/LanguageProvider";
 import profile from "@/data/profile";
@@ -53,6 +54,7 @@ export default function RootLayout({
             <div className="animate-page-in flex min-h-screen flex-col">
               <Header />
               <main className="flex-1">{children}</main>
+              <FooterScene />
               <Footer />
             </div>
           </LanguageProvider>

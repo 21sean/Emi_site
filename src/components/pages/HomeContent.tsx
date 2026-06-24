@@ -10,7 +10,6 @@ import Skills from "@/components/Skills";
 import CountUp from "@/components/CountUp";
 import SkyScene from "@/components/SkyScene";
 import SakuraPetals from "@/components/SakuraPetals";
-import FooterScene from "@/components/FooterScene";
 import { useMounted, useReveal } from "@/lib/useReveal";
 
 // Hero headline: single quantifiable sentence with one inline animated number.
@@ -383,10 +382,6 @@ export default function HomeContent() {
           </div>
         </div>
       </section>
-
-      {/* ── Twilight landscape (assets from kenta.page) ──────────
-          Silhouette scene + dusk sky, grounding the page before the footer. */}
-      <FooterScene />
     </>
   );
 }
