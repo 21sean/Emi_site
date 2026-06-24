@@ -87,7 +87,7 @@ const profile: Profile = {
   headline: "Where deep tech meets global growth.",
   summary:
     "Currently pursuing an MBA at the University of California, San Diego with a focus on STEM and recognized as a UCSD Rady Scholar Fellowship recipient. At Dassault Systèmes, contributing to global SaaS marketing efforts for their BIOVIA brand by developing and executing international campaigns, conducting cross-market analyses, and optimizing strategies to enhance engagement and ROI.",
-  location: "🌴 San Diego, CA",
+  location: "San Diego, CA",
   specialties: [
     "Semiconductors",
     "Life Sciences",
