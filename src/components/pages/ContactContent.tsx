@@ -4,6 +4,8 @@ import { useLanguage } from "@/components/LanguageProvider";
 import { getUI, getProfile } from "@/lib/translations";
 import ContactForm from "@/components/ContactForm";
 import MountFuji from "@/components/MountFuji";
+import SkyScene from "@/components/SkyScene";
+import SakuraPetals from "@/components/SakuraPetals";
 import { useReveal } from "@/lib/useReveal";
 
 export default function ContactContent() {
@@ -14,6 +16,11 @@ export default function ContactContent() {
 
   return (
     <section className="relative overflow-hidden py-20 pb-48 sm:pb-56">
+      {/* Ambient scene extracted from kenta.page: sky (sun/moon + clouds),
+          falling sakura petals, and the Mount Fuji band below. */}
+      <SkyScene />
+      <SakuraPetals />
+
       <div className="relative z-10 mx-auto max-w-3xl px-6">
         <div>
           <h1 className="text-3xl font-extrabold tracking-tight">{ui.contact.title}</h1>

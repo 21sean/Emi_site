@@ -430,3 +430,41 @@ body > * {
     display: none !important;
   }
 }
+
+/* ── Decorative scene: clouds + falling sakura (assets from kenta.page) ─── */
+
+@keyframes cloud-drift {
+  from { transform: translateX(-30%); }
+  to   { transform: translateX(115vw); }
+}
+@keyframes cloud-drift-slow {
+  from { transform: translateX(110vw); }
+  to   { transform: translateX(-40%); }
+}
+.cloud-drift { left: 0; animation: cloud-drift linear infinite; }
+.cloud-drift-slow { right: 0; animation: cloud-drift-slow linear infinite; }
+
+/* Falling petals: outer span falls, inner span sways + tumbles. */
+@keyframes sakura-fall {
+  from { transform: translateY(-15vh); }
+  to   { transform: translateY(115vh); }
+}
+@keyframes sakura-sway {
+  0%   { transform: translateX(-14px) rotate(var(--start-rotate, 0deg)); }
+  50%  { transform: translateX(14px) rotate(calc(var(--start-rotate, 0deg) + 180deg)); }
+  100% { transform: translateX(-14px) rotate(calc(var(--start-rotate, 0deg) + 360deg)); }
+}
+.sakura-fall { animation: sakura-fall linear infinite; will-change: transform; }
+.sakura-sway { animation: sakura-sway ease-in-out infinite; will-change: transform; }
+
+@media (prefers-reduced-motion: reduce) {
+  .cloud-drift,
+  .cloud-drift-slow,
+  .sakura-fall,
+  .sakura-sway {
+    animation: none !important;
+  }
+  /* Hide the petals entirely when motion is reduced — a frozen petal field
+     reads as clutter rather than decoration. */
+  .sakura-fall { display: none !important; }
+}
