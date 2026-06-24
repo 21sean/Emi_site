@@ -59,12 +59,14 @@ export default function Footer() {
           alt=""
           className="koi-drift-slow absolute left-[42%] bottom-6 hidden h-10 w-auto opacity-50 sm:block"
         />
-        {/* Leaping koi + boulder on the right */}
+        {/* Leaping koi + boulder on the right. The koi stays visible on mobile
+            (scaled down) so the seabed isn't bare once the kelp cluster and
+            boulder drop away. */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={assetPath("/koi-a.svg")}
           alt=""
-          className="koi-drift absolute right-[6%] bottom-8 hidden h-14 w-auto opacity-55 sm:block sm:h-16"
+          className="koi-drift absolute right-[6%] bottom-4 h-11 w-auto opacity-55 sm:bottom-8 sm:h-16"
         />
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
