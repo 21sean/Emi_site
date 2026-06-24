@@ -5,13 +5,12 @@
 /* ── Design Tokens ──────────────────────────────────────── */
 
 :root {
-  /* Warm slate-blue tint inspired by professional_portfolio (rgb 72,150,220)
-     softened for light mode — gives the noise something to bite into so the
-     page doesn't feel like flat paper. */
-  --color-background: #dde4ee;
+  /* Clean, near-white warm paper. Brighter than a slate-gray tint so the page
+     reads crisp; white cards still separate via their borders + shadows. */
+  --color-background: #f8f6f2;
   --color-foreground: #15192b;
   --color-muted: #5a607a;
-  --color-border: #c8d1e0;
+  --color-border: #e2e0da;
   --color-accent: #2563eb;
   --color-accent-hover: #1d4ed8;
   --color-accent-light: #e2ebfb;
