@@ -3,6 +3,7 @@
 import { useLanguage } from "@/components/LanguageProvider";
 import { getUI, getProfile } from "@/lib/translations";
 import ContactForm from "@/components/ContactForm";
+import MountFuji from "@/components/MountFuji";
 import { useReveal } from "@/lib/useReveal";
 
 export default function ContactContent() {
@@ -12,8 +13,8 @@ export default function ContactContent() {
   const asideRef = useReveal();
 
   return (
-    <section className="py-20">
-      <div className="mx-auto max-w-3xl px-6">
+    <section className="relative overflow-hidden py-20 pb-48 sm:pb-56">
+      <div className="relative z-10 mx-auto max-w-3xl px-6">
         <div>
           <h1 className="text-3xl font-extrabold tracking-tight">{ui.contact.title}</h1>
           <p className="mt-3 text-[var(--color-muted)]">
@@ -88,6 +89,9 @@ export default function ContactContent() {
           </aside>
         </div>
       </div>
+
+      {/* Decorative Mount Fuji extracted from kenta.page */}
+      <MountFuji />
     </section>
   );
 }
