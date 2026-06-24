@@ -8,6 +8,9 @@ import { getUI, getProfile } from "@/lib/translations";
 import ProjectCard from "@/components/ProjectCard";
 import Skills from "@/components/Skills";
 import CountUp from "@/components/CountUp";
+import SkyScene from "@/components/SkyScene";
+import SakuraPetals from "@/components/SakuraPetals";
+import FooterScene from "@/components/FooterScene";
 import { useMounted, useReveal } from "@/lib/useReveal";
 
 // Hero headline: single quantifiable sentence with one inline animated number.
@@ -128,7 +131,12 @@ export default function HomeContent() {
           <div className="absolute -bottom-24 -left-24 h-96 w-96 rounded-full bg-[var(--color-accent)]/3 blur-3xl" />
         </div>
 
-        <div className="relative mx-auto max-w-5xl px-6">
+        {/* Ambient scene from kenta.page: drifting clouds + falling sakura.
+            Celestial body omitted here so nothing collides with the headshot. */}
+        <SkyScene celestial={false} />
+        <SakuraPetals count={12} />
+
+        <div className="relative z-10 mx-auto max-w-5xl px-6">
           <div className="flex flex-col-reverse items-start gap-10 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex-1">
               <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-accent)]">
@@ -375,6 +383,10 @@ export default function HomeContent() {
           </div>
         </div>
       </section>
+
+      {/* ── Twilight landscape (assets from kenta.page) ──────────
+          Silhouette scene + dusk sky, grounding the page before the footer. */}
+      <FooterScene />
     </>
   );
 }
