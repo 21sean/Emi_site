@@ -22,8 +22,11 @@ export default function FooterScene() {
       aria-hidden="true"
       className="pointer-events-none relative z-0 -mb-px select-none overflow-hidden pt-28 sm:pt-36 lg:pt-44"
     >
-      {/* Dusk sky — fades from the page background into the source's twilight. */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#cbb6dd]/35 to-[#f5cce9]/75 dark:via-[#43426b]/45 dark:to-[#9a7bb0]/55" />
+      {/* Dusk sky — a smooth multi-stop twilight that fades from the page
+          background through soft lilac down to the cool periwinkle hills
+          (#93a3d1), so the horizon meets the silhouette seamlessly with no
+          flat band. Tuned blue, not pink, to match the kenta.page dusk. */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_bottom,transparent_0%,#dcd8ee_26%,#bcc0e2_52%,#9aa6d4_74%,#1e3e67_100%)] dark:bg-[linear-gradient(to_bottom,transparent_0%,#2b2a4d_26%,#494f7e_54%,#6675ab_76%,#1e3e67_100%)]" />
 
       {/* Drifting clouds */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
