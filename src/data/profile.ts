@@ -173,6 +173,14 @@ const profile: Profile = {
   // ── Certifications ─────────────────────────
   certifications: [
     {
+      name: "Data Modeling in Power BI",
+      issuer: "Microsoft",
+      date: "Jun 2026",
+      credentialId: "I6MU2M7OTGCN",
+      credentialUrl: "https://www.coursera.org/account/accomplishments/records/I6MU2M7OTGCN",
+      skills: ["Power BI", "Data Modeling", "Data Analysis", "Business Intelligence"],
+    },
+    {
       name: "IBM AI Product Manager Specialization",
       issuer: "IBM",
       date: "May 2026",
