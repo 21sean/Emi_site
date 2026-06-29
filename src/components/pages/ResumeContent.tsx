@@ -4,7 +4,7 @@ import { useLanguage } from "@/components/LanguageProvider";
 import { getUI, getProfile } from "@/lib/translations";
 import { useReveal } from "@/lib/useReveal";
 import SideNav from "@/components/SideNav";
-import Link from "next/link";
+import FeaturedProjects from "@/components/FeaturedProjects";
 import SectionHeading from "@/components/shared/SectionHeading";
 import CertificationCard from "@/components/shared/CertificationCard";
 import EducationCard from "@/components/shared/EducationCard";
@@ -143,47 +143,6 @@ export default function ResumeContent() {
           </div>
         </div>
 
-        {/* ── Projects ──────────────────────────── */}
-        <div
-          id="resume-projects"
-          ref={projRef.ref}
-          className={`mb-10 scroll-mt-20 reveal ${projRef.revealed ? "revealed" : ""}`}
-        >
-          <SectionHeading>{ui.home.featuredProjects}</SectionHeading>
-          <div className="space-y-4">
-            {profile.projects.slice(0, 3).map((project) => (
-              <div
-                key={project.id}
-                className="rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] p-4 shadow-sm transition-all duration-200 hover:border-[var(--color-accent)]/20 hover:shadow-md print:border-0 print:p-0 print:shadow-none"
-              >
-                <div className="flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between">
-                  <h3 className="text-sm font-bold">{project.title}</h3>
-                  <span className="rounded-full bg-[var(--color-accent-light)] px-2.5 py-0.5 text-[11px] font-medium text-[var(--color-accent)] shrink-0 print:bg-transparent print:px-0">
-                    {project.dates}
-                  </span>
-                </div>
-                <p className="mt-1 text-xs leading-relaxed text-[var(--color-muted)] line-clamp-2">
-                  {project.summary}
-                </p>
-                <Link
-                  href={`/projects#${project.id}`}
-                  className="mt-2 inline-block text-xs font-semibold text-[var(--color-accent)] hover:underline"
-                >
-                  Read more →
-                </Link>
-              </div>
-            ))}
-          </div>
-          <div className="mt-4 text-center">
-            <Link
-              href="/projects"
-              className="inline-flex items-center gap-1 text-xs font-medium text-[var(--color-accent)] transition-colors hover:underline"
-            >
-              {ui.common.viewAll} →
-            </Link>
-          </div>
-        </div>
-
         {/* ── Skills ────────────────────────────── */}
         <div
           id="resume-skills"
@@ -207,6 +166,15 @@ export default function ResumeContent() {
         </div>
 
 
+      </div>
+
+      {/* ── Featured Projects (full-width carousel) ──────────── */}
+      <div
+        id="resume-projects"
+        ref={projRef.ref}
+        className={`scroll-mt-20 print:hidden reveal ${projRef.revealed ? "revealed" : ""}`}
+      >
+        <FeaturedProjects />
       </div>
     </section>
   );
